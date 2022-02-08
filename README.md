@@ -1,71 +1,41 @@
-# What is MyProduct?
+# 🌈 Welcome to Pintos
+
+## Introduction
+
+Pintos is a simple operating system framework for the 80x86 architecture. It supports kernel threads, loading and running user programs, and a file system, but it implements all of these in a very simple way. In the Pintos projects, you will strengthen its support in all three of these areas. You will also add a virtual memory implementation.
+
+Pintos could, theoretically, run on a regular IBM-compatible PC. Unfortunately, it is impractical to supply every student a dedicated PC for use with Pintos. Therefore, we will run Pintos projects in a system simulator, that is, a program that simulates an 80x86 CPU and its peripheral devices accurately enough that unmodified operating systems and software can run under it. In class we will use the [Bochs](http://bochs.sourceforge.net) and [QEMU](http://fabrice.bellard.free.fr/qemu/) simulators. Pintos has also been tested with [VMware Player](http://www.vmware.com).
+
+These projects are hard. They have a reputation of taking a lot of time, and deservedly so. We will do what we can to reduce the workload, such as providing a lot of support material, but there is plenty of hard work that needs to be done. We welcome your feedback. If you have suggestions on how we can reduce the unnecessary overhead of assignments, cutting them down to the important underlying issues, please let us know.
+
+## History
+
+Pintos was originally developed at Stanford by Ben Pfaff [blp@cs.stanford.edu](mailto:blp@cs.stanford.edu) to substitute for the old OS course project Nachos. After more than a decade of iterations, Pintos has been adopted by over fifty institutes as the OS course project, including Stanford, UC Berkeley, Carnegie Mellon, Johns Hopkins, and so on. You can read the original [Pintos paper](https://benpfaff.org/papers/pintos.pdf) (Yes, they even write a paper for it !)  to learn the details of Pintos's design philosophy and its comparison with other instructional operating system kernels, e.g., JOS, Nachos, GeekOS, and so on.
 
 {% hint style="info" %}
-**Good to know:** providing a brief overview of your product and its core use cases is a great place to start with product docs. Your product might seem obvious to you – you made it! However, to others, even folks who are trying your product after reading your site or getting a sales demo, it can still be unclear. This is your chance to clarify your product and set the right expectations!
+**Why the name "Pintos"?:**&#x20;
+
+First, like nachos, pinto beans are common Mexican food. Second, Pintos is small and a "pint" is a small amount. Third, like drivers of the eponymous car, students are likely to have trouble with blow-ups.    —— Ben Pfaff
 {% endhint %}
 
-Here are a couple of examples of succinct overviews from products with really great docs:
+## Overview
 
-> Loom is a video messaging tool that helps you get your message across through instantly shareable videos.
->
-> With Loom, you can record your camera, microphone, and desktop simultaneously. Your video is then instantly available to share through Loom's patented technology.
->
-> — From the [Loom Docs](https://support.loom.com/hc/en-us/articles/360002158057-What-is-Loom-)
+There are five labs in total. Lab0 is designed to prepare you for the later projects and practice your GDB ability, so it is intentionally much simpler than the remaining projects. In Lab1 - 4, you will extend Pintos in different dimensions and make it more robust and powerful.&#x20;
 
-> The Mailchimp Marketing API provides programmatic access to Mailchimp data and functionality, allowing developers to build custom features to do things like sync email activity and campaign analytics with their database, manage audiences and campaigns, and more.
->
-> — From the [Mailchimp Marketing API docs](https://mailchimp.com/developer/marketing/docs/fundamentals/)
+In each lab, we will release all the test cases to support your local development. After the deadline, we will run the same test suite to grade your submissions, so don't worry that your evil teaching assistant (TA) will intentionally design many corner cases only to deduct your scores.&#x20;
 
-## Getting Started
+However, your evil TA firmly believes that there is a great difference between "elegant code" and "working code". So a large part of your score will be determined by the quality of your design document and your code. Don't worry, your evil TA firmly resists "involution" and advocates "Ockham's Razor", so we will provide document templates for you to limit your document to hundreds of words long. Also, we will make the scoring criteria for coding style publicly available. In a word, we hope this project will be a challenging but rewarding experience for all of you guys. If you have any suggestions, feel free to contact PKUFlyingPig zhongyinmin@pku.edu.cn.
 
-**Got 2 minutes?** Check out a video overview of our product:
+## Grading
 
-{% embed url="https://www.loom.com/share/3bfa83acc9fd41b7b98b803ba9197d90" %}
+We will grade your assignments based on test results (60% of your grade) as well as design and code quality (40% of your grade). Note that the testing grades are fully automated. So please turn in the working code or there is no credit.&#x20;
 
-{% hint style="info" %}
-**Good to know:** A succinct video overview is a great way to introduce folks to your product. Embed a Loom, Vimeo or YouTube video and you're good to go! We love this video from the fine folks at [Loom](https://loom.com) as a perfect example of a succinct feature overview.
-{% endhint %}
+## Submission
 
-### Guides: Jump right in
+We will be using [gradescope](https://gradescope.com) to collect assignments and release your scores. See the submission section under each lab's description for more details.
 
-Follow our handy guides to get started on the basics as quickly as possible:
+Pay attention to the deadline for each code and design doc submission. Usually, the code submission dues three days earlier than its design doc submission, which forces you to spend enough time to express your design ideas sufficiently but succinctly.&#x20;
 
-{% content-ref url="guides/creating-your-first-project.md" %}
-[creating-your-first-project.md](guides/creating-your-first-project.md)
-{% endcontent-ref %}
+## What's next?
 
-{% content-ref url="guides/creating-your-first-task.md" %}
-[creating-your-first-task.md](guides/creating-your-first-task.md)
-{% endcontent-ref %}
-
-{% content-ref url="guides/advanced-permissions.md" %}
-[advanced-permissions.md](guides/advanced-permissions.md)
-{% endcontent-ref %}
-
-{% hint style="info" %}
-**Good to know:** your product docs aren't just a reference of all your features! use them to encourage folks to perform certain actions and discover the value in your product.
-{% endhint %}
-
-### Fundamentals: Dive a little deeper
-
-Learn the fundamentals of MyProduct to get a deeper understanding of our main features:
-
-{% content-ref url="fundamentals/projects.md" %}
-[projects.md](fundamentals/projects.md)
-{% endcontent-ref %}
-
-{% content-ref url="fundamentals/members.md" %}
-[members.md](fundamentals/members.md)
-{% endcontent-ref %}
-
-{% content-ref url="fundamentals/task-lists.md" %}
-[task-lists.md](fundamentals/task-lists.md)
-{% endcontent-ref %}
-
-{% content-ref url="fundamentals/tasks.md" %}
-[tasks.md](fundamentals/tasks.md)
-{% endcontent-ref %}
-
-{% hint style="info" %}
-**Good to know:** Splitting your product into fundamental concepts, objects, or areas can be a great way to let readers deep dive into the concepts that matter most to them. Combine guides with this approach to 'fundamentals' and you're well on your way to great documentation!
-{% endhint %}
+In the next chapter, you will set up your local development environment, boot Pintos and get familiar with its debugging and testing tools. You will use these utilities throughout the semester again and again and again. So read carefully and patiently \~\~

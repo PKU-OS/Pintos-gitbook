@@ -1,29 +1,30 @@
 # Table of contents
 
-* [What is MyProduct?](README.md)
+* [🌈 Welcome to Pintos](README.md)
 
-## Guides
+## Getting Started
 
-* [Creating your first project](guides/creating-your-first-project.md)
-* [Creating your first task](guides/creating-your-first-task.md)
-* [Advanced permissions](guides/advanced-permissions.md)
+* [Environment Setup](getting-started/environment-setup.md)
+* [Boot Pintos](getting-started/boot-pintos.md)
+* [Debug and Test](getting-started/debug-and-test.md)
 
-## Fundamentals
+## Project Description
 
-* [Projects](fundamentals/projects.md)
-* [Members](fundamentals/members.md)
-* [Task Lists](fundamentals/task-lists.md)
-* [Tasks](fundamentals/tasks.md)
+* [Lab0: Booting](project-description/lab0-booting.md)
+* [Lab1: Threads](project-description/lab1-threads.md)
+* [Lab2: User Programs](project-description/lab2-user-programs.md)
+* [Lab3a: Demand Paging](project-description/lab3a-demand-paging.md)
+* [Lab3b: Mmap Files](project-description/lab3b-mmap-files.md)
+* [(Optional) Lab4: File Systems](project-description/optional-lab4-file-systems.md)
 
-## Use Cases
+## Appendix
 
-* [For Designers](use-cases/for-designers/README.md)
-  * [Figma Integration](use-cases/for-designers/figma-integration.md)
-* [For Engineers](use-cases/for-engineers/README.md)
-  * [GitHub Integration](use-cases/for-engineers/github-integration.md)
-* [For Support](use-cases/for-support/README.md)
-  * [Intercom Integration](use-cases/for-support/intercom-integration.md)
+* [Reference Guide](appendix/reference-guide.md)
+* [4.4BSD Scheduler](appendix/4.4bsd-scheduler.md)
+* [Coding Standards](appendix/coding-standards.md)
+* [Development Tools](appendix/development-tools.md)
+* [Project Documentation](appendix/project-documentation.md)
 
-## Extras
+***
 
-* [Keyboard Shortcuts](extras/keyboard-shortcuts.md)
+* [Code Browser](https://pku-os.github.io/pintos-doxygen/html/)
