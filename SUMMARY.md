@@ -5,7 +5,7 @@
 ## Getting Started
 
 * [Environment Setup](getting-started/environment-setup.md)
-* [Boot Pintos](getting-started/boot-pintos.md)
+* [Pintos World](getting-started/pintos-world.md)
 * [Debug and Test](getting-started/debug-and-test.md)
 
 ## Project Description
