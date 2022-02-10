@@ -50,7 +50,7 @@ First, `cd` into the `threads/` directory. Then, issue the `make` command. This 
 After building, the following are the interesting files in the build directory:
 
 * **"Makefile":** A copy of `pintos/src/Makefile.build`. It describes how to build the kernel.
-* **"kernel.o":** Object file for the entire kernel. This is the result of linking object files compiled from each individual kernel source file into a single object file. It contains debug information, so you can run GDB or `backtrace` (see section [Debug and Test](debug-and-test.md)) on it.
+* **"kernel.o":** Object file for the entire kernel. This is the result of linking object files compiled from each individual kernel source file into a single object file. It contains debug information, so you can run GDB or `backtrace` (see section [Debug and Test](debug-and-test/)) on it.
 * **"kernel.bin":** Memory image of the kernel, that is, the exact bytes loaded into memory to run the Pintos kernel. This is just `kernel.o` with debug information stripped out, which saves a lot of space, which in turn keeps the kernel from bumping up against a 512 kB size limit imposed by the kernel loader's design.
 * **"loader.bin":** Memory image for the kernel loader, a small chunk of code written in assembly language that reads the kernel from disk into memory and starts it up. It is exactly 512 bytes long, a size fixed by the PC BIOS.
 
@@ -58,18 +58,29 @@ Subdirectories of build contain object files (.o) and dependency files (.d), bot
 
 ## Running Pintos
 
+### _"pintos"_ utility
+
 We've supplied a program for conveniently running Pintos in a simulator (Qemu or Bochs), called `pintos`. In the simplest case, you can invoke `pintos` as `pintos argument...`. Each argument is passed to the Pintos kernel for it to act on.
 
-Try it out!
+Try it out! First `cd` into the newly created build directory. Then issue the command `pintos -- run alarm-multiple`, which passes the arguments `run alarm-multiple` to the Pintos kernel. In these arguments, `run` instructs the kernel to run a test and `alarm-multiple` is the test to run.
 
-First `cd` into the newly created build directory. Then issue the command `pintos -- run alarm-multiple`, which passes the arguments `run alarm-multiple` to the Pintos kernel. In these arguments, `run` instructs the kernel to run a test and `alarm-multiple` is the test to run.
+This command invokes Qemu. Then Pintos boots and runs the `alarm-multiple` test program, which outputs a few lines of text. When it's done, you can close Qemu by <mark style="color:red;">`Ctrl+a+C`</mark> .
 
-This command invokes Qemu. Then Pintos boots and runs the `alarm-multiple` test program, which outputs a few lines of text. When it's done, you can close Qemu by `Ctrl+a+C` .
+You can log the output to a file by redirecting at the command line, e.g. `pintos run alarm-multiple > logfile`.
 
-The text printed by Pintos inside Bochs probably went by too quickly to read. You can log the output to a file by redirecting at the command line, e.g. `pintos run alarm-multiple > logfile`.
+### options&#x20;
 
-The `pintos` program offers several options for configuring the simulator or the virtual hardware. If you specify any options, they must precede the commands passed to the Pintos kernel and be separated from them by --, so that the whole command looks like `pintos option... -- argument...`. Invoke `pintos` without any arguments to see a list of available options. Options can select a simulator to use: the default is Qemu, but --bochs selects Bochs. You can run the simulator with a debugger. You can set the amount of memory to give the VM. Finally, you can select how you want VM output to be displayed: use -v to turn off the VGA display, -t to use your terminal window as the VGA display instead of opening a new window (Bochs only), or -s to suppress serial input from `stdin` and output to `stdout`.
+The `pintos` program offers several options for configuring the simulator or the virtual hardware. If you specify any options, they must precede the arguments passed to the Pintos kernel and be separated from them by `--`, so that the whole command looks like:
 
-The Pintos kernel has commands and options other than `run`. These are not very interesting for now, but you can see a list of them using -h, e.g. `pintos -h`.
+`pintos option1 option2 ... -- arg1 arg2 ...`.&#x20;
 
-\
+{% hint style="info" %}
+You may be confused by the strange "--" at first. So I will explain it to you again. The options specified before "--" are used to config the pintos program. While the arguments that specified after "--" are the real actions you expect pintos to execute.
+{% endhint %}
+
+You can invoke `pintos -h` to see a list of available options. Options can select a simulator to use: the default is Qemu, but `--bochs` selects Bochs. You can run the simulator with a debugger. You can set the amount of memory to give the VM. Finally, you can select how you want VM output to be displayed: use -v to turn off the VGA display, -t to use your terminal window as the VGA display instead of opening a new window (Bochs only), or -s to suppress serial input from `stdin` and output to `stdout`.
+
+{% hint style="success" %}
+The pintos program is heavily used by our testing suites, so it is fully configurable and very flexible. You certainly do not need to remember all these options and you can always refer to it by running "pintos -h".\
+
+{% endhint %}
