@@ -35,7 +35,7 @@ Lab0 will use the same directory as Lab1, i.e., threads/. &#x20;
 {% endhint %}
 
 {% hint style="info" %}
-If you have a look at the content of these Makefiles, you may be surprised that they are the same! So what's the difference when you run `make` under different directories? \
+If you have a look at the content of these Makefiles, you may be surprised that they are the same! So what's the difference when you run `make` under different lab directories? \
 (hint: Make.vars)
 {% endhint %}
 
@@ -81,6 +81,5 @@ You may be confused by the strange "--" at first. So I will explain it to you ag
 You can invoke `pintos -h` to see a list of available options. Options can select a simulator to use: the default is Qemu, but `--bochs` selects Bochs. You can run the simulator with a debugger. You can set the amount of memory to give the VM. Finally, you can select how you want VM output to be displayed: use -v to turn off the VGA display, -t to use your terminal window as the VGA display instead of opening a new window (Bochs only), or -s to suppress serial input from `stdin` and output to `stdout`.
 
 {% hint style="success" %}
-The pintos program is heavily used by our testing suites, so it is fully configurable and very flexible. You certainly do not need to remember all these options and you can always refer to it by running "pintos -h".\
-
+The pintos program is heavily used by our testing suites, so it is fully configurable and very flexible. You certainly do not need to remember all these options and you can always refer to it by running "pintos -h".
 {% endhint %}

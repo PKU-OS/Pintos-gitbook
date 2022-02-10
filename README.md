@@ -28,10 +28,6 @@ However, your evil TA firmly believes that there is a great difference between "
 
 In a word, we hope this project will be a challenging but rewarding experience for all of you guys. If you have any suggestions, feel free to contact PKUFlyingPig zhongyinmin@pku.edu.cn.
 
-## Grading
-
-We will grade your assignments based on test results (60% of your grade) as well as design and code quality (40% of your grade). Note that the testing grades are fully automated. So please turn in the working code or there is no credit.&#x20;
-
 ## Version Control
 
 We highly recommend you use Git for version control in the class. If you are new to Git, there are plenty of tutorials online that you can read, e.g., [this one](https://csdiy.wiki/%E5%BF%85%E5%AD%A6%E5%B7%A5%E5%85%B7/Git/).
@@ -41,6 +37,10 @@ We highly recommend you use Git for version control in the class. If you are new
 We will be using [gradescope](https://gradescope.com) to collect assignments and release your scores. See the submission section under each lab's description for more details.
 
 Pay attention to the deadline for each code and design doc submission. Usually, the code submission dues three days earlier than its design doc submission, which forces you to spend enough time to express your design ideas sufficiently but succinctly.&#x20;
+
+## Grading
+
+We will grade your assignments based on test results (60% of your grade) as well as design and code quality (40% of your grade). Note that the testing grades are fully automated. So please turn in the working code or there is no credit (See section [Grading](./#grading) for more details).&#x20;
 
 ## Cheating and Collaboration
 
