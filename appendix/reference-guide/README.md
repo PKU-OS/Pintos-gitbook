@@ -10,13 +10,11 @@ OS programming requires looking up documentations of various sorts, e.g., ISA, h
 [pintos-project-guide.md](pintos-project-guide.md)
 {% endcontent-ref %}
 
-*
-*
-  * [Project Guide](broken-reference)
-  * [Setup Instructions](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/setup.html)
-  * [Getting Started](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_1.html)
-  * [Coding Standards](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_9.html)
-  * [Design Document](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_10.html)
+* [Project Guide](broken-reference)
+* [Setup Instructions](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/setup.html)
+* [Getting Started](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_1.html)
+* [Coding Standards](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_9.html)
+* [Design Document](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_10.html)
 * You’ll want to read these once you start work on the projects. **Their advice can save you a lot of time**:
   * [Debugging Tools](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_11.html)
   * [Development Tools](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_12.html)
