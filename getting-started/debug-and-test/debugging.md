@@ -28,23 +28,17 @@ These macros defined in `<debug.h>` tell the compiler special attributes of a fu
 
 Appended to a function parameter to tell the compiler that the parameter might not be used within the function. It suppresses the warning that would otherwise appear.
 
-
-
 **Macro: NO\_RETURN**
 
 Appended to a function prototype to tell the compiler that the function never returns. It allows the compiler to fine-tune its warnings and its code generation.
-
-
 
 **Macro: NO\_INLINE**
 
 Appended to a function prototype to tell the compiler to never emit the function in-line. Occasionally useful to improve the quality of backtraces (see below).
 
+**Macro: PRINTF\_FORMAT \_(format, first)**\_
 
-
-**Macro: PRINTF\_FORMAT **_**(format, first)**_
-
-Appended to a function prototype to tell the compiler that the function takes a `printf()`-like format string as the argument numbered ** **_**format**_ (starting from 1) and that the corresponding value arguments start at the argument numbered _**first**_. This lets the compiler tell you if you pass the wrong argument types.
+Appended to a function prototype to tell the compiler that the function takes a `printf()`-like format string as the argument numbered \*\* **\_**format**\_ (starting from 1) and that the corresponding value arguments start at the argument numbered \_**first\*\*\_. This lets the compiler tell you if you pass the wrong argument types.
 
 ## Backtraces
 
@@ -157,14 +151,13 @@ Here's an extra tip for anyone who read this far: `backtrace` is smart enough to
 ```
 backtrace kernel.o Call stack: 0xc0106eff 0xc01102fb 0xc010dc22
 0xc010cf67 0xc0102319 0xc010325a 0x804812c 0x8048a96 0x8048ac8.
-
 ```
 
 </details>
 
 ## GDB
 
-You can run Pintos under the supervision of the GDB debugger.&#x20;
+You can run Pintos under the supervision of the GDB debugger.
 
 First, start Pintos with the `--gdb` option, e.g. `pintos --gdb -- run mytest`.
 
@@ -181,13 +174,13 @@ target remote localhost:1234
 ```
 
 {% hint style="info" %}
-If you develop Pintos in a virtual machine, it is easy to do the second step above. If you use docker, you need a way to attach to your Pintos container from another terminal in your host laptop. Now open a new terminal and run&#x20;
+If you develop Pintos in a virtual machine, it is easy to do the second step above. If you use docker, you need a way to attach to your Pintos container from another terminal in your host laptop. Now open a new terminal and run
 
 ```
 docker exec -it pintos bash
 ```
 
-You may remember that when you [ launch the Pintos docker container ](../environment-setup.md#boot-pintos), you name it as "pintos" by specifying "--name pintos". So here you just exec a bash shell in your pintos container.
+You may remember that when you [launch the Pintos docker container ](../environment-setup.md#boot-pintos), you name it as "pintos" by specifying "--name pintos". So here you just exec a bash shell in your pintos container.
 
 Now you should enter the container and you can cd into the build directory and run the second step above.
 
@@ -217,13 +210,13 @@ Execute one machine instruction.
 
 **GDB Command: s**
 
-Execute until next line reached, step into function calls**.**
+Execute until next line reached, step into function calls\*\*.\*\*
 
 **GDB Command: n**
 
-Execute until next line reached, step over function calls**.**
+Execute until next line reached, step over function calls\*\*.\*\*
 
-**GDB Command: p **_**expression**_
+**GDB Command: p \_expression**\_
 
 Evaluates the given expression and prints its value. If the expression contains a function call, that function will actually be executed.
 
@@ -231,9 +224,9 @@ Evaluates the given expression and prints its value. If the expression contains 
 
 Run until the selected function (stack frame) returns
 
-**GDB Command: b **_**function**_
+**GDB Command: b \_function**\_
 
-**GDB Command: b **_**file:line**_
+**GDB Command: b \_file:line**\_
 
 **GDB Command: b** \*_**address**_
 
@@ -269,7 +262,7 @@ Select frame number n or frame at address n
 
 Prints the name of the function or variable that occupies _address_. (Use a 0x prefix to specify an address in hex.)
 
-**GDB Command:** **diassemble **_**function**_
+**GDB Command:** **diassemble \_function**\_
 
 Disassembles function.
 
@@ -279,19 +272,19 @@ We also provide a set of macros specialized for debugging Pintos, written by God
 
 Attach debugger to a waiting pintos process on the same machine. Shorthand for `target remote localhost:1234`.
 
-**GDB Macro: dumplist **_**list type element**_
+**GDB Macro: dumplist \_list type element**\_
 
 Prints the elements of _list_, which should be a `struct` _list_ that contains elements of the given _type_ (without the word `struct`) in which _element_ is the `struct list_elem` member that links the elements.
 
 Example: `dumplist all_list thread allelem` prints all elements of `struct thread` that are linked in `struct list all_list` using the `struct list_elem allelem` which is part of `struct thread`.
 
-**GDB Macro:** **btthread **_**thread**_
+**GDB Macro:** **btthread \_thread**\_
 
 Shows the backtrace of _thread_, which is a pointer to the `struct thread` of the thread whose backtrace it should show. For the current thread, this is identical to the `bt` (backtrace) command. It also works for any thread suspended in `schedule()`, provided you know where its kernel stack page is located.
 
 **GDB Macro:** **btthreadlist** _**list element**_
 
-Shows the backtraces of all threads in _**** list_, the `struct list` in which the threads are kept. Specify element as the `struct list_elem` field used inside `struct thread` to link the threads together.
+Shows the backtraces of all threads in _\*\*\*\* list_, the `struct list` in which the threads are kept. Specify element as the `struct list_elem` field used inside `struct thread` to link the threads together.
 
 Example: `btthreadlist all_list allelem` shows the backtraces of all threads contained in `struct list all_list`, linked together by `allelem`. This command is useful to determine where your threads are stuck when a deadlock occurs. Please see the example scenario below.
 
@@ -354,8 +347,7 @@ pintos-debug: a page fault occurred in kernel mode
 
 followed by the output of the `btpagefault` command.
 
-Before Project 2, a page fault exception in kernel code is always a bug in your kernel, because your kernel should never crash. Starting with Project 2, the situation will change if you use the `get_user()` and `put_user()` strategy to verify user memory accesses (If you are don't know what does this mean, don't worry, you should understand when you work on Project 2.)\
-
+Before Project 2, a page fault exception in kernel code is always a bug in your kernel, because your kernel should never crash. Starting with Project 2, the situation will change if you use the `get_user()` and `put_user()` strategy to verify user memory accesses (If you are don't know what does this mean, don't worry, you should understand when you work on Project 2.)\\
 
 </details>
 
@@ -537,4 +529,4 @@ The page allocator in `threads/palloc.c` and the block allocator in `threads/mal
 
 An assertion failure on the expression `sec_no < d->capacity` indicates that Pintos tried to access a file through an inode that has been closed and freed. Freeing an inode clears its starting sector number to 0xcccccccc, which is not a valid sector number for disks smaller than about 1.6 TB.
 
-\
+\\

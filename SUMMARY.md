@@ -13,7 +13,7 @@
 
 ## Project Description
 
-* [Lab0: Getting Real](project-description/lab0-getting-real.md)
+* [Lab0: Booting](project-description/lab0-booting.md)
 * [Lab1: Threads](project-description/lab1-threads.md)
 * [Lab2: User Programs](project-description/lab2-user-programs.md)
 * [Lab3a: Demand Paging](project-description/lab3a-demand-paging.md)
@@ -25,8 +25,8 @@
 * [Reference Guide](appendix/reference-guide.md)
 * [4.4BSD Scheduler](appendix/4.4bsd-scheduler.md)
 * [Coding Standards](appendix/coding-standards.md)
-* [Development Tools](appendix/development-tools.md)
 * [Project Documentation](appendix/project-documentation.md)
+* [Development Tools](appendix/development-tools.md)
 
 ***
 
