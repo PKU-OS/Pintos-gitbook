@@ -6,8 +6,8 @@ OS programming requires looking up documentations of various sorts, e.g., ISA, h
 
 * You should read everything below **before attempting any of the projects**:
 
-{% content-ref url="pintos-project-guide.md" %}
-[pintos-project-guide.md](pintos-project-guide.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 * [Project Guide](broken-reference)

@@ -1,2 +1,0 @@
-# Pintos Project Guide
-

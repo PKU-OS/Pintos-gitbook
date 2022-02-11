@@ -22,13 +22,11 @@
 
 ## Appendix
 
-* [Reference Guide](appendix/reference-guide/README.md)
-  * [Pintos Project Guide](appendix/reference-guide/pintos-project-guide.md)
-  * [Setup Instrunctions](appendix/reference-guide/setup-instrunctions.md)
-  * [Getting Started](appendix/reference-guide/getting-started.md)
+* [Reference Guide](appendix/reference-guide.md)
+* [4.4BSD Scheduler](appendix/4.4bsd-scheduler.md)
 * [Coding Standards](appendix/coding-standards.md)
-* [Development Tools](appendix/development-tools.md)
 * [Project Documentation](appendix/project-documentation.md)
+* [Development Tools](appendix/development-tools.md)
 
 ***
 
