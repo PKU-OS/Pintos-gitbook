@@ -15,7 +15,7 @@ The easiest way to set up the development environment is Docker. Your kind TA ha
 
 ### Download
 
-First, you need to install docker on your laptop. Go to the [docker download page](https://www.docker.com/get-started) for help.&#x20;
+First, you need to install docker on your laptop. Go to the [docker download page](https://www.docker.com/get-started) for help.
 
 Then pull the docker image and run it, just type the command below into your favorite shell (you can run `docker run --help` to find out what this command means in detail):
 
@@ -25,11 +25,11 @@ docker run -it pkuflyingpig/pintos bash
 
 This image is about 3GB (it contains a full Ubuntu18.04), so it may take some time at its first run.
 
-If everything goes well, you will enter a bash shell.&#x20;
+If everything goes well, you will enter a bash shell.
 
 Type `pwd` you will find your home directory is under `/home/PKUOS` .
 
-Type `ls` you will find that there is a `toolchain` directory that contains all the dependencies.&#x20;
+Type `ls` you will find that there is a `toolchain` directory that contains all the dependencies.
 
 Now you own a tiny Ubuntu OS inside your host computer, and you can shut it down easily by `Ctrl+d`. You can check that it has exited by running `docker ps -a`.
 
@@ -63,7 +63,7 @@ docker run -it --rm --name pintos --mount type=bind,source=absolute/path/to/pint
 {% endhint %}
 
 {% hint style="info" %}
-You may use this command throughout this semester, and it is tedious to remember and type again and again. You can use the `alias` utility to save this command as `pintos-up` for example.&#x20;
+You may use this command throughout this semester, and it is tedious to remember and type again and again. You can use the `alias` Linux utility to save this command as `pintos-up` for example.
 {% endhint %}
 
 Now when you `ls`, you will find there is a new directory called `pintos` under your home directory in the container, it is shared by the container and your host laptop.

@@ -10,23 +10,36 @@ These projects are hard. They have a reputation of taking a lot of time, and des
 
 ## History
 
-Pintos was originally developed at Stanford by Ben Pfaff [blp@cs.stanford.edu](mailto:blp@cs.stanford.edu) to substitute for the old OS course project Nachos. After more than a decade of iterations, Pintos has been adopted by over fifty institutes as the OS course project, including Stanford, UC Berkeley, Carnegie Mellon, Johns Hopkins, and so on. You can read the original [Pintos paper](https://benpfaff.org/papers/pintos.pdf) (Yes, they even write a paper for it !)  to learn the details of Pintos's design philosophy and its comparison with other instructional operating system kernels, e.g., JOS, Nachos, GeekOS, and so on.
+Pintos was originally developed at Stanford by Ben Pfaff [blp@cs.stanford.edu](mailto:blp@cs.stanford.edu) to substitute for the old OS course project Nachos. After more than a decade of iterations, Pintos has been adopted by over fifty institutes as the OS course project, including Stanford, UC Berkeley, Carnegie Mellon, Johns Hopkins, and so on. You can read the original [Pintos paper](https://benpfaff.org/papers/pintos.pdf) (Yes, they even write a paper for it !) to learn the details of Pintos's design philosophy and its comparison with other instructional operating system kernels, e.g., JOS, Nachos, GeekOS, and so on.
 
 {% hint style="info" %}
-**Why the name "Pintos"?:**&#x20;
+**Why the name "Pintos"?:**
 
-First, like nachos, pinto beans are common Mexican food. Second, Pintos is small and a "pint" is a small amount. Third, like drivers of the eponymous car, students are likely to have trouble with blow-ups.    —— Ben Pfaff
+First, like nachos, pinto beans are common Mexican food. Second, Pintos is small and a "pint" is a small amount. Third, like drivers of the eponymous car, students are likely to have trouble with blow-ups. —— Ben Pfaff
 {% endhint %}
 
 ## Project Overview
 
-There are five labs in total. Lab0 is designed to prepare you for the later projects and practice your GDB ability, so it is intentionally much simpler than the remaining projects. In Lab1 - 4, you will extend Pintos in different dimensions and make it more robust and powerful.&#x20;
+There are five labs in total. Lab0 is designed to prepare you for the later projects and practice your GDB ability, so it is intentionally much simpler than the remaining projects. In Lab1 - 4, you will extend Pintos in different dimensions and make it more robust and powerful.
 
-In each lab, we will release all the test cases to support your local development. After the deadline, we will run the same test suite to grade your submissions, so don't worry that your evil teaching assistant (TA) will intentionally design many corner cases only to deduct your scores.&#x20;
+| Project                       | Content                                | Point |
+| ----------------------------- | -------------------------------------- | ----- |
+| Lab0: Getting Real            | Bootstrap Pintos                       | 5     |
+| Lab1: Threads                 | Kernel threads scheduling              | 10    |
+| Lab2: User Programs           | Load & Run user programs, System calls | 10    |
+| Lab3a: Virtual Memory         | Demand Paging                          | 10    |
+| Lab3a: Virtual Memory         | Mmap Files                             | 10    |
+| (optional) Lab4: File Systems | Implement File systems                 | 0     |
 
-However, your evil TA firmly believes that there is a great difference between "elegant code" and "working code". So a large part of your score will be determined by the quality of your design document and your code. Don't worry, your kind TA firmly resists "involution" and advocates "Ockham's Razor", so we will provide document templates for you to limit your document to hundreds of words long. Also, we will make the scoring criteria for coding style publicly available.&#x20;
+In each lab, we will release all the test cases to support your local development. After the deadline, we will run the same test suite to grade your submissions, so don't worry that your evil teaching assistant (TA) will intentionally design many corner cases only to deduct your scores.
+
+However, your evil TA firmly believes that there is a great difference between "elegant code" and "working code". So a large part of your score will be determined by the quality of your design document and your code. Don't worry, your kind TA firmly resists "involution" and advocates "Ockham's Razor", so we will provide document templates for you to limit your document to hundreds of words long. Also, we will make the scoring criteria for coding style publicly available.
 
 In a word, we hope this project will be a challenging but rewarding experience for all of you guys. If you have any suggestions, feel free to contact PKUFlyingPig zhongyinmin@pku.edu.cn.
+
+## Prerequisite
+
+We highly recommend you read the [prerequisites](https://pku-minic.github.io/online-doc/#/preface/prerequisites) and  [facing-problems](https://pku-minic.github.io/online-doc/#/preface/facing-problems) sections for the PKU Compiler Project.&#x20;
 
 ## Version Control
 
@@ -36,16 +49,16 @@ We highly recommend you use Git for version control in the class. If you are new
 
 We will be using [gradescope](https://gradescope.com) to collect assignments and release your scores. See the submission section under each lab's description for more details.
 
-Pay attention to the deadline for each code and design doc submission. Usually, the code submission dues three days earlier than its design doc submission, which forces you to spend enough time to express your design ideas sufficiently but succinctly.&#x20;
+Pay attention to the deadline for each code and design doc submission. Usually, the code submission dues three days earlier than its design doc submission, which forces you to spend enough time to express your design ideas sufficiently but succinctly.
 
 ## Grading
 
-We will grade your assignments based on test results (60% of your grade) as well as design and code quality (40% of your grade). Note that the testing grades are fully automated. So please turn in the working code or there is no credit (See section [Grading](./#grading) for more details).&#x20;
+We will grade your assignments based on test results (60% of your grade) as well as design and code quality (40% of your grade). Note that the testing grades are fully automated. So please turn in the working code or there is no credit (See section [Grading](./#grading) for more details).
 
 ## Cheating and Collaboration
 
 {% hint style="danger" %}
-This class has zero tolerance for cheating. We will run tools to check your submissions against a comprehensive database of solutions including past and present submissions for potential cheating. The consequences are very high. So do not cheat, do not cheat, do not cheat!&#x20;
+This class has zero tolerance for cheating. We will run tools to check your submissions against a comprehensive database of solutions including past and present submissions for potential cheating. The consequences are very high. So do not cheat, do not cheat, do not cheat!
 {% endhint %}
 
 The basic policies for the project assignments are as follows:
@@ -60,7 +73,7 @@ On the other hand, we encourage collaboration in the following form:
 * Explain a concept to another student, or ask another student to explain a concept to you.
 * Discuss algorithms or approaches for an exercise. But you should not exchange, look at, or copy each other's code.
 * Discuss testing strategies and approaches.
-* Help someone else debug if they've got stuck. But you should not give that student code solution.&#x20;
+* Help someone else debug if they've got stuck. But you should not give that student code solution.
 
 The course staff will actively detect possible ethics violations. For each project submission, **we will run automated cheating detection tools** to check your submission against a comprehensive database of solutions including solutions on the Internet, past submissions, and solutions from other institutions.
 

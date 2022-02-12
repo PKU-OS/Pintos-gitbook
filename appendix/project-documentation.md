@@ -1,10 +1,14 @@
 # Project Documentation
 
+{% hint style="info" %}
 This chapter presents a sample assignment and a filled-in design document for one possible implementation. Its purpose is to give you an idea of what we expect to see in your own design documents.
+{% endhint %}
 
-## D.1 Sample Assignment
+## Sample Assignment
 
+{% hint style="success" %}
 Implement `thread_join()`.
+{% endhint %}
 
 #### Function: void **thread\_join** (tid\_t tid)
 
@@ -20,7 +24,7 @@ Joining a given thread is idempotent. That is, joining a thread multiple times i
 
 You must handle all the ways a join can occur: nested joins (A joins B, then B joins C), multiple joins (A joins B, then A joins C), and so on.
 
-## D.2 Sample Design Document
+## Sample Design Document
 
 ```
                          +-----------------+

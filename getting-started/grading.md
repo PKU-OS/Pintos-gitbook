@@ -8,7 +8,7 @@ We will grade your assignments based on test results and design quality, which c
 
 In section [Testing](debug-and-test/testing.md), you use `make check` to run our test suite on your Pintos implementation, but it only tells you each test case passes or fails. During your development, this is definitely ok, because your goal is to pass tests as many as possible. But after your development, we need a way to assign different weights to these test cases and collect all the scores as your final testing grade. And this is exactly what `make grade` does. Below, let me walk you through how `make grade` works, taking `Lab1: threads` as an example.
 
-In `src/threads/Make.vars` :&#x20;
+In `src/threads/Make.vars` :
 
 ```
 kernel.bin: DEFINES =
@@ -18,7 +18,7 @@ GRADING_FILE = $(SRCDIR)/tests/threads/Grading
 SIMULATOR = --bochs
 ```
 
-`TEST_SUBDIRS` defines the test cases directory and `GRADING_FILE` defines the grading file:
+`TEST_SUBDIRS` defines the test directories included and `GRADING_FILE` defines the grading file:
 
 `src/tests/threads/Grading` :
 
@@ -28,7 +28,7 @@ SIMULATOR = --bochs
 40.0%	tests/threads/Rubric.mlfqs
 ```
 
-`make grade` will compile and run all the test cases in `TEST_SUBDIRS` and collect the passed scores for testing set `alarm`, `priority` and `mlfqs` . Then it will calculate the final grade based on the percentage defined in the grading file.
+`make grade` will compile and run all the test cases included in `TEST_SUBDIRS` and collect the passed scores for testing set `alarm`, `priority` and `mlfqs` . Then it will calculate the final grade based on the percentage defined in the grading file.
 
 We require you to write down your `make grade` score in your design document and we will contact you if your expected score has a huge difference from our testing result for you.
 
@@ -76,6 +76,18 @@ Your design will also be judged by looking at your source code. We will typicall
 
 The most important aspects of source code design are those that specifically relate to the operating system issues at stake in the project. For example, the organization of an inode is an important part of file system design, so in the file system project a poorly designed inode would lose points. Other issues are much less important. For example, multiple Pintos design problems call for a "priority queue," that is, a dynamic collection from which the minimum (or maximum) item can quickly be extracted. Fast priority queues can be implemented many ways, but we do not expect you to build a fancy data structure even if it might improve performance. Instead, you are welcome to use a linked list (and Pintos even provides one with convenient functions for sorting and finding minimums and maximums).
 
-Pintos is written in a consistent style. Make your additions and modifications in existing Pintos source files blend in, not stick out. In new source files, adopt the existing Pintos style by preference, but make your code self-consistent at the very least. There should not be a patchwork of different styles that makes it obvious that three different people wrote the code. Use horizontal and vertical white space to make code readable. Add a brief comment on every structure, structure member, global or static variable, typedef, enumeration, and function definition. Update existing comments as you modify code. Don't comment out or use the preprocessor to ignore blocks of code (instead, remove it entirely). Use assertions to document key invariants. Decompose code into functions for clarity. Code that is difficult to understand because it violates these or other "common sense" software engineering practices will be penalized.
+Pintos is written in a consistent style. Make your additions and modifications in existing Pintos source files blend in, not stick out. In new source files, adopt the existing Pintos style by preference, but make your code self-consistent at the very least. Use horizontal and vertical white space to make code readable. Add a brief comment on every structure, structure member, global or static variable, typedef, enumeration, and function definition. Update existing comments as you modify code. Don't comment out or use the preprocessor to ignore blocks of code (instead, remove it entirely). Use assertions to document key invariants. Decompose code into functions for clarity. Code that is difficult to understand because it violates these or other "common sense" software engineering practices will be penalized.
 
 In the end, remember your audience. Code is written primarily to be read by humans. It has to be acceptable to the compiler too, but the compiler doesn't care about how it looks or how well it is written.
+
+Here is the summary of our score criteria for code quality:
+
+| Rubric                                                                        | Deduct points     |
+| ----------------------------------------------------------------------------- | ----------------- |
+| important discrepancies between your design doc and the actual code           | 1                 |
+| poorly designed data structure                                                | 0.5               |
+| missed comments (you can only omit the comment if the code is self-explained) | 0.2 each, up to 1 |
+| Lines exceed 78 characters.                                                   | 0.2 each, up to 1 |
+| comment out or use the preprocessor to ignore blocks of code                  | 0.5               |
+| repeated blocks of code                                                       | 0.5               |
+| compile waring due to the code you implement                                  | 0.5 each, up to 1 |

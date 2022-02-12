@@ -1,16 +1,6 @@
-# Lab0: Getting Real
+# Background
 
-{% hint style="warning" %}
-<mark style="color:red;">Due: Thursday 03/03 11.59 pm</mark>
-{% endhint %}
-
-{% hint style="info" %}
-This assignment is set to prepare you for the later Pintos projects. It will walk you through what happens after a PC is powered on till when an operating system is up and running, which you may have wondered about before. You will set up the development environment, learn the Pintos workflow, and run/debug it in QEMU and Bochs. You will then do a simple programming exercise to add a tiny kernel monitor to Pintos. For this project only, you only need to submit the design document. Note that this assignment is much simpler than the remaining projects, because it is intentionally designed to help you warm up.
-{% endhint %}
-
-### Background
-
-#### PC Bootstrap
+## PC Bootstrap
 
 The process of loading the operating system into memory for running after a PC is powered on is commonly known as **bootstrapping**. The operating system will then be loading other software such as the shell for running. Two helpers are responsible for paving the way for bootstrapping: BIOS (Basic Input/Output System) and bootloader. The PC hardware is designed to make sure BIOS always gets control of the machine first after the computer is powered on. The BIOS will be performing some test and initialization, e.g., checking memory available and activating video card. After this initialization, the BIOS will try to find a bootable device from some appropriate location such as a floppy disk, hard disk, CD-ROM, or the network. Then the BIOS will pass control of the machine to the bootloader who will load the operating system.
 
@@ -55,7 +45,7 @@ The 384KB area from 0x000A0000 through 0x000FFFFF was reserved by the hardware f
 
 When Intel finally "broke the one megabyte barrier" with the 80286 and 80386 processors, which supported 16MB and 4GB physical address spaces respectively, the PC architects nevertheless preserved the original layout for the low 1MB of physical address space in order to ensure backward compatibility with existing software. Modern PCs therefore have a "hole" in physical memory from 0x000A0000 to 0x00100000, dividing RAM into "low" or "conventional memory" (the first 640KB) and "extended memory" (everything else). In addition, some space at the very top of the PC's 32-bit physical address space, above all physical RAM, is now commonly reserved by the BIOS for use by 32-bit PCI devices.
 
-#### The Boot Loader
+## The Boot Loader
 
 Floppy and hard disks for PCs are divided into 512 byte regions called sectors. A sector is the disk's minimum transfer granularity: each read or write operation must be one or more sectors in size and aligned on a sector boundary. If the disk is bootable, the first sector is called the boot sector, since this is where the boot loader code resides. When the BIOS finds a bootable floppy or hard disk, it loads the 512-byte boot sector into memory at physical addresses 0x7c00 through 0x7dff, and then uses a `jmp` instruction to set the CS:IP to `0000:7c00`, passing control to the boot loader.
 
@@ -69,7 +59,7 @@ The loader's final job is to extract the entry point from the loaded kernel imag
 
 The Pintos kernel command line is stored in the boot loader (using about 128 bytes). The `pintos` program actually modifies a copy of the boot loader on disk each time it runs the kernel, inserting whatever command-line arguments the user supplies to the kernel, and then the kernel at boot time reads those arguments out of the boot loader in memory. This is not an elegant solution, but it is simple and effective.
 
-#### The Kernel
+## The Kernel
 
 The bootloader's last action is to transfer control to the kernel's entry point, which is `start()` in threads/start.S. The job of this code is to switch the CPU from legacy 16-bit "**real mode**" into the 32-bit "**protected mode**" used by all modern 80x86 operating systems.
 
@@ -78,3 +68,7 @@ The kernel startup code's first task is actually to obtain the machine's memory 
 In addition, the kernel startup code needs to enable the A20 line, that is, the CPU's address line numbered 20. For historical reasons, PCs boot with this address line fixed at 0, which means that attempts to access memory beyond the first 1 MB (2 raised to the 20th power) will fail. Pintos wants to access more memory than this, so we have to enable it.
 
 Next, the kernel will do a basic page table setup and turn on protected mode and paging (details omitted for now). The final step is to call into the C code of the Pintos kernel, which from here on will be the main content we will deal with.
+
+## Code details
+
+Read the [Loading](../../appendix/reference-guide/loading.md) section in Code Guide to understand the source-code-level details of the booting process.

@@ -4,49 +4,9 @@ In this assignment, we give you a minimally functional thread system. Your job i
 
 You will be working primarily in the threads directory for this assignment, with some work in the devices directory on the side. Compilation should be done in the threads directory.
 
-Before you read the description of this project, you should read all of the following sections: [1. Introduction](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_1.html#SEC1), [C. Coding Standards](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_9.html#SEC149), [Testing and Debugging](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/debugtest.html). You should at least skim the material from [A.1 Loading](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_7.html#SEC102) through [A.5 Memory Allocation](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_7.html#SEC122), especially [A.3 Synchronization](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_7.html#SEC111). To complete this project you will also need to read [B. 4.4BSD Scheduler](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_8.html#SEC142).
+Before you read the description of this project, you should read all the sections in `GETTING STARTED` . You should at least skim the previous four sections in [Code Guide](../../appendix/reference-guide/), especially [Synchronization](../../appendix/reference-guide/synchronization.md). To complete this project you will also need to read [4.4BSD Scheduler](../../appendix/4.4bsd-scheduler.md).
 
-## Background
 
-### Understanding Threads
-
-The first step is to read and understand the code for the initial thread system. Pintos already implements thread creation and thread completion, a simple scheduler to switch between threads, and synchronization primitives (semaphores, locks, condition variables, and optimization barriers).
-
-Some of this code might seem slightly mysterious. If you haven't already compiled and run the base system, as described in the introduction (see section [1. Introduction](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_1.html#SEC1)), you should do so now. You can read through parts of the source code to see what's going on. If you like, you can add calls to `printf()` almost anywhere, then recompile and run to see what happens and in what order. You can also run the kernel in a debugger and set breakpoints at interesting spots, single-step through code and examine data, and so on.
-
-When a thread is created, you are creating a new context to be scheduled. You provide a function to be run in this context as an argument to `thread_create()`. The first time the thread is scheduled and runs, it starts from the beginning of that function and executes in that context. When the function returns, the thread terminates. Each thread, therefore, acts like a mini-program running inside Pintos, with the function passed to `thread_create()` acting like `main()`.
-
-At any given time, exactly one thread runs and the rest, if any, become inactive. The scheduler decides which thread to run next. (If no thread is ready to run at any given time, then the special "idle" thread, implemented in `idle()`, runs.) Synchronization primitives can force context switches when one thread needs to wait for another thread to do something.
-
-The mechanics of a context switch are in threads/switch.S, which is 80x86 assembly code. (You don't have to understand it.) It saves the state of the currently running thread and restores the state of the thread we're switching to.
-
-Using the GDB debugger, slowly trace through a context switch to see what happens (see section [E.5 GDB](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_11.html#SEC162)). You can set a breakpoint on `schedule()` to start out, and then single-step from there.Be sure to keep track of each thread's address and state, and what procedures are on the call stack for each thread. You will notice that when one thread calls `switch_threads()`, another thread starts running, and the first thing the new thread does is to return from `switch_threads()`. You will understand the thread system once you understand why and how the `switch_threads()` that gets called is different from the `switch_threads()` that returns. See section [A.2.3 Thread Switching](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_7.html#SEC110), for more information.
-
-{% hint style="warning" %}
-**Warning**
-
-In Pintos, each thread is assigned a small, fixed-size execution stack just under 4 kB in size. The kernel tries to detect stack overflow, but it cannot do so perfectly. You may cause bizarre problems, such as mysterious kernel panics, if you declare large data structures as non-static local variables, e.g. int buf\[1000];. Alternatives to stack allocation include the page allocator and the block allocator (see section [A.5 Memory Allocation](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_7.html#SEC122)).
-{% endhint %}
-
-### Source Files
-
-[Listing 1](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/listing\_1.html) provides a brief overview of the files in the threads directory. You will not need to modify most of this code, but the hope is that presenting this overview will give you a start on what code to look at.
-
-### Synchronization
-
-Proper synchronization is an important part of the solutions to these problems. Any synchronization problem can be easily solved by turning interrupts off: while interrupts are off, there is no concurrency, so there's no possibility for race conditions. Therefore, it's tempting to solve all synchronization problems this way, but **don't**. Instead, use semaphores, locks, and condition variables to solve the bulk of your synchronization problems. Read the tour section on synchronization (see section [A.3 Synchronization](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_7.html#SEC111)) or the comments in threads/synch.c if you're unsure what synchronization primitives may be used in what situations.
-
-In the Pintos projects, the only class of problem best solved by disabling interrupts is coordinating data shared between a kernel thread and an interrupt handler. Because interrupt handlers can't sleep, they can't acquire locks. This means that data shared between kernel threads and an interrupt handler must be protected within a kernel thread by turning off interrupts.
-
-This project only requires accessing a little bit of thread state from interrupt handlers. For the alarm clock, the timer interrupt needs to wake up sleeping threads. In the advanced scheduler, the timer interrupt needs to access a few global and per-thread variables. When you access these variables from kernel threads, you will need to disable interrupts to prevent the timer interrupt from interfering.
-
-When you do turn off interrupts, take care to do so for the least amount of code possible, or you can end up losing important things such as timer ticks or input events. Turning off interrupts also increases the interrupt handling latency, which can make a machine feel sluggish if taken too far.
-
-The synchronization primitives themselves in synch.c are implemented by disabling interrupts. You may need to increase the amount of code that runs with interrupts disabled here, but you should still try to keep it to a minimum.
-
-Disabling interrupts can be useful for debugging, if you want to make sure that a section of code is not interrupted. You should remove debugging code before turning in your project. (Don't just comment it out, because that can make the code difficult to read.)
-
-There should be no busy waiting in your submission. A tight loop that calls `thread_yield()` is one form of busy waiting.
 
 ### Development Suggestions
 
@@ -109,13 +69,13 @@ If your delays seem too short or too long, reread the explanation of the -r opti
 {% hint style="info" %}
 **Hint**
 
-You may find `struct list` and the provided functions to be useful for this exercise. Read the comments in `lib/kernel/list.h` carefully, since this list design/usage is different from the typical linked list you are familiar with (actually, Linux kernel [uses a similar design](https://0xax.gitbooks.io/linux-insides/content/DataStructures/linux-datastructures-1.html)). Searching the Pintos codebase to see how `struct list` is used may also give you some inspirations. &#x20;
+You may find `struct list` and the provided functions to be useful for this exercise. Read the comments in `lib/kernel/list.h` carefully, since this list design/usage is different from the typical linked list you are familiar with (actually, Linux kernel [uses a similar design](https://0xax.gitbooks.io/linux-insides/content/DataStructures/linux-datastructures-1.html)). Searching the Pintos codebase to see how `struct list` is used may also give you some inspirations.
 {% endhint %}
 
 {% hint style="info" %}
 **Hint**
 
-You may want to leverage some synchronization primitive that provides some sort of thread _"waiting"_ functionality, e.g., semaphore. You do not have to wait for the Synchronization Lecture to be able to use these primitives. Reading through section [A.3 Synchronization](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_7.html#SEC111) is sufficient. In addition, when modifying some global variable, e.g., a global list, you will need to use some synchronization primitive as well to ensure it is not modified or read concurrently (e.g., a timer interrupt occurs during the modification and we switch to run another thread).&#x20;
+You may want to leverage some synchronization primitive that provides some sort of thread _"waiting"_ functionality, e.g., semaphore. You do not have to wait for the Synchronization Lecture to be able to use these primitives. Reading through section [A.3 Synchronization](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_7.html#SEC111) is sufficient. In addition, when modifying some global variable, e.g., a global list, you will need to use some synchronization primitive as well to ensure it is not modified or read concurrently (e.g., a timer interrupt occurs during the modification and we switch to run another thread).
 {% endhint %}
 
 {% hint style="info" %}
@@ -139,7 +99,7 @@ Thread priorities range from `PRI_MIN` (0) to `PRI_MAX` (63). Lower numbers corr
 {% hint style="info" %}
 **Hint**
 
-For this exercise, you need to consider all the scenarios where the priority must be enforced. For example, when an alarm clock for a thread fires off, that thread should be made ready again, which entails a priority check. You can find some of these scenarios by looking for places that modify `ready_list` (directly and indirectly, `cscope` can be helpful).&#x20;
+For this exercise, you need to consider all the scenarios where the priority must be enforced. For example, when an alarm clock for a thread fires off, that thread should be made ready again, which entails a priority check. You can find some of these scenarios by looking for places that modify `ready_list` (directly and indirectly, `cscope` can be helpful).
 {% endhint %}
 
 {% hint style="info" %}
@@ -167,7 +127,7 @@ Note: if you decide not to work on this extra credit exercise, you do not need t
 {% hint style="success" %}
 **Exercise 2.3**
 
-Implement the following functions that allow a thread to examine and modify its own priority. **** Skeletons for these functions are provided in threads/thread.c.
+Implement the following functions that allow a thread to examine and modify its own priority. \*\*\*\* Skeletons for these functions are provided in threads/thread.c.
 {% endhint %}
 
 #### Function: void **thread\_set\_priority** (int new\_priority)
@@ -187,7 +147,7 @@ The priority scheduler is not used in any later project.
 {% hint style="success" %}
 **Exercise 3.1**
 
-Implement a multilevel feedback queue scheduler similar to the 4.4BSD scheduler to reduce the average response time for running jobs on your system. See section [B. 4.4BSD Scheduler](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_8.html#SEC142), for detailed requirements. &#x20;
+Implement a multilevel feedback queue scheduler similar to the 4.4BSD scheduler to reduce the average response time for running jobs on your system. See section [B. 4.4BSD Scheduler](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_8.html#SEC142), for detailed requirements.
 {% endhint %}
 
 Like the priority scheduler, the advanced scheduler chooses the thread to run based on priorities. However, the advanced scheduler does not do priority donation. Thus, we recommend that you have the priority scheduler working, except possibly for priority donation, before you start work on the advanced scheduler.
@@ -205,7 +165,7 @@ Double check the implementations of your fixed-point arithmetic routines (and id
 {% hint style="info" %}
 **Hint**
 
-Efficiency matters a lot for the MLFQS exercise. An inefficient implementation can distort the system. Read the comment in test case `mlfqs-load-avg.c`. In fact, the inefficiency in your alarm clock implementation can also influence your MLFQS behavior. So double check if your implementation there can be optimized.&#x20;
+Efficiency matters a lot for the MLFQS exercise. An inefficient implementation can distort the system. Read the comment in test case `mlfqs-load-avg.c`. In fact, the inefficiency in your alarm clock implementation can also influence your MLFQS behavior. So double check if your implementation there can be optimized.
 {% endhint %}
 
 The advanced scheduler is not used in any later project.

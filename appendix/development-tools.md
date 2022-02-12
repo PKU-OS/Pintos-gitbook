@@ -14,7 +14,7 @@ The `cscope` program also provides an index to functions and variables declared 
 
 The Makefile in pintos/src produces `cscope` indexes when it is invoked as `make cscope`. Once the index has been generated, run `cscope` from a shell command line; no command-line arguments are normally necessary. Then use the arrow keys to choose one of the search criteria listed near the bottom of the terminal, type in an identifier, and hit Enter. `cscope` will then display the matches in the upper part of the terminal. You may use the arrow keys to choose a particular match; if you then hit Enter, `cscope` will invoke the default system editor[(9)](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_fot.html#FOOT9) and position the cursor on that match. To start a new search, type Tab. To exit `cscope`, type Ctrl-d.
 
-Emacs and some versions of `vi` have their own interfaces to `cscope`. For information on how to use these interface, visit [http://cscope.sourceforge.net, the `cscope` home page](http://cscope.sourceforge.net%2C%20the%20%3Ccode%3Ecscope%3C/CODE%3E%20homepage).
+Emacs and some versions of `vi` have their own interfaces to `cscope`. For information on how to use these interface, visit [http://cscope.sourceforge.net, the `cscope` home page](http:/cscope.sourceforge.net,%20the%20%3Ccode%3Ecscope%3C/CODE%3E%20homepage/).
 
 ## F.3 Git
 

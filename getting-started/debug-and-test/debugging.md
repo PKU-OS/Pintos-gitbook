@@ -38,7 +38,7 @@ Appended to a function prototype to tell the compiler to never emit the function
 
 **Macro: PRINTF\_FORMAT \_(format, first)**\_
 
-Appended to a function prototype to tell the compiler that the function takes a `printf()`-like format string as the argument numbered \*\* **\_**format**\_ (starting from 1) and that the corresponding value arguments start at the argument numbered \_**first\*\*\_. This lets the compiler tell you if you pass the wrong argument types.
+Appended to a function prototype to tell the compiler that the function takes a `printf()`-like format string as the argument numbered \*\* **\_**format\*\*\_ (starting from 1) and that the corresponding value arguments start at the argument numbered \_\*\*first\*\*\_. This lets the compiler tell you if you pass the wrong argument types.
 
 ## Backtraces
 
@@ -528,5 +528,3 @@ If you move around the infinite loop in a "binary search" fashion, you can use t
 The page allocator in `threads/palloc.c` and the block allocator in `threads/malloc.c` clear all the bytes in memory to 0xcc at time of free. Thus, if you see an attempt to dereference a pointer like 0xcccccccc, or some other reference to 0xcc, there's a good chance you're trying to reuse a page that's already been freed. Also, byte 0xcc is the CPU opcode for "invoke interrupt 3," so if you see an error like `Interrupt 0x03 (#BP Breakpoint Exception)`, then Pintos tried to execute code in a freed page or block.
 
 An assertion failure on the expression `sec_no < d->capacity` indicates that Pintos tried to access a file through an inode that has been closed and freed. Freeing an inode clears its starting sector number to 0xcccccccc, which is not a valid sector number for disks smaller than about 1.6 TB.
-
-\\
