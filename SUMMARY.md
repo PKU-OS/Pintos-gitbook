@@ -42,10 +42,10 @@
   * [Virtual Addresses](appendix/reference-guide/virtual-addresses.md)
   * [Page Table](appendix/reference-guide/page-table.md)
   * [Hash Table](appendix/reference-guide/hash-table.md)
-* [4.4BSD Scheduler](appendix/4.4bsd-scheduler.md)
-* [Coding Standards](appendix/coding-standards.md)
+* [C Standards](appendix/coding-standards.md)
 * [Project Documentation](appendix/project-documentation.md)
 * [Development Tools](appendix/development-tools.md)
+* [Bibliography](appendix/bibliography.md)
 
 ***
 

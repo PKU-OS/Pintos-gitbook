@@ -186,7 +186,7 @@ Stub to set and get thread priority. Used in project 1.
 
 #### Function: int **thread\_get\_load\_avg** (void)
 
-#### Stubs for the advanced scheduler. See section [4.4BSD Scheduler](../4.4bsd-scheduler.md).
+#### Stubs for the advanced scheduler. See section [4.4BSD Scheduler](broken-reference).
 
 </details>
 

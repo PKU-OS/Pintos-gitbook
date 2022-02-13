@@ -90,4 +90,5 @@ Here is the summary of our score criteria for code quality:
 | Lines exceed 78 characters.                                                   | 0.2 each, up to 1 |
 | comment out or use the preprocessor to ignore blocks of code                  | 0.5               |
 | repeated blocks of code                                                       | 0.5               |
-| compile waring due to the code you implement                                  | 0.5 each, up to 1 |
+| compile waring due to the code you implement                                  | 0.2 each, up to 1 |
+| code specific to a test case                                                  | 0.5               |
