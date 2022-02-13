@@ -190,41 +190,87 @@ Code to configure the 8254 Programmable Interrupt Timer. This code is used by bo
 
 <summary>lib files</summary>
 
-Finally, lib and lib/kernel contain useful library routines. (`lib/user` will be used by user programs, starting in project 2, but it is not part of the kernel.) Here's a few more details:
+Finally, `lib` and `lib/kernel` contain useful library routines. (`lib/user` will be used by user programs, starting in project 2, but it is not part of the kernel.) Here's a few more details:
 
-ctype.h
+**ctype.h**
 
-inttypes.h
+**inttypes.h**
 
-limits.h
+**limits.h**
 
-stdarg.h
+**stdarg.h**
 
-stdbool.h
+**stdbool.h**
 
-stddef.h
+**stddef.h**
 
-stdint.h
+**stdint.h**
 
-stdio.c
+**stdio.c**
 
-stdio.h
+**stdio.h**
 
-stdlib.c
+**stdlib.c**
 
-stdlib.h
+**stdlib.h**
 
-string.c
+**string.c**
 
-string.h
+**string.h**
 
-A subset of the standard C library. See section [C99](../../appendix/coding-standards.md#c99), for information on a few recently introduced pieces of the C library that you might not have encountered before. See section [C.3 Unsafe String Functions](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_9.html#SEC152), for information on what's been intentionally left out for safety.debug.cdebug.hFunctions and macros to aid debugging. See section [E. Debugging Tools](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_11.html#SEC156), for more information.random.crandom.hPseudo-random number generator. The actual sequence of random values will not vary from one Pintos run to another, unless you do one of three things: specify a new random seed value on the -rs kernel command-line option on each run, or use a simulator other than Bochs, or specify the -r option to `pintos`.round.hMacros for rounding.syscall-nr.hSystem call numbers. Not used until project 2.kernel/list.ckernel/list.hDoubly linked list implementation. Used all over the Pintos code, and you'll probably want to use it a few places yourself in project 1.kernel/bitmap.ckernel/bitmap.hBitmap implementation. You can use this in your code if you like, but you probably won't have any need for it in project 1.kernel/hash.ckernel/hash.hHash table implementation. Likely to come in handy for project 3.kernel/console.ckernel/console.hkernel/stdio.hImplements `printf()` and a few other functions.
+A subset of the standard C library. See section [C99](../../appendix/coding-standards.md#c99), for information on a few recently introduced pieces of the C library that you might not have encountered before. See section [Unsafe String Functions](../../appendix/coding-standards.md#unsafe-string-functions), for information on what's been intentionally left out for safety.
+
+**debug.c**
+
+**debug.h**
+
+Functions and macros to aid debugging. See section [Debugging Tools](../../getting-started/debug-and-test/debugging.md), for more information.
+
+**random.c**
+
+**random.h**
+
+Pseudo-random number generator. The actual sequence of random values will not vary from one Pintos run to another, unless you do one of three things: specify a new random seed value on the `-rs` kernel command-line option on each run, or use a simulator other than Bochs, or specify the `-r` option to `pintos`.
+
+**round.h**
+
+Macros for rounding.
+
+**syscall-nr.h**
+
+System call numbers. Not used until project 2.
+
+**kernel/list.c**
+
+**kernel/list.h**
+
+Doubly linked list implementation. Used all over the Pintos code, and you'll probably want to use it a few places yourself in project 1.
+
+**kernel/bitmap.c**
+
+**kernel/bitmap.h**
+
+Bitmap implementation. You can use this in your code if you like, but you probably won't have any need for it in project 1.
+
+**kernel/hash.c**
+
+**kernel/hash.h**
+
+Hash table implementation. Likely to come in handy for project 3.
+
+**kernel/console.c**
+
+**kernel/console.h**
+
+**kernel/stdio.h**
+
+Implements `printf()` and a few other functions.
 
 </details>
 
 ### Synchronization
 
-Proper synchronization is an important part of the solutions to these problems. Any synchronization problem can be easily solved by turning interrupts off: while interrupts are off, there is no concurrency, so there's no possibility for race conditions. Therefore, it's tempting to solve all synchronization problems this way, but **don't**. Instead, use semaphores, locks, and condition variables to solve the bulk of your synchronization problems. Read the tour section on synchronization (see section [A.3 Synchronization](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_7.html#SEC111)) or the comments in threads/synch.c if you're unsure what synchronization primitives may be used in what situations.
+Proper synchronization is an important part of the solutions to these problems. Any synchronization problem can be easily solved by turning interrupts off: while interrupts are off, there is no concurrency, so there's no possibility for race conditions. Therefore, it's tempting to solve all synchronization problems this way, but **don't**. Instead, use semaphores, locks, and condition variables to solve the bulk of your synchronization problems. Read the tour section on synchronization (see section [Synchronization](background.md#synchronization)) or the comments in `threads/synch.c` if you're unsure what synchronization primitives may be used in what situations.
 
 In the Pintos projects, the only class of problem best solved by disabling interrupts is coordinating data shared between a kernel thread and an interrupt handler. Because interrupt handlers can't sleep, they can't acquire locks. This means that data shared between kernel threads and an interrupt handler must be protected within a kernel thread by turning off interrupts.
 
@@ -232,7 +278,7 @@ This project only requires accessing a little bit of thread state from interrupt
 
 When you do turn off interrupts, take care to do so for the least amount of code possible, or you can end up losing important things such as timer ticks or input events. Turning off interrupts also increases the interrupt handling latency, which can make a machine feel sluggish if taken too far.
 
-The synchronization primitives themselves in synch.c are implemented by disabling interrupts. You may need to increase the amount of code that runs with interrupts disabled here, but you should still try to keep it to a minimum.
+The synchronization primitives themselves in `synch.c` are implemented by disabling interrupts. You may need to increase the amount of code that runs with interrupts disabled here, but you should still try to keep it to a minimum.
 
 Disabling interrupts can be useful for debugging, if you want to make sure that a section of code is not interrupted. You should remove debugging code before turning in your project. (Don't just comment it out, because that can make the code difficult to read.)
 
