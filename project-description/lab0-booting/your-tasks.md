@@ -2,7 +2,7 @@
 
 ## Task 0: lab0 Design Document
 
-Download the [project 0 design document template](https://github.com/PKU-OS/sp22/tree/main/assets/docs-template/p0.md). Read through it to motivate your design and fill it in after you finish the project.
+Download the [project 0 design document template](https://github.com/PKU-OS/pintos/blob/master/docs/p0.md). Read through it to motivate your design and fill it in after you finish the project.
 
 ## &#x20;Task 1: Booting Pintos
 

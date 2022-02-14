@@ -2,7 +2,7 @@
 
 ## Task 0: Design Document
 
-Download the [project 1 design document template](https://github.com/PKU-OS/sp22/blob/main/assets/docs-template/p1.md). Read through it to motivate your design and fill it in after you finish the project. We recommend that you read the design document template before you start working on the project. See section [Project Documentation](../../appendix/project-documentation.md), for a sample design document that goes along with a fictitious project.
+Download the [project 1 design document template](https://github.com/PKU-OS/pintos/blob/master/docs/p1.md). Read through it to motivate your design and fill it in after you finish the project. We recommend that you read the design document template before you start working on the project. See section [Project Documentation](../../appendix/project-documentation.md), for a sample design document that goes along with a fictitious project.
 
 ## Task 1: Alarm Clock
 
