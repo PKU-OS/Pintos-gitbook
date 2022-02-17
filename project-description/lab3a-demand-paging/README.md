@@ -201,11 +201,9 @@ Implement paging for segments loaded from executables. All of these pages should
 {% endhint %}
 
 {% hint style="success" %}
-&#x20;**Exercise 1.2**
+**Exercise 1.2**
 
 Implement a global page replacement algorithm that approximates LRU. Your algorithm should perform at least as well as the simple variant of the "second chance" or "clock" algorithm.
-
-
 {% endhint %}
 
 Your design should allow for parallelism. If one page fault requires I/O, in the meantime processes that do not fault should continue executing and other page faults that do not require I/O should be able to complete. This will require some synchronization effort.
@@ -248,7 +246,7 @@ If you compile Pintos under lab 1 (`threads` directory) or lab 2 (`userprog` dir
 {% hint style="info" %}
 **Tips**
 
-You can use the -ul kernel command-line option to limit the size of the user pool, which makes it easy to test your VM implementation with various user memory sizes. For example, `pintos --swap-size=2 --filesys-size=2 -p ../../examples/echo -a echo -- -ul=4 -f -q run 'echo hello world'` will test Pintos with 4 page frames for user program. &#x20;
+You can use the -ul kernel command-line option to limit the size of the user pool, which makes it easy to test your VM implementation with various user memory sizes. For example, `pintos --swap-size=2 --filesys-size=2 -p ../../examples/echo -a echo -- -ul=4 -f -q run 'echo hello world'` will test Pintos with 4 page frames for user program.
 {% endhint %}
 
 {% hint style="info" %}
@@ -292,35 +290,6 @@ If you decide to use the late hour tokens, fill out [this form](https://forms.of
 {% endhint %}
 
 ## FAQ
-
-#### **How much code will I need to write?**
-
-Here's a summary of our reference solution, produced by the `diffstat` program. The final row gives total lines inserted and deleted; a changed line counts as both an insertion and a deletion.
-
-This summary is relative to the Pintos base code, but the reference solution for project 3 starts from the reference solution to project 2. See section [4.4 FAQ](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_4.html#SEC58), for the summary of project 2.
-
-The reference solution represents just one possible solution. Many other solutions are also possible and many of those differ greatly from the reference solution. Some excellent solutions may not modify all the files modified by the reference solution, and some may modify files not modified by the reference solution.
-
-```
- Makefile.build       |    4
- devices/timer.c      |   42 ++
- threads/init.c       |    5
- threads/interrupt.c  |    2
- threads/thread.c     |   31 +
- threads/thread.h     |   37 +-
- userprog/exception.c |   12
- userprog/pagedir.c   |   10
- userprog/process.c   |  319 +++++++++++++-----
- userprog/syscall.c   |  545 ++++++++++++++++++++++++++++++-
- userprog/syscall.h   |    1
- vm/frame.c           |  162 +++++++++
- vm/frame.h           |   23 +
- vm/page.c            |  297 ++++++++++++++++
- vm/page.h            |   50 ++
- vm/swap.c            |   85 ++++
- vm/swap.h            |   11
- 17 files changed, 1532 insertions(+), 104 deletions(-)
-```
 
 #### **Do we need a working Project 2 to implement Project 3?**
 
