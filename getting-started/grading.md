@@ -1,7 +1,7 @@
 # Grading
 
 {% hint style="info" %}
-We will grade your assignments based on test results and design quality, which comprises 60% and 40% of your grade, respectively.
+We will grade your assignments based on test results and design quality.
 {% endhint %}
 
 ## Testing results (60%)
@@ -70,7 +70,7 @@ Whereas the other sections primarily ask "what" and "how," the rationale section
 
 An incomplete, evasive, or non-responsive design document or one that strays from the template without good reason may be penalized. Incorrect capitalization, punctuation, spelling, or grammar can also cost points. See section [Project Document](../appendix/project-documentation.md), for a sample design document for a fictitious project.
 
-### Source Code
+### Code Style
 
 Your design will also be judged by looking at your source code. We will typically look at the differences between the original Pintos source tree and your submission, based on the output of a command like `diff -urpb pintos.orig pintos.submitted`. We will try to match up your description of the design with the code submitted. Important discrepancies between the description and the actual code will be penalized, as will be any bugs we find by spot checks.
 
@@ -82,13 +82,13 @@ In the end, remember your audience. Code is written primarily to be read by huma
 
 Here is the summary of our score criteria for code quality:
 
-| Rubric                                                                        | Deduct points     |
-| ----------------------------------------------------------------------------- | ----------------- |
-| important discrepancies between your design doc and the actual code           | 1                 |
-| poorly designed data structure                                                | 0.5               |
-| missed comments (you can only omit the comment if the code is self-explained) | 0.2 each, up to 1 |
-| Lines exceed 78 characters.                                                   | 0.2 each, up to 1 |
-| comment out or use the preprocessor to ignore blocks of code                  | 0.5               |
-| repeated blocks of code                                                       | 0.5               |
-| compile waring due to the code you implement                                  | 0.2 each, up to 1 |
-| code specific to a test case                                                  | 0.5               |
+| Rubric                                                                        | Deduct points    |
+| ----------------------------------------------------------------------------- | ---------------- |
+| important discrepancies between your design doc and the actual code           | 10               |
+| poorly designed data structure                                                | 5                |
+| missed comments (you can only omit the comment if the code is self-explained) | 2 each, up to 10 |
+| Lines exceed 78 characters.                                                   | 2 each, up to 10 |
+| use comments to ignore blocks of code                                         | 5                |
+| repeated blocks of code                                                       | 5                |
+| compile waring due to the code you implement                                  | 2 each, up to 10 |
+| code specific to a test case                                                  | 5                |

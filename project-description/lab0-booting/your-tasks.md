@@ -10,7 +10,9 @@ Have Pintos development environment setup as described in [Enviroment Setup](../
 
 ```shell
 cd pintos/src/threads
-make qemu
+make
+cd build
+pintos --
 ```
 
 If everything works, you should see Pintos booting in the [QEMU emulator](http://www.qemu.org), and print `Boot complete.` near the end.
@@ -21,7 +23,7 @@ While by default we run Pintos in QEMU, Pintos can also run in the [Bochs](http:
 cd pintos/src/threads
 make 
 cd build
-pintos --bochs -- run alarm-zero
+pintos --bochs --
 ```
 
 {% hint style="success" %}

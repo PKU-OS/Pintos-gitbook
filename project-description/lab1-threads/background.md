@@ -20,7 +20,7 @@ Using the GDB debugger, slowly trace through a context switch to see what happen
 In Pintos, each thread is assigned a small, fixed-size execution stack just under 4 kB in size. The kernel tries to detect stack overflow, but it cannot do so perfectly. You may cause bizarre problems, such as mysterious kernel panics, if you declare large data structures as non-static local variables, e.g. int buf\[1000];. Alternatives to stack allocation include the page allocator and the block allocator (see section [Memory Allocation](../../appendix/reference-guide/memory-allocation.md)).
 {% endhint %}
 
-### Source Files
+## Source Files
 
 This part provides a brief overview of the source files related to lab1. You will not need to modify most of this code, but the hope is that presenting this overview will give you a start on what code to look at.
 
@@ -268,7 +268,7 @@ Implements `printf()` and a few other functions.
 
 </details>
 
-### Synchronization
+## Synchronization
 
 Proper synchronization is an important part of the solutions to these problems. Any synchronization problem can be easily solved by turning interrupts off: while interrupts are off, there is no concurrency, so there's no possibility for race conditions. Therefore, it's tempting to solve all synchronization problems this way, but **don't**. Instead, use semaphores, locks, and condition variables to solve the bulk of your synchronization problems. Read the tour section on synchronization (see section [Synchronization](background.md#synchronization)) or the comments in `threads/synch.c` if you're unsure what synchronization primitives may be used in what situations.
 

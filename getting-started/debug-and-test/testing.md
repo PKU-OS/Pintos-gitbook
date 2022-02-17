@@ -14,7 +14,7 @@ Under `src/tests`, each lab (except for lab 0) has its corresponding test direct
 * `src/tests/filesys`
 
 {% hint style="info" %}
-Some labs (like lab3: virtual memory) may contain other labs' test cases,  you can see the TEST\_SUBDIRS variable defined in its corresponding Make.vars file for the details (for lab3, the file is src/vm/Make.vars).
+Some labs (like lab3: virtual memory) may contain other labs' test cases, you can see the TEST\_SUBDIRS variable defined in its corresponding Make.vars file for the details (e.g. for lab3, the file is src/vm/Make.vars).
 {% endhint %}
 
 Under each lab's test directory, the files can be classified as follows:
@@ -55,7 +55,7 @@ For project 1, the tests will probably run faster in Bochs. For the rest of the 
 
 ## Run individual test
 
-You can also run individual tests one at a time. A given test **t** writes its output to `t.output`, then a script scores the output as "pass" or "fail" and writes the result to `t.result`.&#x20;
+You can also run individual tests one at a time. A given test **t** writes its output to `t.output`, then a script scores the output as "pass" or "fail" and writes the result to `t.result`.
 
 To run and grade a single test, `make` the `.result` file explicitly _**from the build directory**_, e.g. `make tests/threads/alarm-multiple.result`. If `make` says that the test result is up-to-date, but you want to re-run it anyway, either delete the `.output` file by hand, e.g., `rm tests/threads/alarm-multiple.output`, or run `make clean` to delete all build and test output files.
 

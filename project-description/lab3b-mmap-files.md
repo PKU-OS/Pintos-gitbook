@@ -1,7 +1,5 @@
 # Lab3b: Mmap Files
 
-**Note: Lab 3b is **_**optional**_** for 318 section students, but is required for 418/618 section students.** Students in 318 section who choose to complete this lab may receive extra credits of max 10% of the project grade. In this assignment, you will complete the second part of Pintos virtual memory enhancements. You will continue working in the vm directory for this project. You need to hand in your code for this lab in a branch called lab3b-handin. Create this branch with `git checkout -b lab3b-handin lab3a-handin`.
-
 ## Requirements
 
 ### 0. Design Document
@@ -95,7 +93,7 @@ We will collect your solution automatically through GitHub by taking a snapshot 
 {% endhint %}
 
 {% hint style="info" %}
-&#x20;**Late Hours**
+**Late Hours**
 
 If you decide to use the late hour tokens, fill out [this form](https://forms.office.com/r/PV6czESZpS) **before the deadline**, so that we won't be collecting and grading your solution immediately. **When you finish** (within the token limit), fill out [this form](https://forms.office.com/r/PV6czESZpS) again to indicate you are done. Don't forget to fill out the form for the second time to avoid leaking your late tokens.
 {% endhint %}

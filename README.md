@@ -24,11 +24,11 @@ There are five labs in total. Lab0 is designed to prepare you for the later proj
 
 | Project                       | Content                                | Point |
 | ----------------------------- | -------------------------------------- | ----- |
-| Lab0: Getting Real            | Bootstrap Pintos                       | 5     |
-| Lab1: Threads                 | Kernel threads scheduling              | 10    |
-| Lab2: User Programs           | Load & Run user programs, System calls | 10    |
-| Lab3a: Virtual Memory         | Demand Paging                          | 10    |
-| Lab3a: Virtual Memory         | Mmap Files                             | 10    |
+| Lab0: Getting Real            | Bootstrap Pintos                       | 4     |
+| Lab1: Threads                 | Kernel threads scheduling              | 9     |
+| Lab2: User Programs           | Load & Run user programs, System calls | 9     |
+| Lab3a: Virtual Memory         | Demand Paging                          | 9     |
+| Lab3a: Virtual Memory         | Mmap Files                             | 9     |
 | (optional) Lab4: File Systems | Implement File systems                 | 0     |
 
 In each lab, we will release all the test cases to support your local development. After the deadline, we will run the same test suite to grade your submissions, so don't worry that your evil teaching assistant (TA) will intentionally design many corner cases only to deduct your scores.
@@ -39,7 +39,7 @@ In a word, we hope this project will be a challenging but rewarding experience f
 
 ## Prerequisite
 
-We highly recommend you read the [prerequisites](https://pku-minic.github.io/online-doc/#/preface/prerequisites) and  [facing-problems](https://pku-minic.github.io/online-doc/#/preface/facing-problems) sections for the PKU Compiler Project.&#x20;
+We highly recommend you read the [prerequisites](https://pku-minic.github.io/online-doc/#/preface/prerequisites) and [facing-problems](https://pku-minic.github.io/online-doc/#/preface/facing-problems) sections for the PKU Compiler Project.&#x20;
 
 ## Version Control
 
@@ -47,13 +47,13 @@ We highly recommend you use Git for version control in the class. If you are new
 
 ## Submission
 
-We will be using [gradescope](https://gradescope.com) to collect assignments and release your scores. See the submission section under each lab's description for more details.
+We will be using [CodePost](https://codepost.io) to collect assignments and release your scores. See the submission section under each lab's description for more details.
 
 Pay attention to the deadline for each code and design doc submission. Usually, the code submission dues three days earlier than its design doc submission, which forces you to spend enough time to express your design ideas sufficiently but succinctly.
 
 ## Grading
 
-We will grade your assignments based on test results (60% of your grade) as well as design and code quality (40% of your grade). Note that the testing grades are fully automated. So please turn in the working code or there is no credit (See section [Grading](./#grading) for more details).
+We will grade your assignments based on test results (60%) as well as design doc and code quality (40%). Note that the testing grades are fully automated. So please turn in the working code or there is no credit (See section [Grading](getting-started/grading.md) for more details).
 
 ## Cheating and Collaboration
 

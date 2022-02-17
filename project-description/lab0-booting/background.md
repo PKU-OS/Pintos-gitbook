@@ -69,6 +69,3 @@ In addition, the kernel startup code needs to enable the A20 line, that is, the 
 
 Next, the kernel will do a basic page table setup and turn on protected mode and paging (details omitted for now). The final step is to call into the C code of the Pintos kernel, which from here on will be the main content we will deal with.
 
-## Code details
-
-Read the [Loading](../../appendix/reference-guide/loading.md) section in Code Guide to understand the source-code-level details of the booting process.

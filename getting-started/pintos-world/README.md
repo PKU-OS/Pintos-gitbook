@@ -24,5 +24,5 @@ Now you've had a taste of the booting process of Pintos. Let's take a closer loo
 You may feel overwhelmed by so many source files and have no idea where to start. Don't worry, now you only need to have a big picture in mind and the [Code Guide](../../appendix/reference-guide/) section serves as a more comprehensive reference to the Pintos code, you will read each part of the reference guide as you work on the project where it becomes important.
 {% endhint %}
 
-If you want to understand the dependencies of these modules and functions in these modules, you can generate the code documentation with Doxygen. We provide an online code browser based on Doxygen at [https://pku-os.github.io/pintos-doxygen/html/](https://pku-os.github.io/pintos-doxygen/html/).
+If you want to understand the dependencies of these modules and functions in these modules, you can generate the code documentation with [Doxygen](https://www.doxygen.nl/index.html). We provide an online code browser based on Doxygen at [https://pku-os.github.io/pintos-doxygen/html/](https://pku-os.github.io/pintos-doxygen/html/).
 
