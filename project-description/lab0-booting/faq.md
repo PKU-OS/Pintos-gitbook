@@ -21,5 +21,3 @@ You can find this trick is done for compiling all pintos source files in the `CP
 **I tried to use `scanf` but got a ``undefined reference to `scanf' error``.**
 
 This is for the same reason explained in the `malloc` question. Pintos only implements a subset of C standard library functions. You can check the header files in `src/lib` to see what are these available functions. If a standard function is not listed there, you cannot use it (and will have to implement it yourself if you really need it).
-
-\
