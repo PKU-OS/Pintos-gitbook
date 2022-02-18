@@ -15,9 +15,8 @@ The easiest way to set up the development environment is Docker. **Your kind TAs
 
 ### Download
 
-**First, you need to install docker on your computer.** Go to the [docker download page](https://www.docker.com/get-started) for help.
-
-**Then pull the docker image and run it.** Just type the command below into your favorite shell (you can run `docker run --help` to find out what this command means in detail):
+1. **First, you need to install docker on your computer.** Go to the [docker download page](https://www.docker.com/get-started) for help.
+2. **Then pull the docker image and run it.** Just type the command below into your favorite shell (you can run `docker run --help` to find out what this command means in detail):
 
 ```
 docker run -it pkuflyingpig/pintos bash
@@ -66,7 +65,7 @@ _<mark style="color:red;">**Do not just copy and paste the command above!**</mar
 {% endhint %}
 
 {% hint style="info" %}
-You may use this command throughout this semester, and it is tedious to remember it and type it again and again. You can choose the way you like to avoid this. **You can use the `alias` Linux utility to save this command as `pintos-up` for example.**
+You may use this command throughout this semester, and it is tedious to remember it and type it again and again. You can choose the way you like to avoid this. **e.g. You can use the `alias` Linux utility to save this command as `pintos-up` for example.**
 {% endhint %}
 
 Now when you `ls`, you will find there is a new directory called `pintos` under your home directory in the container, **it is shared by the container and your host computer i.e. any changes in one will be synchronized to the other instantaneously**.
