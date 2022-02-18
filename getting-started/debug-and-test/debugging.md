@@ -39,8 +39,6 @@ When a CPU exception handler, such as a page fault handler, cannot be invoked be
 
     If you move around the infinite loop in a **"binary search"** fashion, you can use this technique to pin down the exact spot that everything goes wrong. It should only take a few minutes at most.
 
-##
-
 </details>
 
 ## ASSERT
