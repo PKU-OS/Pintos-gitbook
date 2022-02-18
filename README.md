@@ -31,9 +31,9 @@ First, like nachos, pinto beans are common Mexican food. Second, Pintos is small
 | Lab3a: Virtual Memory         | Mmap Files                             | 9     |
 | (optional) Lab4: File Systems | Implement File systems                 | 0     |
 
-**In each lab, we will release all the test cases to support your local development.** After the deadline, we will run the same test suite to grade your submissions, so don't worry that your evil teaching assistant (TA) will intentionally design many corner cases only to deduct your scores.
+**In each lab, we will release all the test cases to support your local development.** After the deadline, we will run the same test suite to grade your submissions, so don't worry that your evil teaching assistants (TAs) will intentionally design many corner cases only to deduct your scores.
 
-However, your evil TA firmly believes that there is a great difference between "elegant code" and "working code". **So a large part of your score will be determined by the quality of your design document and your code.** Don't worry, your kind TA firmly resists "involution" and advocates "Ockham's Razor", so we will provide document templates for you to limit your document to hundreds of words long. Also, we will make the scoring criteria of coding style publicly available.
+However, your evil TAs firmly believe that there is a great difference between "elegant code" and "working code". **So a large part of your score will be determined by the quality of your design document and your code.** Don't worry, your kind TAs firmly resist "involution" and advocates "Ockham's Razor", so we will provide document templates for you to limit your document to hundreds of words long. Also, we will make the scoring criteria of coding style publicly available.
 
 **In a word, we hope this project will be a challenging but rewarding experience for all of you guys.** If you have any suggestions, feel free to contact PKUFlyingPig zhongyinmin@pku.edu.cn.
 
@@ -58,7 +58,7 @@ We will be using [PKU course website](https://course.pku.edu.cn) to collect assi
 ## <mark style="color:red;">Cheating and Collaboration</mark>
 
 {% hint style="danger" %}
-**This class has zero tolerance for cheating.** We will run tools to check your submissions against a comprehensive database of solutions including past and present submissions for potential cheating. The stakes are very high. So do not cheat, do not cheat, do not cheat!
+<mark style="color:red;">**This class has zero tolerance for cheating.**</mark> <mark style="color:red;"></mark><mark style="color:red;">We will run tools to check your submissions against a comprehensive database of solutions including past and present submissions for potential cheating. The stakes are very high. So do not cheat, do not cheat, do not cheat!</mark>
 {% endhint %}
 
 <mark style="color:red;">**The basic policies for the project assignments are as follows:**</mark>

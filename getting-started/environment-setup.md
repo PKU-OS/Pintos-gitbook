@@ -1,23 +1,23 @@
 # Environment Setup
 
 {% hint style="info" %}
-To develop the Pintos projects, you’ll need two essential sets of tools:
+To develop the Pintos projects, you’ll need **two essential sets of tools**:
 
-* 80x86 cross-compiler toolchain for 32-bit architecture including a C compiler, assembler, linker, and debugger.
-* x86 emulator: QEMU or Bochs
+* **80x86 cross-compiler toolchain for 32-bit architecture** including a C compiler, assembler, linker, and debugger.
+* **x86 emulator**: QEMU or Bochs
 {% endhint %}
 
-## Option A(recommended): Docker
+## Option A (recommended): Docker
 
 {% hint style="success" %}
-The easiest way to set up the development environment is Docker. Your kind TA has built a docker image for you in advance that contains all the toolchains to compile, run and debug Pintos. This docker image has been tested on Mac (intel chip), Mac (apple chip), Windows, and Linux.
+The easiest way to set up the development environment is Docker. **Your kind TAs have built a docker image for you in advance** **that contains all the toolchains to compile, run and debug Pintos.** This docker image has been tested on Mac (Intel chip), Mac (Apple M1 chip), Windows, and Linux.
 {% endhint %}
 
 ### Download
 
-First, you need to install docker on your laptop. Go to the [docker download page](https://www.docker.com/get-started) for help.
+**First, you need to install docker on your computer.** Go to the [docker download page](https://www.docker.com/get-started) for help.
 
-Then pull the docker image and run it, just type the command below into your favorite shell (you can run `docker run --help` to find out what this command means in detail):
+**Then pull the docker image and run it.** Just type the command below into your favorite shell (you can run `docker run --help` to find out what this command means in detail):
 
 ```
 docker run -it pkuflyingpig/pintos bash
@@ -27,46 +27,49 @@ This image is about 3GB (it contains a full Ubuntu18.04), so it may take some ti
 
 If everything goes well, you will enter a bash shell.
 
-Type `pwd` you will find your home directory is under `/home/PKUOS` .
+* Type `pwd` you will find **your home directory is under `/home/PKUOS`** .
+* Type `ls` you will find that **there is a `toolchain` directory that contains all the dependencies**.
 
-Type `ls` you will find that there is a `toolchain` directory that contains all the dependencies.
-
-Now you own a tiny Ubuntu OS inside your host computer, and you can shut it down easily by `Ctrl+d`. You can check that it has exited by running `docker ps -a`.
+Now you own a tiny Ubuntu OS inside your host computer, and **you can shut it down easily by `Ctrl+d` or type `exit + enter`**. You can check that it has exited by running `docker ps -a`.
 
 ### Boot Pintos
 
-Now go back to your host machine, git clone the Pintos skeleton code repository by running:
+Now go back to your host machine, **git clone the Pintos skeleton code repository** by running:
 
 ```
 git clone git@github.com:PKU-OS/pintos.git
 ```
 
 {% hint style="warning" %}
-_Note: we have made some customization to the official Pintos distribution. So you should be only getting the source code from the above channels. In other words, do not download from other websites._
+_<mark style="color:red;">**Note:**</mark>_&#x20;
+
+<mark style="color:red;">we have made some c</mark>_<mark style="color:red;">ustomization to the official Pintos distribution. So</mark> <mark style="color:red;"></mark><mark style="color:red;">**you should be only getting the source code from the above channels**</mark><mark style="color:red;">. In other words, do not download from other websites.</mark>_
 {% endhint %}
 
-Then run the docker image again but this time mount your `path/to/pintos` into the container.
+**Then run the docker image again but this time mount your `path/to/pintos` into the container.**
+
+```
+docker run -it --rm --name pintos --mount type=bind,source=[absolute/path/to/pintos/on/your/host/machine],target=/home/PKUOS/pintos pkuflyingpig/pintos bash
+```
 
 {% hint style="warning" %}
-_Note: Do not just copy and paste! You need to replace the absolute path to your pintos directory in the command below!_
-{% endhint %}
+_<mark style="color:red;">**Note:**</mark>_&#x20;
 
-```
-docker run -it --rm --name pintos --mount type=bind,source=absolute/path/to/pintos/on/your/host/machine,target=/home/PKUOS/pintos pkuflyingpig/pintos bash
-```
-
-{% hint style="info" %}
-`Docker notes:`
-
-* `-rm` tells docker to delete the container after running
-* `--name pintos` names the container as `pintos`, this will be helpful in the debugging part.
+_<mark style="color:red;">**Do not just copy and paste the command above!**</mark> <mark style="color:red;"></mark><mark style="color:red;">At least you need to replace the absolute path to your pintos directory in the command!</mark>_
 {% endhint %}
 
 {% hint style="info" %}
-You may use this command throughout this semester, and it is tedious to remember and type again and again. You can use the `alias` Linux utility to save this command as `pintos-up` for example.
+**`Docker notes:`**
+
+* **`--rm:`** Tell docker to delete the container after running
+* **`--name pintos:`** Name the container as `pintos`, which will be helpful in the debugging part.
 {% endhint %}
 
-Now when you `ls`, you will find there is a new directory called `pintos` under your home directory in the container, it is shared by the container and your host laptop.
+{% hint style="info" %}
+You may use this command throughout this semester, and it is tedious to remember it and type it again and again. You can choose the way you like to avoid this. **You can use the `alias` Linux utility to save this command as `pintos-up` for example.**
+{% endhint %}
+
+Now when you `ls`, you will find there is a new directory called `pintos` under your home directory in the container, **it is shared by the container and your host computer i.e. any changes in one will be synchronized to the other instantaneously**.
 
 Now here comes the exciting part, type the following commands in turn:
 
@@ -77,7 +80,7 @@ cd build
 pintos --
 ```
 
-Bomb! The last command will trigger Qemu to simulate a 32-bit x86 machine and boot your Pintos on it. If you see something like:
+**Bomb! The last command will trigger Qemu to simulate a 32-bit x86 machine and boot your Pintos on it.** If you see something like:
 
 ```
 Pintos hda1
@@ -92,10 +95,10 @@ Boot complete.
 
 Your Pintos has been booted successfully, congratulations :)
 
-You can shut down the Qemu by `Ctrl+a+x` or `Ctrl+c` if the previous one does not work.
+You can shut down the Qemu by **`Ctrl+a+x` or `Ctrl+c`** if the previous one does not work.
 
 {% hint style="success" %}
-Now Pintos will exit immediately after booting, so you may not see much useful information in the output. Don't be disappointed.
+By far Pintos will exit immediately after booting, so you may not see much useful information in the output. Don't be disappointed.
 {% endhint %}
 
 {% hint style="info" %}
@@ -104,9 +107,15 @@ If you want to understand the internal details of the docker image, you can look
 
 ### What's the magic?
 
-Now Let's conclude what you have done. First, You used docker to run a Ubuntu container that functions as a full-edged Linux OS inside your host OS. Then you used Qemu to simulate a 32-bit x86 computer inside your container. Finally, you boot a tiny toy OS -- Pintos on the computer which Qemu simulates. Wow, virtualization is amazing, right?
+Now Let's conclude what you have done.&#x20;
 
-Throughout this semester, you can modify your Pintos source code in your host machine with your favorite IDE but compile/run/debug/test your Pintos in the container. You can leave the container running when you are modifying Pintos, because your modification will be visible in the container immediately.
+* First, You used docker to run a Ubuntu container that functions as a full-edged Linux OS inside your host OS.&#x20;
+* Then you used Qemu to simulate a 32-bit x86 computer inside your container.&#x20;
+* Finally, you boot a tiny toy OS -- Pintos on the computer which Qemu simulates.&#x20;
+
+Wow, _**virtualization is amazing**_, right?
+
+Throughout this semester, **you can modify your Pintos source code in your host machine with your favorite IDE but compile/run/debug/test your Pintos in the container thanks to the mounting technique**. You can leave the container running when you are modifying Pintos source code in you host computer, because your modification will be visible in the container immediately.
 
 ## Option B: Virtual Machine
 
