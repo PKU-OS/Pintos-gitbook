@@ -60,7 +60,7 @@ When a CPU exception handler, such as a page fault handler, cannot be invoked be
 **When the kernel panics, it prints a "backtrace", that is, a summary of how your program got where it is**, as a list of addresses inside the functions that were running at the time of the panic.&#x20;
 
 * You can also **insert a call to `debug_backtrace()`**, prototyped in `<debug.h>`, to print a backtrace at any point in your code.&#x20;
-* `debug_backtrace_all()`, also declared in \<debug.h>, prints backtraces of all threads.
+* **`debug_backtrace_all()`**, also declared in \<debug.h>, prints backtraces of all threads.
 
 The addresses in a backtrace are listed as raw hexadecimal numbers, which are difficult to interpret. **We provide a tool called `backtrace` to translate these into function names and source file line numbers.**&#x20;
 

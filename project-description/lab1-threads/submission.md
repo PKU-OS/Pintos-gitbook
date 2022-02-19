@@ -1,13 +1,14 @@
 # Submission
 
 {% hint style="danger" %}
-<mark style="color:red;">Code Due: Thursday 03/24 11.59 pm</mark>
+<mark style="color:red;">**Code Due: Thursday 03/24 11.59 pm**</mark>
 {% endhint %}
 
-Type `make submission` under the `src/` directory will tarball and compress your code as `submission.tar.bz2` . Submit this file to the `Lab1: Threads` Assignment on [CodePost](https://codepost.io).
+* Type `make submission` under the `src/` directory will tarball and compress your code as `submission.tar.bz2` .&#x20;
+* <mark style="color:red;">**Submit this file to the**</mark><mark style="color:red;">** **</mark><mark style="color:red;">**`Lab1: Threads`**</mark><mark style="color:red;">** **</mark><mark style="color:red;">**Assignment on**</mark> [<mark style="color:red;">**PKU course website**</mark>](https://course.pku.edu.cn)<mark style="color:red;">**.**</mark>
 
 {% hint style="danger" %}
-<mark style="color:red;">Design Doc Due: Thursday 03/27 11.59 pm</mark>
+<mark style="color:red;">**Design Doc Due: Thursday 03/27 11.59 pm**</mark>
 {% endhint %}
 
-Submit your design document as a PDF to the `Lab1 Design Doc` Assignment on [CodePost](https://codepost.io).
+<mark style="color:red;">**Submit your design document as a**</mark><mark style="color:red;">** **</mark>_<mark style="color:red;">**PDF**</mark>_<mark style="color:red;">** **</mark><mark style="color:red;">**to the**</mark><mark style="color:red;">** **</mark><mark style="color:red;">**`Lab1 Design Doc`**</mark><mark style="color:red;">** **</mark><mark style="color:red;">**Assignment on**</mark> [<mark style="color:red;">**PKU course website**</mark>](https://course.pku.edu.cn)<mark style="color:red;">**.**</mark>

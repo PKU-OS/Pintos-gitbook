@@ -2,29 +2,29 @@
 
 ## Hardware References
 
-\[IA32-v1]. IA-32 Intel Architecture Software Developer's Manual Volume 1: Basic Architecture. Basic 80x86 architecture and programming environment. Available via developer.intel.com. Section numbers in this document refer to revision 18.
+\[IA32-v1]. IA-32 Intel Architecture Software Developer's Manual Volume 1: Basic Architecture. Basic 80x86 architecture and programming environment. Available via [developer.intel.com](https://www.cs.jhu.edu/\~huang/cs318/fall20/project/developer.intel.com). Section numbers in this document refer to revision 18.
 
-\[IA32-v2a]. IA-32 Intel Architecture Software Developer's Manual Volume 2A: Instruction Set Reference A-M. 80x86 instructions whose names begin with A through M. Available via developer.intel.com. Section numbers in this document refer to revision 18.
+\[IA32-v2a]. IA-32 Intel Architecture Software Developer's Manual Volume 2A: Instruction Set Reference A-M. 80x86 instructions whose names begin with A through M. Available via [developer.intel.com](https://www.cs.jhu.edu/\~huang/cs318/fall20/project/developer.intel.com). Section numbers in this document refer to revision 18.
 
-\[IA32-v2b]. IA-32 Intel Architecture Software Developer's Manual Volume 2B: Instruction Set Reference N-Z. 80x86 instructions whose names begin with N through Z. Available via developer.intel.com. Section numbers in this document refer to revision 18.
+\[IA32-v2b]. IA-32 Intel Architecture Software Developer's Manual Volume 2B: Instruction Set Reference N-Z. 80x86 instructions whose names begin with N through Z. Available via [developer.intel.com](https://www.cs.jhu.edu/\~huang/cs318/fall20/project/developer.intel.com). Section numbers in this document refer to revision 18.
 
-\[IA32-v3a]. IA-32 Intel Architecture Software Developer's Manual Volume 3A: System Programming Guide. Operating system support, including segmentation, paging, tasks, interrupt and exception handling. Available via developer.intel.com. Section numbers in this document refer to revision 18.
+\[IA32-v3a]. IA-32 Intel Architecture Software Developer's Manual Volume 3A: System Programming Guide. Operating system support, including segmentation, paging, tasks, interrupt and exception handling. Available via [developer.intel.com](https://www.cs.jhu.edu/\~huang/cs318/fall20/project/developer.intel.com). Section numbers in this document refer to revision 18.
 
-\[FreeVGA]. [FreeVGA Project](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/specs/freevga/home.htm). Documents the VGA video hardware used in PCs.
+\[FreeVGA]. [FreeVGA Project](https://www.cs.jhu.edu/\~huang/cs318/fall20/project/specs/freevga/home.htm). Documents the VGA video hardware used in PCs.
 
-\[kbd]. [Keyboard scancodes](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/specs/kbd/scancodes.html). Documents PC keyboard interface.
+\[kbd]. [Keyboard scancodes](https://www.cs.jhu.edu/\~huang/cs318/fall20/project/specs/kbd/scancodes.html). Documents PC keyboard interface.
 
-\[ATA-3]. [AT Attachment-3 Interface (ATA-3) Working Draft](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/specs/ata-3-std.pdf). Draft of an old version of the ATA aka IDE interface for the disks used in most desktop PCs.
+\[ATA-3]. [AT Attachment-3 Interface (ATA-3) Working Draft](https://www.cs.jhu.edu/\~huang/cs318/fall20/project/specs/ata-3-std.pdf). Draft of an old version of the ATA aka IDE interface for the disks used in most desktop PCs.
 
-\[PC16550D]. [National Semiconductor PC16550D Universal Asynchronous Receiver/Transmitter with FIFOs](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/specs/pc16550d.pdf). Datasheet for a chip used for PC serial ports.
+\[PC16550D]. [National Semiconductor PC16550D Universal Asynchronous Receiver/Transmitter with FIFOs](https://www.cs.jhu.edu/\~huang/cs318/fall20/project/specs/pc16550d.pdf). Datasheet for a chip used for PC serial ports.
 
-\[8254]. [Intel 8254 Programmable Interval Timer](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/specs/8254.pdf). Datasheet for PC timer chip.
+\[8254]. [Intel 8254 Programmable Interval Timer](https://www.cs.jhu.edu/\~huang/cs318/fall20/project/specs/8254.pdf). Datasheet for PC timer chip.
 
-\[8259A]. [Intel 8259A Programmable Interrupt Controller (8259A/8259A-2)](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/specs/8259A.pdf). Datasheet for PC interrupt controller chip.
+\[8259A]. [Intel 8259A Programmable Interrupt Controller (8259A/8259A-2)](https://www.cs.jhu.edu/\~huang/cs318/fall20/project/specs/8259A.pdf). Datasheet for PC interrupt controller chip.
 
-\[MC146818A]. [Motorola MC146818A Real Time Clock Plus Ram (RTC)](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/specs/mc146818a.pdf). Datasheet for PC real-time clock chip.
+\[MC146818A]. [Motorola MC146818A Real Time Clock Plus Ram (RTC)](https://www.cs.jhu.edu/\~huang/cs318/fall20/project/specs/mc146818a.pdf). Datasheet for PC real-time clock chip.
 
-\[PCASM]. [PC Assembly Language Book](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/specs/pcasm-book.pdf). Guide to x86 assembly language.
+\[PCASM]. [PC Assembly Language Book](https://www.cs.jhu.edu/\~huang/cs318/fall20/project/specs/pcasm-book.pdf). Guide to x86 assembly language.
 
 ## Software References
 
