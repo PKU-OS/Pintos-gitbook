@@ -1,8 +1,9 @@
 # Your Tasks
 
-## Task 0: lab0 Design Document
+## Task 0: Preparation and Lab0 Design Document
 
-Download the [project 0 design document template](https://github.com/PKU-OS/pintos/blob/master/docs/p0.md). Read through it to motivate your design and fill it in after you finish the project.
+1. Read the [Welcome to Pintos](../../README.md) and [Getting Started](../../getting-started/environment-setup.md) chapter in Project Gitbook to setup your local development environment and get familiar with the course project.
+2. Download the [project 0 design document template](https://github.com/PKU-OS/pintos/blob/master/docs/p0.md). Read through it to motivate your design and fill it in after you finish the project.
 
 ## Task 1: Booting Pintos
 
@@ -24,7 +25,7 @@ While by default we run Pintos in QEMU, Pintos can also run in the [Bochs](http:
 
 ```
 cd pintos/src/threads
-make 
+make
 cd build
 pintos --bochs --
 ```
