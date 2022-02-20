@@ -2,9 +2,9 @@
 
 ## Introduction
 
-Pintos is a simple operating system framework for the 80x86 architecture. It supports kernel threads, loading and running user programs, and a file system, but it implements all of these in a very simple way. In the Pintos projects, you will strengthen its support in all three of these areas. You will also add a virtual memory implementation.
+**Pintos is a simple operating system framework for the 80x86 architecture.** It supports **kernel threads**, **loading and running user programs**, and **a file system**, but it implements all of these in a very simple way. In the Pintos projects, you will strengthen its support in all three of these areas. You will also add a virtual memory implementation.
 
-Pintos could, theoretically, run on a regular IBM-compatible PC. Unfortunately, it is impractical to supply every student a dedicated PC for use with Pintos. Therefore, we will run Pintos projects in a system simulator, that is, a program that simulates an 80x86 CPU and its peripheral devices accurately enough that unmodified operating systems and software can run under it. In class we will use the [Bochs](http://bochs.sourceforge.net) and [QEMU](http://fabrice.bellard.free.fr/qemu/) simulators. Pintos has also been tested with [VMware Player](http://www.vmware.com).
+**Pintos could, theoretically, run on a regular IBM-compatible PC**. Unfortunately, it is impractical to supply every student a dedicated PC for use with Pintos. Therefore, we will run Pintos projects in a system simulator, that is, a program that simulates an 80x86 CPU and its peripheral devices accurately enough that unmodified operating systems and software can run under it. In class we will use the [Bochs](http://bochs.sourceforge.net) and [QEMU](http://fabrice.bellard.free.fr/qemu/) simulators. Pintos has also been tested with [VMware Player](http://www.vmware.com).
 
 **These projects are hard.** They have a reputation of taking a lot of time, and deservedly so. We will do what we can to reduce the workload, such as providing a lot of support material, but there is plenty of hard work that needs to be done. We welcome your feedback. If you have suggestions on how we can reduce the unnecessary overhead of assignments, prevent students from being distracted by redundant work and help class participants concentrate on the more important underlying parts, please let us know.
 
@@ -22,14 +22,14 @@ First, like nachos, pinto beans are common Mexican food. Second, Pintos is small
 
 **There are five labs in total.** Lab0 is designed to prepare you for the later projects and practice your GDB ability, so it is intentionally much simpler than the remaining projects. In Lab1 - 4, you will extend Pintos in different dimensions and make it more robust and powerful.
 
-| Project                       | Content                                | Point |
-| ----------------------------- | -------------------------------------- | ----- |
-| Lab0: Getting Real            | Bootstrap Pintos                       | 4     |
-| Lab1: Threads                 | Kernel threads scheduling              | 9     |
-| Lab2: User Programs           | Load & Run user programs, System calls | 9     |
-| Lab3a: Virtual Memory         | Demand Paging                          | 9     |
-| Lab3a: Virtual Memory         | Mmap Files                             | 9     |
-| (optional) Lab4: File Systems | Implement File systems                 | 0     |
+| Project                       | Release   | Code Due           | Design Doc Due     | Content                                | Point |
+| ----------------------------- | --------- | ------------------ | ------------------ | -------------------------------------- | ----- |
+| **Lab0: Getting Real**        | **02/22** | **03/03 11:59 pm** | /                  | Bootstrap Pintos                       | 4     |
+| **Lab1: Threads**             | **03/08** | **03/24 11:59 pm** | **03/27 11:59 pm** | Kernel threads scheduling              | 9     |
+| **Lab2: User Programs**       | **03/29** | **04/14 11:59 pm** | **04/17 11:59 pm** | Load & Run user programs, System calls | 9     |
+| **Lab3a: Virtual Memory**     | **04/19** | **05/05 11:59 pm** | **05/08 11:59 pm** | Demand Paging                          | 9     |
+| **Lab3a: Virtual Memory**     | **05/10** | **05/19 11:59 pm** | **05/22 11:59 pm** | Mmap Files                             | 9     |
+| (optional) Lab4: File Systems | **/**     | /                  | /                  | Implement File systems                 | 0     |
 
 **In each lab, we will release all the test cases to support your local development.** After the deadline, we will run the same test suite to grade your submissions, so don't worry that your evil teaching assistants (TAs) will intentionally design many corner cases only to deduct your scores.
 
