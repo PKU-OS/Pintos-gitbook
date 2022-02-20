@@ -109,3 +109,4 @@ Whereas the other sections primarily ask "what" and "how," the rationale section
 | repeated blocks of code                                                       | 5                |
 | compile waring due to the code you implement                                  | 2 each, up to 10 |
 | code specific to a test case                                                  | 5                |
+| writing large amounts of repetitive code for implementing system calls        | 2 each, up to 10 |

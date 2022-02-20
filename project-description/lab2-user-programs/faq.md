@@ -84,7 +84,7 @@ No. You should be able to support `PHYS_BASE` values that are any multiple of 0x
 
 #### What happens when an open file is removed?
 
-You should implement the standard Unix semantics for files. That is, when a file is removed any process which has a file descriptor for that file may continue to use that descriptor. This means that they can read and write from the file. The file will not have a name, and no other processes will be able to open it, but it will continue to exist until all file descriptors referring to the file are closed or the machine shuts down.
+You should implement **the standard Unix semantics for files**. That is, when a file is removed any process which has a file descriptor for that file may continue to use that descriptor. This means that they can read and write from the file. The file will not have a name, and no other processes will be able to open it, but it will continue to exist until all file descriptors referring to the file are closed or the machine shuts down.
 
 #### Can I just cast a `struct file *` to get a file descriptor? Can I just cast a `struct thread *` to get a `pid_t`?
 
@@ -101,4 +101,3 @@ You may modify the stack setup code to allocate more than one page of stack spac
 #### What should happen if an `exec` fails midway through loading?
 
 `exec` should return -1 if the child process fails to load for any reason. This includes the case where the load fails part of the way through the process (e.g. where it runs out of memory in the `multi-oom` test). Therefore, the parent process cannot return from the `exec` system call until it is established whether the load was successful or not. The child must communicate this information to its parent using appropriate synchronization, such as a semaphore, to ensure that the information is communicated without race conditions.
-
