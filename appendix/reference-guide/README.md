@@ -1,8 +1,11 @@
 # Code Guide
 
-This chapter is a reference for the Pintos code. The reference guide does not cover all of the code in Pintos, but it does cover those pieces that students most often find troublesome. You may find that you want to read each part of the reference guide as you work on the project where it becomes important.
+**This chapter is a reference for the Pintos code.**&#x20;
 
-Here are the sections in the chapter:
+* The reference guide does not cover all of the code in Pintos, but it does cover those pieces that students most often find troublesome.&#x20;
+* You may find that you want to read each part of the reference guide as you work on the project where it becomes important.
+
+**Here are the sections in the chapter:**
 
 {% content-ref url="loading.md" %}
 [loading.md](loading.md)
@@ -35,4 +38,3 @@ Here are the sections in the chapter:
 {% content-ref url="hash-table.md" %}
 [hash-table.md](hash-table.md)
 {% endcontent-ref %}
-
