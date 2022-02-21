@@ -13,7 +13,7 @@ Now that you've worked with Pintos and are becoming familiar with its infrastruc
 
 **You can build project 2 on top of your project 1 submission** (dogfooding your own kernel changes like a product). Or **you can start fresh**.&#x20;
 
-**No code from project 1 is required for this assignment.** The "alarm clock" functionality may be useful in projects 3 and 4, but it is not strictly required.
+<mark style="color:red;">**No code from project 1 is required for this assignment.**</mark> The "alarm clock" functionality may be useful in projects 3 and 4, but it is not strictly required.
 
 You might find it useful to go back and reread how to run the tests (see section [Testing](../../getting-started/debug-and-test/testing.md)).
 
