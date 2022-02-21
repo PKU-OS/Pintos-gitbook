@@ -24,7 +24,7 @@ First, like nachos, pinto beans are common Mexican food. Second, Pintos is small
 
 | Project                       | Release   | Code Due           | Design Doc Due     | Content                                | Point |
 | ----------------------------- | --------- | ------------------ | ------------------ | -------------------------------------- | ----- |
-| **Lab0: Getting Real**        | **02/22** | **03/03 11:59 pm** | /                  | Bootstrap Pintos                       | 4     |
+| **Lab0: Getting Real**        | **02/22** | **/**              | **03/03 11:59 pm** | Bootstrap Pintos                       | 4     |
 | **Lab1: Threads**             | **03/08** | **03/24 11:59 pm** | **03/27 11:59 pm** | Kernel threads scheduling              | 9     |
 | **Lab2: User Programs**       | **03/29** | **04/14 11:59 pm** | **04/17 11:59 pm** | Load & Run user programs, System calls | 9     |
 | **Lab3a: Virtual Memory**     | **04/19** | **05/05 11:59 pm** | **05/08 11:59 pm** | Demand Paging                          | 9     |
