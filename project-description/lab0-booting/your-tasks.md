@@ -7,7 +7,7 @@
 
 ## Task 1: Booting Pintos
 
-### Exercise 0.1
+### Exercise 1.1
 
 1. Have Pintos development environment setup as described in [Enviroment Setup](../../getting-started/environment-setup.md).
 2. Afterwards, execute
@@ -31,40 +31,32 @@ pintos --bochs --
 ```
 
 {% hint style="success" %}
-<mark style="color:green;">**Exercise 0.1**</mark>
+<mark style="color:green;">**Exercise 1.1**</mark>
 
 <mark style="color:green;">Take screenshots of the successful booting of Pintos in QEMU and Bochs.</mark>
 {% endhint %}
 
 ## Task 2: Debugging
 
-### Exercise 0.2.1
+### Exercise 2.1
 
 **While you are working on the projects, you will frequently use the GNU Debugger (GDB) to help you find bugs in your code.** Make sure you read the [Debugging](../../getting-started/debug-and-test/debugging.md) section first.
 
 In addition, if you are unfamiliar with **x86 assembly**, the [PCASM](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/specs/pcasm-book.pdf) is an excellent book to start. Note that you don't need to read the entire book, just the basic ones are enough.
 
 {% hint style="success" %}
-<mark style="color:green;">**Exercise 0.2.1**</mark>
+<mark style="color:green;">**Exercise 2.1**</mark>
 
-<mark style="color:green;">Your first task in this section is to</mark> <mark style="color:green;">**use GDB to trace the QEMU BIOS a bit**</mark> <mark style="color:green;">to understand how an IA-32 compatible computer boots. Answer the following questions in your design document:</mark>
+<mark style="color:green;">Your first task in this section is to</mark> <mark style="color:green;">**use GDB to trace the QEMU BIOS**</mark> <mark style="color:green;"></mark><mark style="color:green;">a bit</mark> <mark style="color:green;">to understand how an IA-32 compatible computer boots. Answer the following questions in your design document:</mark>
 
 * <mark style="color:green;">What is the first instruction that gets executed?</mark>
 * <mark style="color:green;">At which physical address is this instruction located?</mark>
-* <mark style="color:green;">Can you guess why the first instruction is like this?</mark>
-* <mark style="color:green;">What are the next three instructions?</mark>
 {% endhint %}
 
-**Tips:**
-
-* In the second task, you will be tracing the Pintos bootloader. **Set a breakpoint at address `0x7c00`, which is where the boot sector will be loaded.** Continue execution until that breakpoint.
-* Trace through the code in `threads/loader.S`, using the source code and the disassembly file `threads/build/loader.asm` to keep track of where you are.
-* Also, **use the `x/i` command** in GDB to disassemble sequences of instructions in the boot loader, and compare the original boot loader source code with both the disassembly in `threads/build/loader.asm` and GDB.
-
-### Exercise 0.2.2
+### Exercise 2.2
 
 {% hint style="success" %}
-<mark style="color:green;">**Exercise 0.2.2**</mark>
+<mark style="color:green;">**Exercise 2.2**</mark>
 
 <mark style="color:green;">**Trace the Pintos bootloader**</mark> <mark style="color:green;">and answer the following questions in your design document:</mark>
 
@@ -76,50 +68,56 @@ In addition, if you are unfamiliar with **x86 assembly**, the [PCASM](https://ww
 
 **Tips:**
 
-* After the Pintos kernel takes control, **the initial setup is done in assembly code `threads/start.S`**.
-* Later on, **the kernel will finally kick into the C world by calling the `pintos_init()` function in `threads/init.c`**.
-* **Set a breakpoint at `pintos_init()`** and then continue tracing a bit into the C initialization code. Then read the source code of `pintos_init()` function.
+* In the second task, you will be tracing the Pintos bootloader. **Set a breakpoint at address `0x7c00`, which is where the boot sector will be loaded.** Continue execution until that breakpoint.
+* Trace through the code in `threads/loader.S`, using the source code and the disassembly file `threads/build/loader.asm` to keep track of where you are.
+* Also, **use the `x/i` command** in GDB to disassemble sequences of instructions in the boot loader, and compare the original boot loader source code with both the disassembly in `threads/build/loader.asm` and GDB.
 
-### Exercise 0.2.3
+### Exercise 2.3
 
 Suppose we are interested in **tracing the behavior of one kernel function `palloc_get_page()` and one global variable`uint32_t *init_page_dir`**. For this exercise, you do not need to understand their meaning and the terminology used in them. You will get to know them better in Lab3: Virtual Memory.
 
 {% hint style="success" %}
-<mark style="color:green;">**Exercise 0.2.3**</mark>
+<mark style="color:green;">**Exercise 2.3**</mark>
 
 <mark style="color:green;">Trace the Pintos kernel and answer the following questions in your design document:</mark>
 
-* <mark style="color:green;">At</mark> <mark style="color:green;">**the entry of**</mark><mark style="color:green;">\*\*</mark> `pintos_init()`<mark style="color:green;">**, what is**</mark>**  **<mark style="color:green;">**the value of the expression**</mark> `init_page_dir[pd_no(ptov(0))]`\*\* <mark style="color:green;">in hexadecimal format?</mark>
+* <mark style="color:green;">At</mark> <mark style="color:green;">**the entry of**</mark> <mark style="color:green;"></mark><mark style="color:green;"></mark> `pintos_init()`<mark style="color:green;">**, what is**</mark>**  **<mark style="color:green;">**the value of the expression**</mark> `init_page_dir[pd_no(ptov(0))]` <mark style="color:green;">in hexadecimal format?</mark>
 * <mark style="color:green;">When</mark> <mark style="color:green;">`palloc_get_page()`</mark> <mark style="color:green;">is called</mark> <mark style="color:green;">**for**</mark> <mark style="color:green;">**the first time**</mark><mark style="color:green;">,</mark>
   * <mark style="color:green;">what does</mark> <mark style="color:green;">**the call stack**</mark> <mark style="color:green;">look like?</mark>
   * <mark style="color:green;">what is</mark> <mark style="color:green;">**the return value**</mark> <mark style="color:green;">in hexadecimal format?</mark>
-  * <mark style="color:green;">what is</mark> <mark style="color:green;">**the value of expression**</mark><mark style="color:green;">\*\*</mark> `init_page_dir[pd_no(ptov(0))]`\*\* <mark style="color:green;">in hexadecimal format?</mark>
+  * <mark style="color:green;">what is</mark> <mark style="color:green;">**the value of expression**</mark> <mark style="color:green;"></mark><mark style="color:green;"></mark> `init_page_dir[pd_no(ptov(0))]` <mark style="color:green;">in hexadecimal format?</mark>
 * <mark style="color:green;">When</mark> <mark style="color:green;">`palloc_get_page()`</mark> <mark style="color:green;">is called</mark> <mark style="color:green;">**for the third time**</mark><mark style="color:green;">,</mark>
   * <mark style="color:green;">what does</mark> <mark style="color:green;">**the call stack**</mark> <mark style="color:green;">look like?</mark>
   * <mark style="color:green;">what is</mark> <mark style="color:green;">**the return value**</mark> <mark style="color:green;">in hexadecimal format?</mark>
-  * <mark style="color:green;">what is</mark> <mark style="color:green;">**the value of expression**</mark><mark style="color:green;">\*\*</mark> `init_page_dir[pd_no(ptov(0))]`\*\* <mark style="color:green;">in hexadecimal format?</mark>
+  * <mark style="color:green;">what is</mark> <mark style="color:green;">**the value of expression**</mark> <mark style="color:green;"></mark><mark style="color:green;"></mark> `init_page_dir[pd_no(ptov(0))]` <mark style="color:green;">in hexadecimal format?</mark>
 {% endhint %}
 
 {% hint style="info" %}
-The GDB command -- p may be helpful.
+The GDB command _**p**_ may be helpful.
 {% endhint %}
 
-## Kernel Monitor
+**Tips:**
 
-### Exercise 0.3
+* After the Pintos kernel takes control, **the initial setup is done in assembly code `threads/start.S`**.
+* Later on, **the kernel will finally kick into the C world by calling the `pintos_init()` function in `threads/init.c`**.
+* **Set a breakpoint at `pintos_init()`** and then continue tracing a bit into the C initialization code. Then read the source code of `pintos_init()` function.
+
+## Task 3: Kernel Monitor
+
+### Exercise 3.1
 
 **At last, you will get to make a small enhancement to Pintos and write some code!**
 
 * In particular, when Pintos finishes booting, it will check for the supplied command line arguments stored in the kernel image. Typically you will pass some tests for the kernel to run, e.g., `pintos -- run alarm-zero`.
 * If there is no command line argument passed (i.e., `pintos --`, note that `--` is needed as a separator for the pintos perl script and is not passed as part of command line arguments to the kernel), the kernel will simply finish up. This is a little boring.
 
-**Your task is to add \_a tiny kernel shell**\_\*\* to Pintos so that when no command line argument is passed, it will run this shell interactively.\*\*
+**Your task is to add a tiny kernel shell** to Pintos so that when no command line argument is passed, it will run this shell interactively.
 
 * Note that this is a kernel-level shell. In later projects, you will be enhancing the user program and file system parts of Pintos, at which point you will get to run the regular shell.
 * **You only need to make this monitor very simple.** Its requirements are described below.
 
 {% hint style="success" %}
-<mark style="color:green;">**Exercise 0.3**</mark>
+<mark style="color:green;">**Exercise 3.1**</mark>
 
 <mark style="color:green;">Enhance</mark> <mark style="color:green;">**threads/init.c**</mark> <mark style="color:green;">to implement a tiny kernel monitor in Pintos.</mark>
 

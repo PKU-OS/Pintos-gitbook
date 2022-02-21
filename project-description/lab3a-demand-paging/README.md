@@ -11,7 +11,7 @@
 * Your OS can properly handle multiple threads of execution with proper synchronization, and can load multiple user programs at once.&#x20;
 * However, the number and size of programs that can run is limited by the machine's main memory size. In this assignment, you will remove that limitation.
 
-<mark style="color:red;">**You will build this assignment on top of the last one.**</mark>&#x20;
+<mark style="background-color:red;"><mark style="color:red;">**You will build this assignment on top of the last one.**<mark style="color:red;"></mark>
 
 **Test programs from project 2 should also work with project 3.** You should take care to fix any bugs in your project 2 submission before you start work on project 3, because those bugs will most likely cause the same problems in project 3.
 

@@ -76,7 +76,7 @@ In addition, **some space at the very top of the PC's 32-bit physical address sp
 
 * When the BIOS finds a bootable floppy or hard disk, it loads the 512-byte boot sector into memory at physical addresses 0x7c00 through 0x7dff, and then uses a `jmp` instruction to set the CS:IP to `0000:7c00`, passing control to the boot loader.
 
-IA32 bootloaders have the unenviable position of running in **real-addressing mode** (also known as "real mode"), where **the segment registers are used** to compute the addresses of memory accesses according to the following formula: **`address= 16 * segment + offset`**.&#x20;
+IA32 bootloaders have the unenviable position of running in **real-addressing mode** (also known as "real mode"), where **the segment registers are used** to compute the addresses of memory accesses according to the following formula: <mark style="color:red;">**`address= 16 * segment + offset`**</mark>.&#x20;
 
 * The code segment CS is used for instruction execution.&#x20;
 * For example, when the BIOS jump to `0x0000:7c00`, the corresponding physical address is `16 * 0 + 7c00 = 7c00`.&#x20;
