@@ -1,5 +1,11 @@
 # Lab3a: Demand Paging
 
+{% hint style="warning" %}
+<mark style="color:red;">**Code Due: Thursday 05/05 11:59 pm**</mark>
+
+<mark style="color:red;">**Design Doc Due: Sunday 05/08 11:59 pm**</mark>
+{% endhint %}
+
 By now you should have some familiarity with the inner workings of Pintos. Your OS can properly handle multiple threads of execution with proper synchronization, and can load multiple user programs at once. However, the number and size of programs that can run is limited by the machine's main memory size. In this assignment, you will remove that limitation.
 
 You will build this assignment on top of the last one. We ask that you hand in your code for this lab in a branch called lab3a-handin. Create this branch with `git checkout -b lab3a-handin lab2-handin`. Test programs from project 2 should also work with project 3. You should take care to fix any bugs in your project 2 submission before you start work on project 3, because those bugs will most likely cause the same problems in project 3.
