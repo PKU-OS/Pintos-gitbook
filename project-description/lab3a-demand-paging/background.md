@@ -90,89 +90,122 @@ You will need to design the following data structures:
 
 ### Supplemental page table
 
-Enables page fault handling by supplementing the hadrware page table. See section [B.4 Managing the Supplemental Page Table](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_5.html#SEC73).
+* Enables page fault handling by supplementing the hardware page table.&#x20;
+* See section [B.4 Managing the Supplemental Page Table](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_5.html#SEC73).
 
 ### Frame table
 
-Allows efficient implementation of eviction policy. See section [B.5 Managing the Frame Table](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_5.html#SEC74).
+* Allows efficient implementation of eviction policy.&#x20;
+* See section [B.5 Managing the Frame Table](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_5.html#SEC74).
 
 ### Swap table
 
-Tracks usage of swap slots. See section [B.6 Managing the Swap Table](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_5.html#SEC76).
+* Tracks usage of swap slots.&#x20;
+* See section [B.6 Managing the Swap Table](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_5.html#SEC76).
 
-You do not necessarily need to implement three completely distinct data structures: it may be convenient to wholly or partially merge related resources into a unified data structure.
+### Some Notes
 
-For each data structure, you need to determine what information each element should contain. You also need to decide on the data structure's scope, either local (per-process) or global (applying to the whole system), and how many instances are required within its scope.
+1. **You do not necessarily need to implement three completely distinct data structures:** it may be convenient to wholly or partially merge related resources into a unified data structure.
+2. **For each data structure, you need to determine what information each element should contain.** You also need to decide on the data structure's scope, either local (per-process) or global (applying to the whole system), and how many instances are required within its scope.
+3. **To simplify your design, you may store these data structures in non-pageable memory.** That means that you can be sure that pointers among them will remain valid.
+4. **Possible choices of data structures include arrays, lists, bitmaps, and hash tables.**&#x20;
+   * An array is often the simplest approach, but a sparsely populated array wastes memory.
+   * Lists are also simple, but traversing a long list to find a particular position wastes time.&#x20;
+   * Both arrays and lists can be resized, but lists more efficiently support insertion and deletion in the middle.
+5. **Pintos includes a bitmap data structure in `lib/kernel/bitmap.c` and `lib/kernel/bitmap.h`.** A bitmap is an array of bits, each of which can be true or false. Bitmaps are typically used to **track usage in a set of (identical) resources**: if resource n is in use, then bit n of the bitmap is true. Pintos bitmaps are fixed in size, although you could extend their implementation to support resizing.
+6. **Pintos also includes a hash table data structure** (see section [A.8 Hash Table](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_7.html#SEC134)). Pintos hash tables efficiently support insertions and deletions over a wide range of table sizes.
+7. **Although more complex data structures may yield performance or other benefits, they may also needlessly complicate your implementation.** Thus, <mark style="color:red;">**we do not recommend implementing any advanced data structure**</mark> (e.g. a balanced binary tree) as part of your design.
 
-To simplify your design, you may store these data structures in non-pageable memory. That means that you can be sure that pointers among them will remain valid.
+## Managing the Supplemental Page Table
 
-Possible choices of data structures include arrays, lists, bitmaps, and hash tables. An array is often the simplest approach, but a sparsely populated array wastes memory. Lists are also simple, but traversing a long list to find a particular position wastes time. Both arrays and lists can be resized, but lists more efficiently support insertion and deletion in the middle.
+**The **_**supplemental page table**_** supplements the page table with additional data about each page.**&#x20;
 
-Pintos includes a bitmap data structure in lib/kernel/bitmap.c and lib/kernel/bitmap.h. A bitmap is an array of bits, each of which can be true or false. Bitmaps are typically used to track usage in a set of (identical) resources: if resource n is in use, then bit n of the bitmap is true. Pintos bitmaps are fixed in size, although you could extend their implementation to support resizing.
+* It is needed because of the limitations imposed by the page table's format.&#x20;
+* Such a data structure is often called a "page table" also; we add the word "supplemental" to reduce confusion.
 
-Pintos also includes a hash table data structure (see section [A.8 Hash Table](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_7.html#SEC134)). Pintos hash tables efficiently support insertions and deletions over a wide range of table sizes.
+**The supplemental page table is used for at least two purposes.**&#x20;
 
-Although more complex data structures may yield performance or other benefits, they may also needlessly complicate your implementation. Thus, we do not recommend implementing any advanced data structure (e.g. a balanced binary tree) as part of your design.
+1. Most importantly, **on a page fault, the kernel looks up the virtual page that faulted in the supplemental page table to find out what data should be there.**&#x20;
+2. Second, **the kernel consults the supplemental page table when a process terminates, to decide what resources to free**.
 
-### Managing the Supplemental Page Table
+You may organize the supplemental page table as you wish. **There are at least two basic approaches to its organization**: in terms of **segments** or in terms of **pages**.&#x20;
 
-The _supplemental page table_ supplements the page table with additional data about each page. It is needed because of the limitations imposed by the page table's format. Such a data structure is often called a "page table" also; we add the word "supplemental" to reduce confusion.
+* Optionally, you may **use the page table itself as an index to track the members of the supplemental page table**. You will have to modify the Pintos page table implementation in `pagedir.c` to do so. We recommend this approach for advanced students only. See section [A.7.4.2 Page Table Entry Format](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_7.html#SEC132), for more information.
 
-The supplemental page table is used for at least two purposes. Most importantly, on a page fault, the kernel looks up the virtual page that faulted in the supplemental page table to find out what data should be there. Second, the kernel consults the supplemental page table when a process terminates, to decide what resources to free.
+<mark style="color:red;">**The most important user of the supplemental page table is the page fault handler.**</mark>&#x20;
 
-You may organize the supplemental page table as you wish. There are at least two basic approaches to its organization: in terms of segments or in terms of pages. Optionally, you may use the page table itself as an index to track the members of the supplemental page table. You will have to modify the Pintos page table implementation in pagedir.c to do so. We recommend this approach for advanced students only. See section [A.7.4.2 Page Table Entry Format](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_7.html#SEC132), for more information.
+* In project 2, a page fault always indicated **a bug** in the kernel or a user program. In project 3, this is no longer true.&#x20;
+* **Now, a page fault might only indicate that the page must be brought in from a file or swap.** You will have to implement a more sophisticated page fault handler to handle these cases.&#x20;
 
-The most important user of the supplemental page table is the page fault handler. In project 2, a page fault always indicated a bug in the kernel or a user program. In project 3, this is no longer true. Now, a page fault might only indicate that the page must be brought in from a file or swap. You will have to implement a more sophisticated page fault handler to handle these cases. Your page fault handler, which you should implement by modifying `page_fault()` in userprog/exception.c, needs to do roughly the following:
+Your page fault handler, which you should implement by modifying **`page_fault()`** in `userprog/exception.c`, needs to do roughly the following:
 
-1.  Locate the page that faulted in the supplemental page table. If the memory reference is valid, use the supplemental page table entry to locate the data that goes in the page, which might be in the file system, or in a swap slot, or it might simply be an all-zero page. If you implement sharing, the page's data might even already be in a page frame, but not in the page table.
+1. **Locate the page that faulted in the supplemental page table.** If the memory reference is valid, use the supplemental page table entry to locate the data that goes in the page, which might be **in the file system**, or **in a swap slot**, or it might simply be **an all-zero page**.&#x20;
+   * If you implement **sharing**, the page's data might even already be in a page frame, but not in the page table.
+   * **Invalid Accesses:** If the supplemental page table indicates that the user process should not expect any data at the address it was trying to access, or if the page lies within kernel virtual memory, or if the access is an attempt to write to a read-only page, then the access is invalid. Any invalid access **terminates the process** and thereby **frees all of its resources**.
+2. **Obtain a frame to store the page.** See section [B.5 Managing the Frame Table](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_5.html#SEC74), for details.
+   1. If you implement **sharing**, the data you need may already be in a frame, in which case you must be able to locate that frame.
+3. **Fetch the data into the frame, by reading it from the file system or swap, zeroing it, etc.**
+   1. If you implement **sharing**, the page you need may already be in a frame, in which case no action is necessary in this step.
+4. **Point the page table entry for the faulting virtual address to the physical page.** You can use the functions in `userprog/pagedir.c`.
 
-    If the supplemental page table indicates that the user process should not expect any data at the address it was trying to access, or if the page lies within kernel virtual memory, or if the access is an attempt to write to a read-only page, then the access is invalid. Any invalid access terminates the process and thereby frees all of its resources.
-2.  Obtain a frame to store the page. See section [B.5 Managing the Frame Table](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_5.html#SEC74), for details.
+## Managing the Frame Table
 
-    If you implement sharing, the data you need may already be in a frame, in which case you must be able to locate that frame.
-3.  Fetch the data into the frame, by reading it from the file system or swap, zeroing it, etc.
+**The **_**frame table**_** contains one entry for each frame that contains a user page.**&#x20;
 
-    If you implement sharing, the page you need may already be in a frame, in which case no action is necessary in this step.
-4. Point the page table entry for the faulting virtual address to the physical page. You can use the functions in userprog/pagedir.c.
+* **Each entry in the frame table contains a pointer to the page**, if any, **that currently occupies it**, and other data of your choice.&#x20;
+* **The frame table allows Pintos to efficiently implement an eviction policy**, by choosing a page to evict when no frames are free.
 
-### Managing the Frame Table
+<mark style="color:red;">**The frames used for user pages should be obtained from the "user pool," by calling**</mark><mark style="color:red;">** **</mark><mark style="color:red;">**`palloc_get_page(PAL_USER)`**</mark><mark style="color:red;">**.**</mark>&#x20;
 
-The _frame table_ contains one entry for each frame that contains a user page. Each entry in the frame table contains a pointer to the page, if any, that currently occupies it, and other data of your choice. The frame table allows Pintos to efficiently implement an eviction policy, by choosing a page to evict when no frames are free.
+* You must use `PAL_USER` to avoid allocating from the "kernel pool," which could cause some test cases to fail unexpectedly (see [Why PAL\_USER?](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_5.html#Why%20PAL\_USER?)).&#x20;
+* If you modify `palloc.c` as part of your frame table implementation, be sure to retain the distinction between the two pools.
 
-The frames used for user pages should be obtained from the "user pool," by calling `palloc_get_page(PAL_USER)`. You must use `PAL_USER` to avoid allocating from the "kernel pool," which could cause some test cases to fail unexpectedly (see [Why PAL\_USER?](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_5.html#Why%20PAL\_USER?)). If you modify palloc.c as part of your frame table implementation, be sure to retain the distinction between the two pools.
+**The most important operation on the frame table is obtaining an unused frame.**&#x20;
 
-The most important operation on the frame table is obtaining an unused frame. This is easy when a frame is free. When none is free, a frame must be made free by evicting some page from its frame.
+* This is easy when a frame is free.&#x20;
+* When none is free, a frame must be made free by **evicting** some page from its frame.
 
-If no frame can be evicted without allocating a swap slot, but swap is full, panic the kernel. Real OSes apply a wide range of policies to recover from or prevent such situations, but these policies are beyond the scope of this project.
+**If no frame can be evicted without allocating a swap slot, but swap is full, panic the kernel.** Real OSes apply a wide range of policies to recover from or prevent such situations, but these policies are beyond the scope of this project.
 
-The process of eviction comprises roughly the following steps:
+**The process of eviction** comprises roughly the following steps:
 
-1. Choose a frame to evict, using your page replacement algorithm. The "accessed" and "dirty" bits in the page table, described below, will come in handy.
-2.  Remove references to the frame from any page table that refers to it.
-
-    Unless you have implemented sharing, only a single page should refer to a frame at any given time.
-3. If necessary, write the page to the file system or to swap.
+1. **Choose a frame to evict, using your page replacement algorithm.** The "accessed" and "dirty" bits in the page table, described below, will come in handy.
+2. **Remove references to the frame from any page table that refers to it.**
+   * Unless you have implemented **sharing**, only a single page should refer to a frame at any given time.
+3. **If necessary, write the page to the file system or to swap.**
 
 The evicted frame may then be used to store a different page.
 
-#### **Accessed and Dirty Bits**
+### **Accessed and Dirty Bits**
 
-80x86 hardware provides some assistance for implementing page replacement algorithms, through a pair of bits in the page table entry (PTE) for each page. On any read or write to a page, the CPU sets the _accessed bit_ to 1 in the page's PTE, and on any write, the CPU sets the _dirty bit_ to 1. The CPU never resets these bits to 0, but the OS may do so.
+**80x86 hardware provides some assistance for implementing **_**page replacement algorithms**_**, through a pair of bits in the page table entry (PTE) for each page.**&#x20;
 
-You need to be aware of _aliases_, that is, two (or more) pages that refer to the same frame. When an aliased frame is accessed, the accessed and dirty bits are updated in only one page table entry (the one for the page used for access). The accessed and dirty bits for the other aliases are not updated.
-
-In Pintos, every user virtual page is aliased to its kernel virtual page. You must manage these aliases somehow. For example, your code could check and update the accessed and dirty bits for both addresses. Alternatively, the kernel could avoid the problem by only accessing user data through the user virtual address.
-
-Other aliases should only arise if you implement sharing for extra credit (see [VM Extra Credit](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_5.html#VM%20Extra%20Credit)), or if there is a bug in your code.
+* On any **read or write** to a page, the CPU **sets the **_**accessed bit**_** to 1** in the page's PTE.
+* And on any **write**, the CPU **sets the **_**dirty bit**_** to 1**.&#x20;
+* <mark style="color:red;">**The CPU never resets these bits to 0, but the OS may do so.**</mark>
+* You need to be aware of _**aliases**_, that is, two (or more) pages that refer to the same frame. When an aliased frame is accessed, the accessed and dirty bits are updated in only one page table entry (the one for the page used for access). The accessed and dirty bits for the other aliases are not updated.
+* <mark style="color:red;">**In Pintos, every user virtual page is aliased to its kernel virtual page.**</mark> You must manage these aliases somehow.&#x20;
+  * For example, your code could **check and update the accessed and dirty bits for both addresses**.&#x20;
+  * Alternatively, the kernel could avoid the problem by **only accessing user data through the user virtual address**.
+* Other aliases should only arise if you implement **sharing** for extra credit (see [VM Extra Credit](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_5.html#VM%20Extra%20Credit)), or if there is **a bug** in your code.
 
 See section [A.7.3 Accessed and Dirty Bits](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_7.html#SEC129), for details of the functions to work with accessed and dirty bits.
 
-### Managing the Swap Table
+## Managing the Swap Table
 
-The swap table tracks in-use and free swap slots. It should allow picking an unused swap slot for evicting a page from its frame to the swap partition. It should allow freeing a swap slot when its page is read back or the process whose page was swapped is terminated.
+**The swap table tracks in-use and free swap slots.**&#x20;
 
-You may use the `BLOCK_SWAP` block device for swapping, obtaining the `struct block` that represents it by calling `block_get_role()`. From the vm/build directory, use the command `pintos-mkdisk swap.dsk --swap-size=n` to create an disk named swap.dsk that contains a n-MB swap partition. Afterward, swap.dsk will automatically be attached as an extra disk when you run `pintos`. Alternatively, you can tell `pintos` to use a temporary n-MB swap disk for a single run with --swap-size=n.
+* It should allow **picking an unused swap slot for evicting a page** from its frame to the swap partition.&#x20;
+* It should allow **freeing a swap slot when its page is read back or the process whose page was swapped is terminated**.
 
-Swap slots should be allocated lazily, that is, only when they are actually required by eviction. Reading data pages from the executable and writing them to swap immediately at process startup is not lazy. Swap slots should not be reserved to store particular pages.
+<mark style="color:red;">**You may use the**</mark><mark style="color:red;">** **</mark><mark style="color:red;">**`BLOCK_SWAP`**</mark><mark style="color:red;">** **</mark><mark style="color:red;">****</mark><mark style="color:red;">** **</mark>_<mark style="color:red;">**block device**</mark>_<mark style="color:red;">** **</mark><mark style="color:red;">**for swapping**</mark>, obtaining the `struct block` that represents it by calling **`block_get_role()`**.&#x20;
 
-Free a swap slot when its contents are read back into a frame.
+* From the `vm/build` directory, use the command **`pintos-mkdisk swap.dsk --swap-size=n`** to create an disk named swap.dsk that contains a n-MB swap partition.&#x20;
+* **Afterward, swap.dsk will **_**automatically**_** be attached as an extra disk when you run `pintos`.**
+* Alternatively, you can tell `pintos` to use a temporary n-MB swap disk for a single run with **`--swap-size=n`**.
+
+**Swap slots should be allocated lazily, that is, only when they are actually required by eviction.**
+
+* Reading data pages from the executable and writing them to swap immediately at process startup is **not** lazy.&#x20;
+* Swap slots should **not** be reserved to store particular pages.
+* Free a swap slot when its contents are read back into a frame.

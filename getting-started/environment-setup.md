@@ -48,7 +48,7 @@ _<mark style="color:red;">**Note:**</mark>_&#x20;
 **Then run the docker image again but this time mount your `path/to/pintos` into the container.**
 
 ```
-docker run -it --rm --name pintos --mount type=bind,source=[absolute/path/to/pintos/on/your/host/machine],target=/home/PKUOS/pintos pkuflyingpig/pintos bash
+docker run -it --rm --name pintos --mount type=bind,source=absolute/path/to/pintos/on/your/host/machine,target=/home/PKUOS/pintos pkuflyingpig/pintos bash
 ```
 
 {% hint style="warning" %}

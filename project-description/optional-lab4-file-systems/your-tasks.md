@@ -2,8 +2,6 @@
 
 ## Task 0: Design Document
 
-Before you turn in your project, you must copy [the project 4 design document template](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/filesys.tmpl) into your source tree under the name pintos/src/filesys/DESIGNDOC and fill it in. We recommend that you read the design document template before you start working on the project. See section [D. Project Documentation](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_10.html#SEC153), for a sample design document that goes along with a fictitious project.
-
 ## Task 1: Indexed and Extensible Files
 
 The basic file system allocates files as a single extent, making it vulnerable to external fragmentation, that is, it is possible that an n-block file cannot be allocated even though n blocks are free. Eliminate this problem by modifying the on-disk inode structure. In practice, this probably means using an index structure with direct, indirect, and doubly indirect blocks. You are welcome to choose a different scheme as long as you explain the rationale for it in your design documentation, and as long as it does not suffer from external fragmentation (as does the extent-based file system we provide).

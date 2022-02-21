@@ -7,8 +7,6 @@
 
 ## Task 0: Design Document
 
-Before you turn in your project, you must copy [the project 3a design document template](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/vm\_part1.tmpl) into your source tree under the name pintos/src/vm/PART1\_DESIGNDOC and fill it in. We recommend that you read the design document template before you start working on the project. See section [D. Project Documentation](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_10.html#SEC153), for a sample design document that goes along with a fictitious project.
-
 ## Task 1: Paging
 
 ### **Exercise 1.1**
