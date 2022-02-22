@@ -25,7 +25,7 @@ In the previous project, we compiled our test code directly into your kernel, so
 * <mark style="color:blue;">**pagedir.h**</mark>
   * **A simple manager for 80x86 hardware page tables.**&#x20;
   * Although you probably won't want to modify this code for this project, <mark style="color:red;">**you may want to call some of its functions**</mark>.&#x20;
-  * See section [Page Tables](../../appendix/reference-guide/page-table.md), for more information.
+  * See section [Page Table](../../appendix/reference-guide/page-table.md), for more information.
 * <mark style="color:blue;">**syscall.c**</mark>
 * <mark style="color:blue;">**syscall.h**</mark>
   * **Whenever a user process wants to access some kernel functionality, it invokes a system call.** This is a skeleton system call handler.&#x20;
@@ -192,13 +192,13 @@ Virtual memory in Pintos is divided into two regions: <mark style="color:red;">*
 ```
 
 * <mark style="color:red;">**In this project, the user stack is fixed in size**</mark>, but in project 3 it will be allowed to grow. Traditionally, the size of the uninitialized data segment can be adjusted with a system call, but you will not have to implement this.
-* **The code segment** in Pintos starts at user virtual address 0x08048000, approximately 128 MB from the bottom of the address space. This value is specified in \[[SysV-i386](../../appendix/bibliography.md#hardware-references)] and has no deep significance.
+* **The code segment** in Pintos starts at user virtual address 0x08048000, approximately 128 MB from the bottom of the address space. This value is specified in \[[SysV-i386](../../appendix/bibliography.md#software-references)] and has no deep significance.
 * **The linker sets the layout of a user program in memory, as directed by a "linker script" that tells it the names and locations of the various program segments.** You can learn more about linker scripts by reading the "Scripts" chapter in the linker manual, accessible via `info ld`.
 * To view the layout of a particular executable, run `objdump` (80x86) or `i386-elf-objdump` (SPARC) with the `-p` option.
 
 ## 80x86 Calling Convention
 
-**This section summarizes important points of the convention used for normal function calls on 32-bit 80x86 implementations of Unix.** Some details are omitted for brevity. If you do want all the details, refer to \[[SysV-i386](../../appendix/bibliography.md#hardware-references)].
+**This section summarizes important points of the convention used for normal function calls on 32-bit 80x86 implementations of Unix.** Some details are omitted for brevity. If you do want all the details, refer to \[[SysV-i386](../../appendix/bibliography.md#software-references)].
 
 **The calling convention works like this:**
 

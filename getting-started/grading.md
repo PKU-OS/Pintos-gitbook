@@ -72,7 +72,7 @@ An operating system kernel is a complex, multithreaded program, in which synchro
 Whereas the other sections primarily ask "what" and "how," the rationale section concentrates on "why." **This is where we ask you to justify some design decisions, by explaining why the choices you made are better than alternatives.**&#x20;
 
 * You may be able to state these **in terms of time and space complexity**, which can be made as rough or informal arguments (formal language or proofs are unnecessary).
-* An incomplete, evasive, or non-responsive design document or one that strays from the template without good reason may be penalized. Incorrect capitalization, punctuation, spelling, or grammar can also cost points. See section [Project Document](../appendix/project-documentation.md), for a sample design document for a fictitious project.
+* An incomplete, evasive, or non-responsive design document or one that strays from the template without good reason may be penalized. Incorrect capitalization, punctuation, spelling, or grammar can also cost points. See section [Project Documentation](../appendix/project-documentation.md), for a sample design document for a fictitious project.
 
 ### Code Style
 

@@ -53,7 +53,7 @@ We will be using [PKU course website](https://course.pku.edu.cn) to collect assi
 
 ## Grading
 
-**We will grade your assignments based on test results (60%) as well as design doc and code quality (40%).** Note that the testing grades are fully automated. So please turn in the working code, otherwise there is no credit (See section [Grading](broken-reference) for more details).
+**We will grade your assignments based on test results (60%) as well as design doc and code quality (40%).** Note that the testing grades are fully automated. So please turn in the working code, otherwise there is no credit (See section [Grading](getting-started/grading.md) for more details).
 
 ## <mark style="color:red;">Cheating and Collaboration</mark>
 

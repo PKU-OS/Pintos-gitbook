@@ -109,7 +109,7 @@ If you compile Pintos under lab 1 (`threads` directory) or lab 2 (`userprog` dir
 <mark style="color:green;">**Adjust user memory access code in**</mark><mark style="color:green;">** **</mark>_<mark style="color:green;">**system call handling**</mark>_<mark style="color:green;">** **</mark><mark style="color:green;">**to deal with potential page faults.**</mark>
 {% endhint %}
 
-**You will need to adapt your code to access user memory** (see section 3 [Accessing User Memory](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/project2.html#SEC50) in project 2) **while handling a system call.**&#x20;
+**You will need to adapt your code to access user memory** (see section 3 [Accessing User Memory](../lab2-user-programs/your-tasks.md#task-3-accessing-user-memory) in project 2) **while handling a system call.**&#x20;
 
 * Just as user processes may access pages whose content is currently in a file or in swap space, so can they pass addresses that refer to such non-resident pages to system calls.&#x20;
 * Moreover, unless your kernel takes measures to prevent this, a page may be evicted from its frame even while it is being accessed by kernel code. If kernel code accesses such non-resident user pages, a page fault will result.

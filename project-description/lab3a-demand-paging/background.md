@@ -17,7 +17,7 @@ You will probably be encountering just a few files for the first time:
 
 ## Memory Terminology
 
-**Careful definitions are needed to keep discussion of virtual memory from being confusing.** Thus, we begin by presenting some terminology for memory and storage. Some of these terms should be familiar from project 2 (see section [Virtual Memory Layout](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_4.html#SEC48)), but much of it is new.
+**Careful definitions are needed to keep discussion of virtual memory from being confusing.** Thus, we begin by presenting some terminology for memory and storage. Some of these terms should be familiar from project 2 (see section [Virtual Memory Layout](../lab2-user-programs/background.md#virtual-memory-layout)), but much of it is new.
 
 ### **Pages**
 
@@ -36,9 +36,9 @@ You will probably be encountering just a few files for the first time:
 
 * **Each process has an independent set of **_**user (virtual) pages**_, which are those pages **below virtual address `PHYS_BASE`**, typically **0xc0000000 (3 GB)**.&#x20;
 * **The set of **_**kernel (virtual) pages**_, on the other hand, **is **_**global**_, remaining the same regardless of what thread or process is active.&#x20;
-* The kernel may access both user and kernel pages, but a user process may access only its own user pages. See section [4.1.4 Virtual Memory Layout](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_4.html#SEC48), for more information.
+* The kernel may access both user and kernel pages, but a user process may access only its own user pages. See section [Virtual Memory Layout](../lab2-user-programs/background.md#virtual-memory-layout), for more information.
 
-Pintos provides several useful functions for working with virtual addresses. See section [A.6 Virtual Addresses](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_7.html#SEC125), for details.
+Pintos provides several useful functions for working with virtual addresses. See section [Virtual Addresses](../../appendix/reference-guide/virtual-addresses.md), for details.
 
 ### **Frames**
 
@@ -57,13 +57,13 @@ Pintos provides several useful functions for working with virtual addresses. See
 
 * **The 80x86 doesn't provide any way to directly access memory at a physical address. Pintos works around this by **<mark style="color:red;">**mapping kernel virtual memory directly to physical memory**</mark><mark style="color:red;">:</mark> the first page of kernel virtual memory is mapped to the first frame of physical memory, the second page to the second frame, and so on. Thus, **frames can be accessed through kernel virtual memory**.
 
-Pintos provides functions for translating between physical addresses and kernel virtual addresses. See section [A.6 Virtual Addresses](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_7.html#SEC125), for details.
+Pintos provides functions for translating between physical addresses and kernel virtual addresses. See section [Virtual Addresses](../../appendix/reference-guide/virtual-addresses.md), for details.
 
 ### **Page Tables**
 
 **In Pintos, a **_**page table**_** is a data structure that the CPU uses to **_**translate**_** a virtual address to a physical address, that is, from a page to a frame.**&#x20;
 
-* The page table format is dictated by the 80x86 architecture. Pintos provides page table management code in `pagedir.c` (see section [A.7 Page Table](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_7.html#SEC126)).
+* The page table format is dictated by the 80x86 architecture. Pintos provides page table management code in `pagedir.c` (see section [Page Table](../../appendix/reference-guide/page-table.md)).
 * **The diagram below illustrates the relationship between pages and frames.** The virtual address, on the left, consists of a page number and an offset. The page table translates the page number into a frame number, which is combined with the unmodified offset to obtain the physical address, on the right.
 
 ```
@@ -91,17 +91,17 @@ You will need to design the following data structures:
 ### Supplemental page table
 
 * Enables page fault handling by supplementing the hardware page table.&#x20;
-* See section [B.4 Managing the Supplemental Page Table](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_5.html#SEC73).
+* See section [Managing the Supplemental Page Table](background.md#managing-the-supplemental-page-table).
 
 ### Frame table
 
 * Allows efficient implementation of eviction policy.&#x20;
-* See section [B.5 Managing the Frame Table](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_5.html#SEC74).
+* See section [Managing the Frame Table](background.md#managing-the-frame-table).
 
 ### Swap table
 
 * Tracks usage of swap slots.&#x20;
-* See section [B.6 Managing the Swap Table](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_5.html#SEC76).
+* See section [Managing the Swap Table](background.md#managing-the-swap-table).
 
 ### Some Notes
 
@@ -113,7 +113,7 @@ You will need to design the following data structures:
    * Lists are also simple, but traversing a long list to find a particular position wastes time.&#x20;
    * Both arrays and lists can be resized, but lists more efficiently support insertion and deletion in the middle.
 5. **Pintos includes a bitmap data structure in `lib/kernel/bitmap.c` and `lib/kernel/bitmap.h`.** A bitmap is an array of bits, each of which can be true or false. Bitmaps are typically used to **track usage in a set of (identical) resources**: if resource n is in use, then bit n of the bitmap is true. Pintos bitmaps are fixed in size, although you could extend their implementation to support resizing.
-6. **Pintos also includes a hash table data structure** (see section [A.8 Hash Table](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_7.html#SEC134)). Pintos hash tables efficiently support insertions and deletions over a wide range of table sizes.
+6. **Pintos also includes a hash table data structure** (see section [Hash Table](../../appendix/reference-guide/hash-table.md)). Pintos hash tables efficiently support insertions and deletions over a wide range of table sizes.
 7. **Although more complex data structures may yield performance or other benefits, they may also needlessly complicate your implementation.** Thus, <mark style="color:red;">**we do not recommend implementing any advanced data structure**</mark> (e.g. a balanced binary tree) as part of your design.
 
 ## Managing the Supplemental Page Table
@@ -130,7 +130,7 @@ You will need to design the following data structures:
 
 You may organize the supplemental page table as you wish. **There are at least two basic approaches to its organization**: in terms of **segments** or in terms of **pages**.&#x20;
 
-* Optionally, you may **use the page table itself as an index to track the members of the supplemental page table**. You will have to modify the Pintos page table implementation in `pagedir.c` to do so. We recommend this approach for advanced students only. See section [A.7.4.2 Page Table Entry Format](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_7.html#SEC132), for more information.
+* Optionally, you may **use the page table itself as an index to track the members of the supplemental page table**. You will have to modify the Pintos page table implementation in `pagedir.c` to do so. We recommend this approach for advanced students only. See section [Page Table Entry Format](../../appendix/reference-guide/page-table.md#page-table-entry-format), for more information.
 
 <mark style="color:red;">**The most important user of the supplemental page table is the page fault handler.**</mark>&#x20;
 
@@ -142,7 +142,7 @@ Your page fault handler, which you should implement by modifying **`page_fault()
 1. **Locate the page that faulted in the supplemental page table.** If the memory reference is valid, use the supplemental page table entry to locate the data that goes in the page, which might be **in the file system**, or **in a swap slot**, or it might simply be **an all-zero page**.&#x20;
    * If you implement **sharing**, the page's data might even already be in a page frame, but not in the page table.
    * **Invalid Accesses:** If the supplemental page table indicates that the user process should not expect any data at the address it was trying to access, or if the page lies within kernel virtual memory, or if the access is an attempt to write to a read-only page, then the access is invalid. Any invalid access **terminates the process** and thereby **frees all of its resources**.
-2. **Obtain a frame to store the page.** See section [B.5 Managing the Frame Table](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_5.html#SEC74), for details.
+2. **Obtain a frame to store the page.** See section [Managing the Frame Table](background.md#managing-the-frame-table), for details.
    1. If you implement **sharing**, the data you need may already be in a frame, in which case you must be able to locate that frame.
 3. **Fetch the data into the frame, by reading it from the file system or swap, zeroing it, etc.**
    1. If you implement **sharing**, the page you need may already be in a frame, in which case no action is necessary in this step.
@@ -157,7 +157,7 @@ Your page fault handler, which you should implement by modifying **`page_fault()
 
 <mark style="color:red;">**The frames used for user pages should be obtained from the "user pool," by calling**</mark><mark style="color:red;">** **</mark><mark style="color:red;">**`palloc_get_page(PAL_USER)`**</mark><mark style="color:red;">**.**</mark>&#x20;
 
-* You must use `PAL_USER` to avoid allocating from the "kernel pool," which could cause some test cases to fail unexpectedly (see [Why PAL\_USER?](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_5.html#Why%20PAL\_USER?)).&#x20;
+* You must use `PAL_USER` to avoid allocating from the "kernel pool," which could cause some test cases to fail unexpectedly (see [Why PAL\_USER?](faq.md#why-should-i-use-pal\_user-for-allocating-page-frames)).&#x20;
 * If you modify `palloc.c` as part of your frame table implementation, be sure to retain the distinction between the two pools.
 
 **The most important operation on the frame table is obtaining an unused frame.**&#x20;
@@ -187,9 +187,9 @@ The evicted frame may then be used to store a different page.
 * <mark style="color:red;">**In Pintos, every user virtual page is aliased to its kernel virtual page.**</mark> You must manage these aliases somehow.&#x20;
   * For example, your code could **check and update the accessed and dirty bits for both addresses**.&#x20;
   * Alternatively, the kernel could avoid the problem by **only accessing user data through the user virtual address**.
-* Other aliases should only arise if you implement **sharing** for extra credit (see [VM Extra Credit](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_5.html#VM%20Extra%20Credit)), or if there is **a bug** in your code.
+* Other aliases should only arise if you implement **sharing** for extra credit (see [VM Extra Credit](faq.md#what-extra-credit-is-available)), or if there is **a bug** in your code.
 
-See section [A.7.3 Accessed and Dirty Bits](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_7.html#SEC129), for details of the functions to work with accessed and dirty bits.
+See section [Accessed and Dirty Bits](../../appendix/reference-guide/page-table.md#accessed-and-dirty-bits), for details of the functions to work with accessed and dirty bits.
 
 ## Managing the Swap Table
 

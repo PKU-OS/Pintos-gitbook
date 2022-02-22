@@ -6,7 +6,7 @@ Your TAs find **some tools very useful** during the development, see [Developmen
 
 <mark style="color:red;">**You should expect to (always) run into bugs that you simply don't understand while working on this and subsequent projects.**</mark>&#x20;
 
-* When you do, reread the appendix on debugging tools, which is filled with useful debugging tips that should help you to get back up to speed (see section [Debugging Tools](../../getting-started/debug-and-test/debugging.md)).&#x20;
+* When you do, reread the appendix on debugging tools, which is filled with useful debugging tips that should help you to get back up to speed (see section [Debugging](../../getting-started/debug-and-test/debugging.md)).&#x20;
 * Be sure to read the section on backtraces (see section [Backtraces](../../getting-started/debug-and-test/debugging.md#backtraces)), which will help you to get the most out of every kernel panic or assertion failure.
 
 {% hint style="info" %}

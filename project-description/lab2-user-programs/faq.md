@@ -42,7 +42,7 @@ This will happen if you haven't implemented argument passing (or haven't done so
 
 #### All my user programs die with `system call!`
 
-You'll have to implement system calls before you see anything else. Every reasonable program tries to make at least one system call (`exit()`) and most programs make more than that. Notably, `printf()` invokes the `write` system call. The default system call handler just prints `system call!` and terminates the program. Until then, you can use `hex_dump()` to convince yourself that argument passing is implemented correctly (see section [Program Startup Details](background.md#virtual-memory-layout)).
+You'll have to implement system calls before you see anything else. Every reasonable program tries to make at least one system call (`exit()`) and most programs make more than that. Notably, `printf()` invokes the `write` system call. The default system call handler just prints `system call!` and terminates the program. Until then, you can use `hex_dump()` to convince yourself that argument passing is implemented correctly (see section [Program Startup Details](background.md#program-startup-details)).
 
 #### How can I disassemble user programs?
 

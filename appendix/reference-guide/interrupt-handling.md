@@ -68,7 +68,7 @@
 
 * **In an internal interrupt's handler, it can make sense to examine the `struct intr_frame` passed to the interrupt handler, or even to modify it.** When the interrupt returns, modifications in `struct intr_frame` become changes to the calling thread or process's state. For example, the Pintos system call handler returns a value to the user program by modifying the saved EAX register.
 * **There are no special restrictions on what an internal interrupt handler can or can't do.** <mark style="color:red;">**Generally they should run with interrupts enabled**</mark>, just like other code, and so they can be preempted by other kernel threads. Thus, they do need to **synchronize** with other threads on shared data and other resources (see section [Synchronization](synchronization.md)).
-* <mark style="color:red;">**Internal interrupt handlers can be invoked recursively.**</mark> For example, the system call handler might cause a page fault while attempting to read user memory. Deep recursion would risk overflowing the limited kernel stack (see section [`struct thread`](threads.md#struct-thread)), but should be unnecessary.
+* <mark style="color:red;">**Internal interrupt handlers can be invoked recursively.**</mark> For example, the system call handler might cause a page fault while attempting to read user memory. Deep recursion would risk overflowing the limited kernel stack (see section [Struct thread](threads.md#struct-thread)), but should be unnecessary.
 
 ### Types and Functions
 

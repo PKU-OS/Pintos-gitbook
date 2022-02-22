@@ -7,9 +7,9 @@
 * <mark style="color:blue;">**\<stdbool.h>**</mark>
   * **Defines macros `bool`**, a 1-bit type that takes on only the values 0 and 1, `true`, which expands to 1, and `false`, which expands to 0.
 * <mark style="color:blue;">**\<stdint.h>**</mark>
-  * **On systems that support them, this header defines types `intn_t` and `uintn_t` for n = 8, 16, 32, 64, and possibly other values.** These are 2's complement signed and unsigned types, respectively, with the given number of bits.
-  * **On systems where it is possible, this header also defines types `intptr_t` and `uintptr_t`**, which are integer types **big enough** to hold a pointer.
-  * **On all systems, this header defines types `intmax_t` and `uintmax_t`**, which are the system's signed and unsigned integer types with the **widest** ranges.
+  * On systems that support them, **this header defines types `intn_t` and `uintn_t` for n = 8, 16, 32, 64, and possibly other values.** These are 2's complement signed and unsigned types, respectively, with the given number of bits.
+  * On systems where it is possible, **this header also defines types `intptr_t` and `uintptr_t`**, which are integer types **big enough** to hold a pointer.
+  * On all systems, **this header defines types `intmax_t` and `uintmax_t`**, which are the system's signed and unsigned integer types with the **widest** ranges.
   * For every **signed** integer type `type_t` defined here, as well as for `ptrdiff_t` defined in `<stddef.h>`, **this header also defines macros `TYPE_MAX` and `TYPE_MIN` that give the type's range**.&#x20;
   * Similarly, for every **unsigned** integer type `type_t` defined here, as well as for `size_t` defined in `<stddef.h>`, **this header defines a `TYPE_MAX` macro giving its maximum value**.
 * <mark style="color:blue;">**\<inttypes.h>**</mark>

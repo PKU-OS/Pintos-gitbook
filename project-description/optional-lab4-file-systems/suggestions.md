@@ -4,12 +4,12 @@
 
 To make your job easier, we suggest implementing the parts of this project in the following order:
 
-1. **Buffer cache** (see section [3. Buffer Cache](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/project4.html#SEC95))**.**&#x20;
+1. **Buffer cache** (see section [Buffer Cache](your-tasks.md#task-3-buffer-cache))**.**&#x20;
    * Implement the buffer cache and integrate it into the existing file system.&#x20;
    * At this point all the tests from project 2 (and project 3, if you're building on it) should still pass.
-2. **Extensible files** (see section [1. Indexed and Extensible Files](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/project4.html#SEC93))**.**&#x20;
+2. **Extensible files** (see section [Indexed and Extensible Files](your-tasks.md#task-1-indexed-and-extensible-files))**.**&#x20;
    * After this step, your project should pass the file growth tests.
-3. **Subdirectories** (see section [2. Subdirectories](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/project4.html#SEC94))**.**&#x20;
+3. **Subdirectories** (see section [Subdirectories](your-tasks.md#task-2-subdirectories))**.**&#x20;
    * Afterward, your project should pass the directory tests.
 4. **Remaining miscellaneous items.**
 

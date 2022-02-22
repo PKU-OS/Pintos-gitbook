@@ -1,9 +1,9 @@
 # Building Pintos
 
 {% hint style="info" %}
-**There is one Makefile under each lab directory (threads/, userprog/, vm/, filesys/).** When you are working on a specific lab, you should build Pintos under its corresponding directory.
+**There is one Makefile under each lab directory (`threads/`, `userprog/`, `vm/`, `filesys/`).** When you are working on a specific lab, you should build Pintos under its corresponding directory.
 
-Lab0 will use the same directory as Lab1, i.e., threads/.
+* **Lab0 will use the same directory as Lab1, i.e., `threads/`.**
 {% endhint %}
 
 {% hint style="success" %}

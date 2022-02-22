@@ -9,7 +9,7 @@ Here are some files that are probably new to you. These are **in the filesys dir
 * <mark style="color:blue;">**filesys.h**</mark>
 * <mark style="color:blue;">**filesys.c**</mark>
   * **Top-level interface to the file system.**&#x20;
-  * See section [4.1.2 Using the File System](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/project2.html#SEC46), for an introduction.
+  * See section [Using the File System](../lab2-user-programs/background.md#using-the-file-system), for an introduction.
 * <mark style="color:blue;">**directory.h**</mark>
 * <mark style="color:blue;">**directory.c**</mark>
   * **Translates file names to inodes.**
@@ -35,7 +35,7 @@ While most of your work will be in `filesys/`, you should be prepared for intera
 
 ## Testing File System Persistence
 
-**By now, you should be familiar with the basic process of running the Pintos tests.** See section [1.2.1 Testing](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/pintos\_1.html#SEC8), for review, if necessary.
+**By now, you should be familiar with the basic process of running the Pintos tests.** See section [Testing](../../getting-started/debug-and-test/testing.md), for review, if necessary.
 
 **Until now, each test invoked Pintos just **_**once**_**.** However, <mark style="color:red;">**an important purpose of a file system is to ensure that data remains accessible from one boot to another**</mark>.&#x20;
 
