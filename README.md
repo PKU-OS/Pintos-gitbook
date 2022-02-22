@@ -1,6 +1,6 @@
 # 🌈 Welcome to Pintos
 
-![](.gitbook/assets/pkuos-pure.svg)
+![](.gitbook/assets/pkuos.svg)
 
 ## Introduction
 
