@@ -3,14 +3,14 @@
 {% hint style="warning" %}
 <mark style="color:red;">**Code Due: Thursday 03/03 11:59 pm**</mark>&#x20;
 
-<mark style="color:red;">**Design Doc Due: Thursday 03/03 11:59 pm**</mark>
+<mark style="color:red;">**Design Doc Due: Thursday 03/06 11:59 pm**</mark>
 {% endhint %}
 
 **This assignment is set to prepare you for the later Pintos projects.** It will walk you through **what happens after a PC is powered on till when an operating system is up and running**, which you may have wondered about before.&#x20;
 
 * You will set up the development environment, learn the Pintos workflow, and run/debug it in QEMU and Bochs.&#x20;
 * You will then do a simple programming exercise to add a tiny kernel monitor to Pintos.&#x20;
-* <mark style="color:red;">**For this project only, you only need to submit the design document.**</mark> Note that this assignment is much simpler than the remaining projects, because it is intentionally designed to help you warm up.
+* Note that this assignment is much simpler than the remaining projects, because it is intentionally designed to help you warm up.
 
 Before you read the description of this project, read the [Loading](../../appendix/reference-guide/loading.md) section in Code Guide to understand the source-code-level details of the booting process.
 
