@@ -18,7 +18,7 @@ Now let's build the kernel from the source code supplied for Lab0.
 {% endhint %}
 
 1. **First, `cd` into the `threads/` directory.**&#x20;
-2. **Then, issue the `make` command.** This will create a build directory under `threads/`, populate it with a Makefile and a few subdirectories, and then build the kernel inside. The entire build should take less than 30 seconds.s
+2. **Then, issue the `make` command.** This will create a build directory under `threads/`, populate it with a Makefile and a few subdirectories, and then build the kernel inside. The entire build should take less than 30 seconds.
 3. **This is the end of building.**
 
 After building, the followings are the interesting files in the `build/` directory:
