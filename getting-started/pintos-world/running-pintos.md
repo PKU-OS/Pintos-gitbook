@@ -32,7 +32,7 @@ You may be confused by the strange "--" at first, thus we will shed more light o
 * Options can select a simulator to use: the default is Qemu, but `--bochs` selects Bochs.&#x20;
 * You can run the simulator with a debugger. Just select `--gdb` option.
 * You can set the amount of memory to give the VM with option `-m`.&#x20;
-* Finally, you can select how you want VM output to be displayed: use -v to turn off the VGA display, -t to use your terminal window as the VGA display instead of opening a new window (Bochs only), or -s to suppress serial input from `stdin` and output to `stdout`.
+* Finally, you can select how you want VM output to be displayed: use `-v` to turn off the VGA display, `-t` to use your terminal window as the VGA display instead of opening a new window (Bochs only), or `-s` to suppress serial input from `stdin` and output to `stdout`.
 
 {% hint style="success" %}
 The pintos utility program is heavily used by our testing suites, so it is fully configurable and very flexible. You certainly do not need to remember all these options and you can always refer to it by running the command "pintos -h".
