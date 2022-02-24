@@ -78,3 +78,51 @@ It's not important to understand exactly how the loader works, but if you're int
 | 000c0000--000effff | Hardware | Reserved for expansion card RAM and ROM.                                      |
 | 000f0000--000fffff | BIOS     | ROM BIOS.                                                                     |
 | 00100000--03ffffff | Pintos   | Dynamic memory allocation.                                                    |
+
+i.e.:
+
+```
++------------------+  <- 0xFFFFFFFF (4GB)
+|      32-bit      |
+|  memory mapped   |
+|     devices      |
+|                  |
+/\/\/\/\/\/\/\/\/\/\
+/\/\/\/\/\/\/\/\/\/\
+|                  |
+|      Unused      |
+|                  |
++------------------+  <- depends on amount of RAM
+|                  |
+|                  |
+| Extended Memory  |
+|                  |
+|                  |
++------------------+  <- 0x00100000 (1MB)
+|     BIOS ROM     |
++------------------+  <- 0x000F0000 (960KB)
+|  16-bit devices, |
+|  expansion ROMs  |
++------------------+  <- 0x000C0000 (768KB)
+|   VGA Display    |
++------------------+  <- 0x000A0000 (640KB)
+|  pintos kernel   |
++------------------+  <- 0x00020000 (128KB)
+|  page tables     |
+|  for startup     |
++------------------+  <- 0x00010000 (64KB)
+|  page directory  |
+|  for startup     |
++------------------+  <- 0x0000f000 (60KB)
+|  initial kernel  |
+|   thread struct  |
++------------------+  <- 0x0000e000 (56KB)
+|   pintos loader  |
++------------------+  <- 0x00007c00 (31KB)
+|        /         |
++------------------+  <- 0x00000600 (1536B)
+|     BIOS data    |
++------------------+  <- 0x00000400 (1024B)
+|     CPU-owned    |
++------------------+  <- 0x00000000
+```

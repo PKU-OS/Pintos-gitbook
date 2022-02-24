@@ -54,6 +54,10 @@ To further understand this challenge, it is useful to look at <mark style="color
 	+------------------+  <- 0x00000000
 ```
 
+{% hint style="info" %}
+See section [Physical Memory Map](../../appendix/reference-guide/loading.md#physical-memory-map) to know more about the memory layout after pintos kernel initialization.
+{% endhint %}
+
 The first PCs, which were based on the 16-bit Intel 8088 processor, were only capable of addressing 1MB of physical memory. The physical address space of an early PC would therefore start at 0x00000000 but end at 0x000FFFFF instead of 0xFFFFFFFF.&#x20;
 
 **The 640KB area marked "Low Memory" was the only random-access memory (RAM) that an early PC could use**; in fact the very earliest PCs only could be configured with 16KB, 32KB, or 64KB of RAM!
@@ -114,3 +118,7 @@ Pintos bootloading is a pretty simple process compared to how modern OS kernels 
 * In addition, **the kernel startup code needs to enable the A20 line**, that is, the CPU's address line numbered 20. For historical reasons, PCs boot with this address line fixed at 0, which means that attempts to access memory beyond the first 1 MB (2 raised to the 20th power) will fail. Pintos wants to access more memory than this, so we have to enable it.
 * Next, **the kernel will do a basic page table setup and turn on protected mode and paging** (details omitted for now).&#x20;
 * The final step is to **call into the C code of the Pintos kernel (function `pintos_init()`)**, which from here on will be the main content we will deal with.
+
+{% hint style="info" %}
+See section [Loading](../../appendix/reference-guide/loading.md) to gain a deeper insight of bootstrap and pintos kernel initialization.
+{% endhint %}
