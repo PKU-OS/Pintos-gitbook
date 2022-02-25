@@ -2,7 +2,7 @@
 
 ## Task 0: Preparation and Lab0 Design Document
 
-1. Read the [Welcome to Pintos](../../) and [GETTING STARTED](broken-reference/) chapter in Project Gitbook to setup your local development environment and get familiar with the course project.
+1. Read the [Welcome to Pintos](../../) and [GETTING STARTED](broken-reference) chapter in Project Gitbook to setup your local development environment and get familiar with the course project.
 2. Download the [project 0 design document template](https://github.com/PKU-OS/pintos/blob/master/docs/p0.md). Read through it to motivate your design and fill it in after you finish the project.
 
 ## Task 1: Booting Pintos
@@ -40,14 +40,14 @@ pintos --bochs --
 
 ### Exercise 2.1
 
-**While you are working on the projects, you will frequently use the GNU Debugger (GDB) to help you find bugs in your code.** Make sure you read the [GDB Debugging](../../getting-started/debug-and-test/debugging.md#gdb) section first.
+**While you are working on the projects, you will frequently use the GNU Debugger (GDB) to help you find bugs in your code.** Make sure you read the [Debugging](../../getting-started/debug-and-test/debugging.md) section first.
 
 In addition, if you are unfamiliar with **x86 assembly**, the [PCASM](https://www.cs.jhu.edu/\~huang/cs318/fall21/project/specs/pcasm-book.pdf) is an excellent book to start. Note that you don't need to read the entire book, just the basic ones are enough.
 
 {% hint style="success" %}
 <mark style="color:green;">**Exercise 2.1**</mark>
 
-<mark style="color:green;">Your first task in this section is to</mark> <mark style="color:green;">**use GDB to trace the QEMU BIOS**</mark> <mark style="color:green;">a bit</mark> <mark style="color:green;">to understand how an IA-32 compatible computer boots. Answer the following questions in your design document:</mark>
+<mark style="color:green;">Your first task in this section is to</mark> <mark style="color:green;">**use GDB to trace the QEMU BIOS**</mark> <mark style="color:green;"></mark><mark style="color:green;">a bit</mark> <mark style="color:green;">to understand how an IA-32 compatible computer boots. Answer the following questions in your design document:</mark>
 
 * <mark style="color:green;">What is the first instruction that gets executed?</mark>
 * <mark style="color:green;">At which physical address is this instruction located?</mark>
@@ -81,15 +81,15 @@ Suppose we are interested in **tracing the behavior of one kernel function `pall
 
 <mark style="color:green;">Trace the Pintos kernel and answer the following questions in your design document:</mark>
 
-* <mark style="color:green;">At</mark> <mark style="color:green;">**the entry of**</mark> `pintos_init()`<mark style="color:green;">**, what is the value of the expression**</mark> `init_page_dir[pd_no(ptov(0))]` <mark style="color:green;">in hexadecimal format?</mark>
+* <mark style="color:green;">At</mark> <mark style="color:green;">**the entry of**</mark> <mark style="color:green;"></mark><mark style="color:green;"></mark> `pintos_init()`<mark style="color:green;">**, what is**</mark>**  **<mark style="color:green;">**the value of the expression**</mark> `init_page_dir[pd_no(ptov(0))]` <mark style="color:green;">in hexadecimal format?</mark>
 * <mark style="color:green;">When</mark> <mark style="color:green;">`palloc_get_page()`</mark> <mark style="color:green;">is called</mark> <mark style="color:green;">**for**</mark> <mark style="color:green;">**the first time**</mark><mark style="color:green;">,</mark>
   * <mark style="color:green;">what does</mark> <mark style="color:green;">**the call stack**</mark> <mark style="color:green;">look like?</mark>
   * <mark style="color:green;">what is</mark> <mark style="color:green;">**the return value**</mark> <mark style="color:green;">in hexadecimal format?</mark>
-  * <mark style="color:green;">what is</mark> <mark style="color:green;">**the value of expression**</mark> `init_page_dir[pd_no(ptov(0))]` <mark style="color:green;">in hexadecimal format?</mark>
+  * <mark style="color:green;">what is</mark> <mark style="color:green;">**the value of expression**</mark> <mark style="color:green;"></mark><mark style="color:green;"></mark> `init_page_dir[pd_no(ptov(0))]` <mark style="color:green;">in hexadecimal format?</mark>
 * <mark style="color:green;">When</mark> <mark style="color:green;">`palloc_get_page()`</mark> <mark style="color:green;">is called</mark> <mark style="color:green;">**for the third time**</mark><mark style="color:green;">,</mark>
   * <mark style="color:green;">what does</mark> <mark style="color:green;">**the call stack**</mark> <mark style="color:green;">look like?</mark>
   * <mark style="color:green;">what is</mark> <mark style="color:green;">**the return value**</mark> <mark style="color:green;">in hexadecimal format?</mark>
-  * <mark style="color:green;">what is</mark> <mark style="color:green;">**the value of expression**</mark> `init_page_dir[pd_no(ptov(0))]` <mark style="color:green;">in hexadecimal format?</mark>
+  * <mark style="color:green;">what is</mark> <mark style="color:green;">**the value of expression**</mark> <mark style="color:green;"></mark><mark style="color:green;"></mark> `init_page_dir[pd_no(ptov(0))]` <mark style="color:green;">in hexadecimal format?</mark>
 {% endhint %}
 
 {% hint style="info" %}
