@@ -2,6 +2,10 @@
 
 ## Task 0: Design Document
 
+* Download the [project 3b design document template](https://github.com/PKU-OS/pintos/blob/master/docs/p3b.md). Read through it to motivate your design and fill it in after you finish the project.&#x20;
+* We recommend that you read the design document template before you start working on the project.&#x20;
+* See section [Project Documentation](../../appendix/project-documentation.md), for a sample design document that goes along with a fictitious project.
+
 ## Task 1: Stack Growth
 
 ### **Exercise 1.1**
