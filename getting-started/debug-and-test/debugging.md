@@ -278,16 +278,14 @@ We also provide a set of macros specialized for debugging Pintos, written by God
 
 * <mark style="color:blue;">**GDB Macro: debugpintos**</mark>
   * Attach debugger to a waiting pintos process on the same machine. Shorthand for `target remote localhost:1234`.
-* <mark style="color:blue;">**GDB Macro: dumplist**</mark><mark style="color:blue;">** **</mark>_<mark style="color:blue;">**list type element**</mark>_
+* <mark style="color:blue;">**GDB Macro: dumplist &**</mark>_<mark style="color:blue;">**list type element**</mark>_
   * Prints the elements of _list_, which should be a `struct` _list_ that contains elements of the given _type_ (without the word `struct`) in which _element_ is the `struct list_elem` member that links the elements.
   * Example: `dumplist all_list thread allelem` prints all elements of `struct thread` that are linked in `struct list all_list` using the `struct list_elem allelem` which is part of `struct thread`.
 * <mark style="color:blue;">**GDB Macro:**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**btthread**</mark><mark style="color:blue;">** **</mark>_<mark style="color:blue;">**thread**</mark>_
   * Shows the backtrace of _thread_, which is a pointer to the `struct thread` of the thread whose backtrace it should show. For the current thread, this is identical to the `bt` (backtrace) command. It also works for any thread suspended in `schedule()`, provided you know where its kernel stack page is located.
-* <mark style="color:blue;">**GDB Macro:**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**btthreadlist**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark>_<mark style="color:blue;">**list elemen**</mark>**t**_
+* <mark style="color:blue;">**GDB Macro:**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**btthreadlist**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark>_<mark style="color:blue;">**list element**</mark>_
   * Shows the backtraces of all threads in _list_, the `struct list` in which the threads are kept. Specify element as the `struct list_elem` field used inside `struct thread` to link the threads together.
   * Example: `btthreadlist all_list allelem` shows the backtraces of all threads contained in `struct list all_list`, linked together by `allelem`. This command is useful to determine where your threads are stuck when a deadlock occurs. Please see the example scenario below.
-* <mark style="color:blue;">**GDB Macro:**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**btthreadall**</mark>
-  * Short-hand for `btthreadlist all_list allelem`.
 * <mark style="color:blue;">**GDB Macro:**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**btpagefault**</mark>
   * Print a backtrace of the current thread after a page fault exception. Normally, when a page fault exception occurs, GDB will stop with a message that might say:
 
