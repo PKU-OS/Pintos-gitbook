@@ -34,7 +34,7 @@ The file system may be so fragmented that there's not enough contiguous space fo
 
 Files are written under the name you refer to them, by default, so in this case the file copied in would be named `../file`. You probably want to run `pintos -p ../file -a file --` instead.
 
-You can list the files in your file system with `pintos -q ls`.
+You can list the files in your file system with `pintos -- -q ls`.
 
 #### All my user programs die with page faults.
 
