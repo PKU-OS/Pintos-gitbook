@@ -102,7 +102,7 @@ Whereas the other sections primarily ask "what" and "how," the rationale section
 | Rubric                                                                        | Deduct points    |
 | ----------------------------------------------------------------------------- | ---------------- |
 | important discrepancies between your design doc and the actual code           | 10               |
-| poorly designed data structure                                                | 5                |
+| poorly designed data structure and code  modularization                       | 5                |
 | missed comments (you can only omit the comment if the code is self-explained) | 2 each, up to 10 |
 | Lines exceed 78 characters.                                                   | 2 each, up to 10 |
 | use comments to ignore blocks of code                                         | 5                |
