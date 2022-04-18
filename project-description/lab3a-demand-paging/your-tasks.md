@@ -5,6 +5,24 @@
 * We are going to say as little as possible about how to do things. Instead we will focus on what functionality we require your OS to support.&#x20;
 * We will expect you to come up with a design that makes sense. You will have the freedom to choose how to handle page faults, how to organize the swap partition, how to implement paging, etc.
 
+{% hint style="success" %}
+<mark style="color:green;">**Here are all the tests you need to pass to get a full score in Lab3a.**</mark>
+
+1. <mark style="color:green;">**All tests in**</mark> `tests/userprog`
+2. <mark style="color:green;">**All tests in**</mark> `tests/filesys/base`
+3. <mark style="color:green;">**Part of the tests in**</mark> `tests/vm`
+   * page-linear
+   * page-parallel
+   * page-shuffle
+   * page-merge-seq
+   * page-merge-par
+   * pt-bad-addr
+   * pt-bad-read
+   * pt-write-code
+   * pt-write-code2
+   * pt-grow-bad
+{% endhint %}
+
 ## Task 0: Design Document
 
 * Download the [project 3a design document template](https://github.com/PKU-OS/pintos/blob/master/docs/p3a.md). Read through it to motivate your design and fill it in after you finish the project.&#x20;

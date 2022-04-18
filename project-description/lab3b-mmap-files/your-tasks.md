@@ -6,6 +6,38 @@
 * We recommend that you read the design document template before you start working on the project.&#x20;
 * See section [Project Documentation](../../appendix/project-documentation.md), for a sample design document that goes along with a fictitious project.
 
+{% hint style="success" %}
+<mark style="color:green;">**Here are all the tests you need to pass to get a full score in Lab3b.**</mark>
+
+1. <mark style="color:green;">**All tests in**</mark> `tests/userprog`
+2. <mark style="color:green;">**All tests in**</mark> `tests/filesys/base`
+3. <mark style="color:green;">**Part of the tests in**</mark> `tests/vm`
+   * page-merge-mm
+   * page-merge-stk
+   * pt-grow-stack
+   * pt-grow-stk-sc
+   * pt-big-stk-obj
+   * pt-grow-pusha
+   * mmap-read
+   * mmap-write
+   * mmap-shuffle
+   * mmap-twice
+   * mmap-unmap
+   * mmap-exit
+   * mmap-clean
+   * mmap-close
+   * mmap-remove
+   * mmap-bad-fd
+   * mmap-inherit
+   * mmap-null
+   * mmap-zero
+   * mmap-misalign
+   * mmap-over-code
+   * mmap-over-data
+   * mmap-over-stk
+   * mmap-overlap
+{% endhint %}
+
 ## Task 1: Stack Growth
 
 ### **Exercise 1.1**

@@ -34,6 +34,14 @@ SIMULATOR = --bochs
 
 <mark style="color:red;">**We require you to write down your**</mark><mark style="color:red;">** **</mark><mark style="color:red;">**`make grade`**</mark><mark style="color:red;">** **</mark><mark style="color:red;">**score in your design document**</mark> and we will contact you if your expected score has a huge difference from our testing result for you.
 
+{% hint style="danger" %}
+<mark style="color:red;">**Notes for Windows**</mark>
+
+In windows, if you issue `make grade` to check your score locally, you may encounter the error: `/bin/sh: 1: ../../tests/make-grade: not found, due to the CRLF problem.`
+
+In order to solve this problem, you can download the tool `dos2unix` [here](https://waterlan.home.xs4all.nl/dos2unix.html#UNIX2DOS), and follow the instructions in [this blog](http://t.csdn.cn/d3Ll2) to get you out of the trouble.
+{% endhint %}
+
 ## Design Doc & Coding style results (40%)
 
 {% hint style="info" %}
