@@ -26,11 +26,11 @@ First, like nachos, pinto beans are common Mexican food. Second, Pintos is small
 
 | Project                       | Release   | Code Due           | Design Doc Due     | Content                                | Point |
 | ----------------------------- | --------- | ------------------ | ------------------ | -------------------------------------- | ----- |
-| **Lab0: Getting Real**        | **02/22** | **03/03 11:59 pm** | **03/06 11:59 pm** | Bootstrap Pintos                       | 4     |
-| **Lab1: Threads**             | **03/08** | **03/24 11:59 pm** | **03/27 11:59 pm** | Kernel threads scheduling              | 9     |
-| **Lab2: User Programs**       | **03/29** | **04/14 11:59 pm** | **04/17 11:59 pm** | Load & Run user programs, System calls | 9     |
-| **Lab3a: Virtual Memory**     | **04/26** | **05/19 11:59 pm** | **05/22 11:59 pm** | Demand Paging                          | 9     |
-| **Lab3a: Virtual Memory**     | **05/24** | **06/02 11:59 pm** | **06/05 11:59 pm** | Mmap Files                             | 9     |
+| **Lab0: Getting Real**        | **02/21** | **03/02 11:59 pm** | **03/05 11:59 pm** | Bootstrap Pintos                       | 4     |
+| **Lab1: Threads**             | **03/07** | **03/23 11:59 pm** | **03/26 11:59 pm** | Kernel threads scheduling              | 9     |
+| **Lab2: User Programs**       | **03/28** | **04/13 11:59 pm** | **04/16 11:59 pm** | Load & Run user programs, System calls | 9     |
+| **Lab3a: Virtual Memory**     | **04/25** | **05/18 11:59 pm** | **05/21 11:59 pm** | Demand Paging                          | 9     |
+| **Lab3a: Virtual Memory**     | **05/23** | **06/01 11:59 pm** | **06/04 11:59 pm** | Mmap Files                             | 9     |
 | (optional) Lab4: File Systems | **/**     | /                  | /                  | Implement File systems                 | 0     |
 
 **In each lab, we will release all the test cases to support your local development.** After the deadline, we will run the same test suite to grade your submissions, so don't worry that your evil teaching assistants (TAs) will intentionally design many corner cases only to deduct your scores.
@@ -60,15 +60,15 @@ We will be using [PKU course website](https://course.pku.edu.cn) to collect assi
 ## <mark style="color:red;">Cheating and Collaboration</mark>
 
 {% hint style="danger" %}
-<mark style="color:red;">**This class has zero tolerance for cheating.**</mark> <mark style="color:red;"></mark><mark style="color:red;">We will run tools to check your submissions against a comprehensive database of solutions including past and present submissions for potential cheating. The stakes are very high. So do not cheat, do not cheat, do not cheat!</mark>
+<mark style="color:red;">**This class has zero tolerance for cheating.**</mark> <mark style="color:red;">We will run tools to check your submissions against a comprehensive database of solutions including past and present submissions for potential cheating. The stakes are very high. So do not cheat, do not cheat, do not cheat!</mark>
 {% endhint %}
 
 <mark style="color:red;">**The basic policies for the project assignments are as follows:**</mark>
 
 * <mark style="color:red;">**Never copy project code or text found on the Internet**</mark><mark style="color:red;">, e.g., GitHub.</mark>
-* <mark style="color:red;">**Never share code or text on the project.**</mark> <mark style="color:red;"></mark><mark style="color:red;">That also means do not make your solutions public on the Internet.</mark>
-* <mark style="color:red;">**Never use others' code or text in your solutions.**</mark> <mark style="color:red;"></mark><mark style="color:red;">This includes code/text from prior years or other institutions.</mark>
-* <mark style="color:red;">You may read but</mark> <mark style="color:red;"></mark><mark style="color:red;">**not**</mark> <mark style="color:red;"></mark><mark style="color:red;">copy Linux or BSD source code.</mark> <mark style="color:red;"></mark><mark style="color:red;">**You must cite any document or code that inspired your code**</mark><mark style="color:red;">. As long as you cite what you used, it's not cheating. In the worst case, we deduct points if it undermines the assignment.</mark>
+* <mark style="color:red;">**Never share code or text on the project.**</mark> <mark style="color:red;">That also means do not make your solutions public on the Internet.</mark>
+* <mark style="color:red;">**Never use others' code or text in your solutions.**</mark> <mark style="color:red;">This includes code/text from prior years or other institutions.</mark>
+* <mark style="color:red;">You may read but</mark> <mark style="color:red;">**not**</mark> <mark style="color:red;">copy Linux or BSD source code.</mark> <mark style="color:red;">**You must cite any document or code that inspired your code**</mark><mark style="color:red;">. As long as you cite what you used, it's not cheating. In the worst case, we deduct points if it undermines the assignment.</mark>
 
 **On the other hand, we encourage collaboration in the following form:**
 
