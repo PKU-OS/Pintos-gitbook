@@ -6,17 +6,17 @@
 
 ## Page allocator
 
-**The page allocator declared in `threads/palloc.h` allocates memory in units of a page.**&#x20;
+**The page allocator declared in `threads/palloc.h` allocates memory in units of a page.**
 
 * It is most often used to allocate memory **one page** at a time, but it can also allocate **multiple contiguous pages** at once.
 
 ### Memory Pools
 
-**The page allocator divides the memory it allocates into two pools**, called <mark style="color:red;">**the kernel and user pools**</mark>.&#x20;
+**The page allocator divides the memory it allocates into two pools**, called <mark style="color:red;">**the kernel and user pools**</mark>.
 
-* **By default, each pool gets **_**half**_** of system memory above 1 MB**, but the division can be changed with the `-ul` kernel command line option.&#x20;
-* **An allocation request draws from one pool or the other.** If one pool becomes empty, the other may still have free pages.&#x20;
-* _<mark style="color:red;">**The user pool**</mark>_<mark style="color:red;">** **</mark><mark style="color:red;">**should be used for allocating memory for user processes and**</mark><mark style="color:red;">** **</mark>_<mark style="color:red;">**the kernel pool**</mark>_<mark style="color:red;">** **</mark><mark style="color:red;">**for all other allocations.**</mark> <mark style="color:red;">**This will only become important starting with project 3.**</mark> <mark style="color:red;">**Until then, all allocations should be made from**</mark><mark style="color:red;">** **</mark>_<mark style="color:red;">**the kernel pool**</mark>_<mark style="color:red;">**.**</mark>
+* **By default, each pool gets half** **of system memory above 1 MB**, but the division can be changed with the `-ul` kernel command line option.
+* **An allocation request draws from one pool or the other.** If one pool becomes empty, the other may still have free pages.
+* _<mark style="color:red;">**The user pool**</mark>_ <mark style="color:red;"></mark><mark style="color:red;"></mark> <mark style="color:red;"></mark><mark style="color:red;">**should be used for allocating memory for user processes and**</mark> _<mark style="color:red;">**the kernel pool**</mark>_ <mark style="color:red;">**for all other allocations.**</mark>**  **<mark style="color:red;">**This will only become important starting with project 3.**</mark>**  **<mark style="color:red;">**Until then, all allocations should be made from**</mark> _<mark style="color:red;">**the kernel pool**</mark>_.
 * **Each pool's usage is tracked with a bitmap, one bit per page in the pool.** A request to allocate n pages scans the bitmap for n consecutive bits set to false, indicating that those pages are free, and then sets those bits to true to mark them as used. This is a **"first fit" allocation strategy** (see [Wilson](../bibliography.md#operating-system-design-references)).
 
 ### Types and Functions
@@ -32,7 +32,7 @@ Page allocator types and functions are described below.
   * **Obtains and returns one page, or page\_cnt contiguous pages, respectively.** Returns a null pointer if the pages cannot be allocated.
   * The **flags** argument may be any combination of the following flags:
   * <mark style="color:orange;">**`PAL_ASSERT`**</mark>
-    * **If the pages cannot be allocated, panic the kernel.**&#x20;
+    * **If the pages cannot be allocated, panic the kernel.**
     * This is only appropriate during kernel initialization.User processes should never be permitted to panic the kernel.
   * <mark style="color:orange;">**`PAL_ZERO`**</mark>
     * **Zero all the bytes in the allocated pages before returning them.** If not set, the contents of newly allocated pages are unpredictable.
@@ -53,9 +53,9 @@ Page allocator types and functions are described below.
 
 ## Block allocator
 
-**The block allocator, declared in `threads/malloc.h`, can allocate blocks of any size.**&#x20;
+**The block allocator, declared in `threads/malloc.h`, can allocate blocks of any size.**
 
-* It is **layered on top of the page allocator** described in the previous section.&#x20;
+* It is **layered on top of the page allocator** described in the previous section.
 * Blocks returned by the block allocator are <mark style="color:red;">**obtained from the kernel pool**</mark>.
 
 **The block allocator uses two different strategies for allocating memory.**
@@ -90,7 +90,7 @@ The block allocator functions are described below. **Their interfaces are the sa
 ### Notes
 
 * **In either case, the difference between the allocation requested size and the actual block size is wasted.** A real operating system would carefully tune its allocator to minimize this waste, but this is unimportant in an instructional system like Pintos.
-* **As long as a page can be obtained from the page allocator, small allocations always succeed.** Most small allocations do not require a new page from the page allocator at all, because they are satisfied using part of a page already allocated.&#x20;
+* **As long as a page can be obtained from the page allocator, small allocations always succeed.** Most small allocations do not require a new page from the page allocator at all, because they are satisfied using part of a page already allocated.
 * However, **large allocations always require calling into the page allocator, and any allocation that needs more than one contiguous page can fail due to fragmentation**, as already discussed in the previous section. Thus, <mark style="color:red;">**you should minimize the number of large allocations in your code, especially those over approximately 4 kB each**</mark>.
 * **When a block is freed, all of its bytes are cleared to `0xcc`**, as a debugging aid (see section [Tips](../../getting-started/debug-and-test/debugging.md#tips)).
 * **The block allocator may not be called from interrupt context.**

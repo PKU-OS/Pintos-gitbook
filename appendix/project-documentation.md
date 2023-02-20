@@ -9,11 +9,11 @@
 {% hint style="success" %}
 <mark style="color:green;">**Assignment**</mark>
 
-<mark style="color:green;">**Implement**</mark><mark style="color:green;">** **</mark><mark style="color:green;">**`thread_join()`**</mark><mark style="color:green;">**.**</mark>
+<mark style="color:green;">**Implement**</mark> <mark style="color:green;"></mark><mark style="color:green;"></mark> <mark style="color:green;">`thread_join()`</mark><mark style="color:green;">.</mark>
 {% endhint %}
 
 * <mark style="color:blue;">**Function: void thread\_join (tid\_t tid)**</mark>
-  * **Blocks the current thread until thread tid exits.**&#x20;
+  * **Blocks the current thread until thread tid exits.**
   * If A is the running thread and B is the argument, then we say that "A joins B."\\
   * **Incidentally, the argument is a thread id, instead of a thread pointer**, because a thread pointer is not unique over time. That is, when a thread dies, its memory may be, whether immediately or much later, reused for another thread. If thread A over time had two children B and C that were stored at the same address, then `thread_join(B)` and `thread_join(C)` would be ambiguous.
   * **A thread may only join its immediate children.** **Calling `thread_join()` on a thread that is not the caller's child should cause the caller to return immediately.** <mark style="color:red;">**Children are not "inherited"**</mark>, that is, if A has child B and B has child C, then A always returns immediately should it try to join C, even if B is dead.

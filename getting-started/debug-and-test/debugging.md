@@ -6,30 +6,30 @@
 
 ## printf()
 
-**Don't underestimate the value of `printf()`.**&#x20;
+**Don't underestimate the value of `printf()`.**
 
 * The way `printf()` is implemented in Pintos, **you can call it from practically anywhere in the kernel, whether it's in a kernel thread or an interrupt handler**, almost regardless of what locks are held.
 
-**`printf()` is useful for more than just examining data. It can also help figure out when and where something goes wrong, even when the kernel crashes or panics without a useful error message.**&#x20;
+**`printf()` is useful for more than just examining data. It can also help figure out when and where something goes wrong, even when the kernel crashes or panics without a useful error message.**
 
-* The strategy is to sprinkle calls to `printf()` with different strings (e.g. `"<1>"`, `"<2>"`, ...) throughout the pieces of code you suspect are failing. If you don't even see `<1>` printed, then something bad happened before that point, if you see `<1>` but not `<2>`, then something bad happened between those two points, and so on.&#x20;
+* The strategy is to sprinkle calls to `printf()` with different strings (e.g. `"<1>"`, `"<2>"`, ...) throughout the pieces of code you suspect are failing. If you don't even see `<1>` printed, then something bad happened before that point, if you see `<1>` but not `<2>`, then something bad happened between those two points, and so on.
 * Based on what you learn, you can then insert more `printf()` calls in the new, smaller region of code you suspect. Eventually, you can **narrow the problem down** to a single statement. See the following expansion _**Triple Faults**_, for a related technique.
 
 <details>
 
 <summary>Triple Faults</summary>
 
-### What is a triple fault?
+#### What is a triple fault?
 
 When a CPU exception handler, such as a page fault handler, cannot be invoked because it is missing or defective, the CPU will try to invoke **the "double fault" handler**. If the double fault handler is itself missing or defective, that's called a **"triple fault".** **A triple fault causes an immediate CPU reset.**
 
 **Thus, if you get yourself into a situation where the machine reboots in a loop, that's probably a "triple fault."**
 
-### How to debug a triple fault?
+#### How to debug a triple fault?
 
 **In a triple fault situation, you might not be able to use `printf()` for debugging**, because the reboots might be happening even before everything needed for `printf()` is initialized.
 
-**There are at least two ways to debug triple faults.**&#x20;
+**There are at least two ways to debug triple faults.**
 
 * **First, you can run Pintos in Bochs under GDB (see section** [**GDB**](debugging.md#gdb)**)**. If Bochs has been built properly for Pintos, a triple fault under GDB will cause it to print the message "Triple fault: stopping for gdb" on the console and break into the debugger. (If Bochs is not running under GDB, a triple fault will still cause it to reboot.) You can then inspect where Pintos stopped, which is where the triple fault occurred.
 *   **Another option is what I call "debugging by infinite loop."** Pick a place in the Pintos code, insert the infinite loop `for (;;);` there, and recompile and run. There are two likely possibilities:
@@ -43,9 +43,9 @@ When a CPU exception handler, such as a page fault handler, cannot be invoked be
 
 ## ASSERT
 
-**Assertions are useful because they can catch problems early, before they'd otherwise be noticed.**&#x20;
+**Assertions are useful because they can catch problems early, before they'd otherwise be noticed.**
 
-* **Ideally, each function should begin with a set of assertions that check its arguments for validity.** (Initializers for functions' local variables are evaluated before assertions are checked, so be careful not to assume that an argument is valid in an initializer.)&#x20;
+* **Ideally, each function should begin with a set of assertions that check its arguments for validity.** (Initializers for functions' local variables are evaluated before assertions are checked, so be careful not to assume that an argument is valid in an initializer.)
 * You can also sprinkle assertions throughout the body of functions in places where you suspect things are likely to go wrong. They are especially useful for checking loop invariants.
 
 **Pintos provides the `ASSERT` macro**, defined in `<debug.h>`, for checking assertions.
@@ -57,23 +57,23 @@ When a CPU exception handler, such as a page fault handler, cannot be invoked be
 
 <summary>Backtraces</summary>
 
-**When the kernel panics, it prints a "backtrace", that is, a summary of how your program got where it is**, as a list of addresses inside the functions that were running at the time of the panic.&#x20;
+**When the kernel panics, it prints a "backtrace", that is, a summary of how your program got where it is**, as a list of addresses inside the functions that were running at the time of the panic.
 
-* You can also **insert a call to `debug_backtrace()`**, prototyped in `<debug.h>`, to print a backtrace at any point in your code.&#x20;
+* You can also **insert a call to `debug_backtrace()`**, prototyped in `<debug.h>`, to print a backtrace at any point in your code.
 * **`debug_backtrace_all()`**, also declared in \<debug.h>, prints backtraces of all threads.
 
-The addresses in a backtrace are listed as raw hexadecimal numbers, which are difficult to interpret. **We provide a tool called `backtrace` to translate these into function names and source file line numbers.**&#x20;
+The addresses in a backtrace are listed as raw hexadecimal numbers, which are difficult to interpret. **We provide a tool called `backtrace` to translate these into function names and source file line numbers.**
 
-* Give it the name of your `kernel.o` as the first argument and the hexadecimal numbers composing the backtrace (including the 0x prefixes) as the remaining arguments.&#x20;
+* Give it the name of your `kernel.o` as the first argument and the hexadecimal numbers composing the backtrace (including the 0x prefixes) as the remaining arguments.
 * It outputs the function name and source file line numbers that correspond to each address.
 * You can see the following expansion _**Backtraces Examples**_ to have a better understanding.
 
 **If the translated form of a backtrace is garbled or doesn't make sense** (e.g. function A is listed above function B, but B doesn't call A), then
 
-* it's a good sign that you're corrupting a kernel thread's stack, because the backtrace is extracted from the stack.&#x20;
+* it's a good sign that you're corrupting a kernel thread's stack, because the backtrace is extracted from the stack.
 * Alternatively, it could be the `kernel.o` you passed to `backtrace` is not the same kernel that produced the backtrace.
 
-**Sometimes backtraces can be confusing without any corruption.** Compiler optimizations can cause surprising behavior.&#x20;
+**Sometimes backtraces can be confusing without any corruption.** Compiler optimizations can cause surprising behavior.
 
 * When a function has called another function as its final action (a _tail call_), the calling function may not appear in a backtrace at all. Similarly, when function A calls another function B that never returns, the compiler may optimize such that an unrelated function C appears in the backtrace instead of A. Function C is simply the function that happens to be in memory just after A. In the threads project, this is commonly seen in backtraces for test failures.
 
@@ -83,7 +83,7 @@ The addresses in a backtrace are listed as raw hexadecimal numbers, which are di
 
 <summary>Backtraces Example</summary>
 
-**Here's a backtraces example.**&#x20;
+**Here's a backtraces example.**
 
 Suppose that **Pintos printed out this following call stack**, which is taken from an actual Pintos submission for the file system project:
 
@@ -185,7 +185,7 @@ backtrace kernel.o Call stack: 0xc0106eff 0xc01102fb 0xc010dc22 0xc010cf67 0xc01
   * Appended to a function prototype to tell the compiler that the function never returns. It allows the compiler to fine-tune its warnings and its code generation.
 * <mark style="color:blue;">**Macro: NO\_INLINE**</mark>
   * Appended to a function prototype to tell the compiler to never emit the function in-line. Occasionally useful to improve the quality of backtraces (see below).
-* <mark style="color:blue;">**Macro: PRINTF\_FORMAT**</mark><mark style="color:blue;">** **</mark>_<mark style="color:blue;">**(format, first)**</mark>_
+* <mark style="color:blue;">**Macro: PRINTF\_FORMAT**</mark><mark style="color:blue;">\*\*</mark> **\_**(format, first)\*\*\_
   * Appended to a function prototype to tell the compiler that the function takes a `printf()`-like format string as the argument numbered _format_ (starting from 1) and that the corresponding value arguments start at the argument numbered _first_. This lets the compiler tell you if you pass the wrong argument types.
 
 ## GDB
@@ -199,9 +199,9 @@ You should find your Pintos program blocked, which waits for the GDB to attach t
 * Second, **open a second terminal on the same machine (or in the same container, see below)** and use `pintos-gdb` to invoke GDB on `kernel.o`:
 
 {% hint style="info" %}
-If you develop Pintos in **a virtual machine**, it is easy to do the second step above by opening another terminal.&#x20;
+If you develop Pintos in **a virtual machine**, it is easy to do the second step above by opening another terminal.
 
-If you use **docker**, you need a way to attach your Pintos container to another terminal in your host computer.&#x20;
+If you use **docker**, you need a way to attach your Pintos container to another terminal in your host computer.
 
 * Now **open a new terminal and run**
 
@@ -225,9 +225,9 @@ and issue the following GDB command:
 debugpintos
 ```
 
-<mark style="color:red;">**A GDB macro**</mark><mark style="color:red;">** **</mark><mark style="color:red;">**`debugpintos`**</mark><mark style="color:red;">** **</mark><mark style="color:red;">**is provided as a shorthand for**</mark><mark style="color:red;">** **</mark><mark style="color:red;">**`target remote localhost:1234`**</mark><mark style="color:red;">**, so you can type this shorter command (**</mark><mark style="color:red;">**`debugpintos`**</mark><mark style="color:red;">**) instead.**</mark>
+<mark style="color:red;">**A GDB macro**</mark> <mark style="color:red;"></mark><mark style="color:red;"></mark> `debugpintos` <mark style="color:red;">**is provided as a shorthand for**</mark> `target remote localhost:1234`, so you can type this shorter command (`debugpintos`) instead.
 
-* Now GDB is connected to the simulator over a local network connection. **You can now issue any normal GDB commands.**&#x20;
+* Now GDB is connected to the simulator over a local network connection. **You can now issue any normal GDB commands.**
   * If you issue the "c" (continue) command, the simulated Qemu will take control, load Pintos, and then Pintos will run in the usual way. You can pause the process at any point with `Ctrl+C`.
 
 <details>
@@ -244,34 +244,34 @@ You can read the GDB manual by typing `info gdb` at a terminal command prompt. H
   * Execute until next line reached, step into function calls.
 * <mark style="color:blue;">**GDB Command: n**</mark>
   * Execute until next line reached, step over function calls.
-* <mark style="color:blue;">**GDB Command: p**</mark><mark style="color:blue;">** **</mark>_<mark style="color:blue;">**expression**</mark>_
+* <mark style="color:blue;">**GDB Command: p**</mark><mark style="color:blue;">\*\* \*\*</mark>_<mark style="color:blue;">**expression**</mark>_
   * Evaluates the given expression and prints its value. If the expression contains a function call, that function will actually be executed.
 * <mark style="color:blue;">**GDB Command: finish**</mark>
   * Run until the selected function (stack frame) returns
-* <mark style="color:blue;">**GDB Command: b**</mark><mark style="color:blue;">** **</mark>_<mark style="color:blue;">**function**</mark>_
-* <mark style="color:blue;">**GDB Command: b**</mark><mark style="color:blue;">** **</mark>_<mark style="color:blue;">**file:line**</mark>_
-* <mark style="color:blue;">**GDB Command: b**</mark> <mark style="color:blue;"></mark><mark style="color:blue;">\*</mark>_<mark style="color:blue;">**address**</mark>_
+* <mark style="color:blue;">**GDB Command: b**</mark><mark style="color:blue;">\*\* \*\*</mark>_<mark style="color:blue;">**function**</mark>_
+* <mark style="color:blue;">**GDB Command: b**</mark><mark style="color:blue;">\*\* \*\*</mark>_<mark style="color:blue;">**file:line**</mark>_
+* <mark style="color:blue;">**GDB Command: b**</mark> <mark style="color:blue;">\*</mark>_<mark style="color:blue;">**address**</mark>_
   * Sets a breakpoint at _function_, at _line_ within _file_, or _address_. `b` is short for `break` or `breakpoint`. (Use a 0x prefix to specify an address in hex.)
   * Use `b pintos_init` to make GDB stop when Pintos starts running.
-* <mark style="color:blue;">**GDB Command: info**</mark><mark style="color:blue;">** **</mark>_<mark style="color:blue;">**registers**</mark>_
+* <mark style="color:blue;">**GDB Command: info**</mark><mark style="color:blue;">\*\* \*\*</mark>_<mark style="color:blue;">**registers**</mark>_
   * Print the general purpose registers, eip, eflags, and the segment selectors. For a much more thorough dump of the machine register state, see QEMU's own info registers command.
-* <mark style="color:blue;">**GDB Command:**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**x/Nx**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark>_<mark style="color:blue;">**addr**</mark>_
+* <mark style="color:blue;">**GDB Command:**</mark> <mark style="color:blue;">**x/Nx**</mark> _<mark style="color:blue;">**addr**</mark>_
   * Display a hex dump of N words starting at virtual address _addr_. If N is omitted, it defaults to 1. _addr_ can be any expression.
-* <mark style="color:blue;">**GDB Command: x/Ni**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark>_<mark style="color:blue;">**addr**</mark>_
+* <mark style="color:blue;">**GDB Command: x/Ni**</mark> _<mark style="color:blue;">**addr**</mark>_
   * Display the N assembly instructions starting at _addr_. Using $eip as _addr_ will display the instructions at the current instruction pointer.
-* <mark style="color:blue;">**GDB Command:**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**l**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark>_<mark style="color:blue;">\*</mark><mark style="color:blue;">**address**</mark>_
+* <mark style="color:blue;">**GDB Command:**</mark> <mark style="color:blue;">**l**</mark> _<mark style="color:blue;">\*</mark><mark style="color:blue;">**address**</mark>_
   * Lists a few lines of code around _address_. (Use a 0x prefix to specify an address in hex.)
 * <mark style="color:blue;">**GDB Command: bt**</mark>
   * Prints a stack backtrace similar to that output by the `backtrace` program described above.
-* <mark style="color:blue;">**GDB Command:**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**frame**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark>_<mark style="color:blue;">**n**</mark>_
+* <mark style="color:blue;">**GDB Command:**</mark> <mark style="color:blue;">**frame**</mark> _<mark style="color:blue;">**n**</mark>_
   * Select frame number n or frame at address n
-* <mark style="color:blue;">**GDB Command:**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**p/a**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark>_<mark style="color:blue;">**address**</mark>_
+* <mark style="color:blue;">**GDB Command:**</mark> <mark style="color:blue;">**p/a**</mark> _<mark style="color:blue;">**address**</mark>_
   * Prints the name of the function or variable that occupies _address_. (Use a 0x prefix to specify an address in hex.)
-* <mark style="color:blue;">**GDB Command:**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**diassemble**</mark><mark style="color:blue;">** **</mark>_<mark style="color:blue;">**function**</mark>_
+* <mark style="color:blue;">**GDB Command:**</mark> <mark style="color:blue;">**diassemble**</mark><mark style="color:blue;">\*\* \*\*</mark>_<mark style="color:blue;">**function**</mark>_
   * Disassembles function.
-* <mark style="color:blue;">**GDB Command: thread**</mark><mark style="color:blue;">** **</mark>_<mark style="color:blue;">**n**</mark>_
+* <mark style="color:blue;">**GDB Command: thread**</mark><mark style="color:blue;">\*\* \*\*</mark>_<mark style="color:blue;">**n**</mark>_
   * GDB focuses on one thread (i.e., CPU) at a time. This command switches that focus to thread n, numbered from zero.
-* <mark style="color:blue;">**GDB Command: info**</mark><mark style="color:blue;">** **</mark>_<mark style="color:blue;">**threads**</mark>_
+* <mark style="color:blue;">**GDB Command: info**</mark><mark style="color:blue;">\*\* \*\*</mark>_<mark style="color:blue;">**threads**</mark>_
   * List all threads (i.e., CPUs), including their state (active or halted) and what function they're in.
 
 We also provide a set of macros specialized for debugging Pintos, written by Godmar Back [gback@cs.vt.edu](mailto:gback@cs.vt.edu). You can type `help user-defined` for basic help with the macros. Here is an overview of their functionality, based on Godmar's documentation:
@@ -281,12 +281,12 @@ We also provide a set of macros specialized for debugging Pintos, written by God
 * <mark style="color:blue;">**GDB Macro: dumplist &**</mark>_<mark style="color:blue;">**list type element**</mark>_
   * Prints the elements of _list_, which should be a `struct` _list_ that contains elements of the given _type_ (without the word `struct`) in which _element_ is the `struct list_elem` member that links the elements.
   * Example: `dumplist all_list thread allelem` prints all elements of `struct thread` that are linked in `struct list all_list` using the `struct list_elem allelem` which is part of `struct thread`.
-* <mark style="color:blue;">**GDB Macro:**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**btthread**</mark><mark style="color:blue;">** **</mark>_<mark style="color:blue;">**thread**</mark>_
+* <mark style="color:blue;">**GDB Macro:**</mark> <mark style="color:blue;">**btthread**</mark><mark style="color:blue;">\*\* \*\*</mark>_<mark style="color:blue;">**thread**</mark>_
   * Shows the backtrace of _thread_, which is a pointer to the `struct thread` of the thread whose backtrace it should show. For the current thread, this is identical to the `bt` (backtrace) command. It also works for any thread suspended in `schedule()`, provided you know where its kernel stack page is located.
-* <mark style="color:blue;">**GDB Macro:**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**btthreadlist**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark>_<mark style="color:blue;">**list element**</mark>_
+* <mark style="color:blue;">**GDB Macro:**</mark> <mark style="color:blue;">**btthreadlist**</mark> _<mark style="color:blue;">**list element**</mark>_
   * Shows the backtraces of all threads in _list_, the `struct list` in which the threads are kept. Specify element as the `struct list_elem` field used inside `struct thread` to link the threads together.
   * Example: `btthreadlist all_list allelem` shows the backtraces of all threads contained in `struct list all_list`, linked together by `allelem`. This command is useful to determine where your threads are stuck when a deadlock occurs. Please see the example scenario below.
-* <mark style="color:blue;">**GDB Macro:**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**btpagefault**</mark>
+* <mark style="color:blue;">**GDB Macro:**</mark> <mark style="color:blue;">**btpagefault**</mark>
   * Print a backtrace of the current thread after a page fault exception. Normally, when a page fault exception occurs, GDB will stop with a message that might say:
 
 ```
@@ -298,7 +298,7 @@ In that case, the `bt` command might not give a useful backtrace. Use `btpagefau
 
 You may also use `btpagefault` for page faults that occur in a user process. In this case, you may wish to also load the user program's symbol table using the `loadusersymbols` macro, as described below.
 
-* <mark style="color:blue;">**GDB Macro:**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**loadusersymbols**</mark>
+* <mark style="color:blue;">**GDB Macro:**</mark> <mark style="color:blue;">**loadusersymbols**</mark>
   * You can also use GDB to debug a user program running under Pintos. To do that, use the `loadusersymbols` macro to load the program's symbol table:
 
 ```
@@ -506,7 +506,7 @@ If you issue the `make` command to run a single test (see [Run an individual tes
 
 ## Tips
 
-**The page allocator in `threads/palloc.c` and the block allocator in `threads/malloc.c` clear all the bytes in memory to 0xcc at time of free.**&#x20;
+**The page allocator in `threads/palloc.c` and the block allocator in `threads/malloc.c` clear all the bytes in memory to 0xcc at time of free.**
 
 * Thus, if you see an attempt to dereference a pointer like 0xcccccccc, or some other reference to 0xcc, there's a good chance you're trying to reuse a page that's already been freed.
 * Also, byte 0xcc is the CPU opcode for "invoke interrupt 3," so if you see an error like `Interrupt 0x03 (#BP Breakpoint Exception)`, then Pintos tried to execute code in a freed page or block.
