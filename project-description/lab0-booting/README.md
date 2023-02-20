@@ -3,7 +3,7 @@
 {% hint style="warning" %}
 <mark style="color:red;">**Code Due: Thursday 03/02 11:59 pm**</mark>
 
-<mark style="color:red;">**Design Doc Due: Sunday 03/05 11:59 pm**</mark>
+<mark style="color:red;">**Design Doc Due: Thursday 03/05 11:59 pm**</mark>
 {% endhint %}
 
 **This assignment is set to prepare you for the later Pintos projects.** It will walk you through **what happens after a PC is powered on till when an operating system is up and running**, which you may have wondered about before.

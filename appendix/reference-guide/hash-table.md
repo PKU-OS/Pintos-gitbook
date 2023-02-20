@@ -1,8 +1,8 @@
 # Hash Table
 
-**Pintos provides a hash table data structure in `lib/kernel/hash.c`.**
+**Pintos provides a hash table data structure in `lib/kernel/hash.c`.**&#x20;
 
-* To use it you will need to include its header file, `lib/kernel/hash.h`, with `#include <hash.h>`.
+* To use it you will need to include its header file, `lib/kernel/hash.h`, with `#include <hash.h>`.&#x20;
 * **No code provided with Pintos uses the hash table**, which means that you are free to use it as is, modify its implementation for your own purposes, or ignore it, as you wish.
 * **Most implementations of the virtual memory project use a hash table to translate pages to frames.** You may find other uses for hash tables as well.
 
@@ -13,7 +13,7 @@
 A hash table is represented by **`struct hash`**.
 
 * <mark style="color:blue;">**Type: struct hash**</mark>
-  * **Represents an entire hash table.**
+  * **Represents an entire hash table.**&#x20;
   * The actual members of `struct hash` are "**opaque**." That is, code that uses a hash table should not access `struct hash` members directly, nor should it need to. Instead, use hash table functions and macros.
   * **The hash table operates on elements of type `struct hash_elem`.**
 * <mark style="color:blue;">**Type: struct hash\_elem**</mark>
@@ -23,7 +23,7 @@ A hash table is represented by **`struct hash`**.
 **You will often need to obtain a `struct hash_elem` given a real element of the hash table, and vice versa.** Given a real element of the hash table, you may use the `&` operator to obtain a pointer to its `struct hash_elem`. Use the **`hash_entry()`** macro to go the other direction.
 
 * <mark style="color:blue;">**Macro: type \*hash\_entry (struct hash\_elem \*elem, type, member)**</mark>
-  * **Returns a pointer to the structure that \_elem**\_**, a pointer to a `struct hash_elem`, is embedded within.**
+  * **Returns a pointer to the structure that **_**elem**_**, a pointer to a `struct hash_elem`, is embedded within.**
   * You must provide _type_, the name of the structure that elem is inside, and _member_, the name of the _member_ in _type_ that _elem_ points to.
   * For example, suppose `h` is a `struct hash_elem *` variable that points to a `struct thread` member (of type `struct hash_elem`) named `h_elem`. Then, `hash_entry(h, struct thread, h_elem)` yields the address of the `struct thread` that `h` points within.
 
@@ -31,10 +31,10 @@ See section [Hash Table Example](hash-table.md#hash-table-example), for an examp
 
 ### Hash Functions
 
-**Each hash table element must contain a key, that is, data that identifies and distinguishes elements, which must be **_**unique**_ **among elements in the hash table**. (Elements may also contain non-key data that need not be unique.)
+**Each hash table element must contain a key, that is, data that identifies and distinguishes elements, which must be **_**unique**_** among elements in the hash table.** (Elements may also contain non-key data that need not be unique.)&#x20;
 
 * **While an element is in a hash table, its key data must not be changed.** Instead, if need be, remove the element from the hash table, modify its key, then reinsert the element.
-* For each hash table, you _**must**_ write two functions that act on keys: **a hash function** and **a comparison function**.
+* For each hash table, you _**must**_ write two functions that act on keys: **a hash function** and **a comparison function**.&#x20;
 
 These functions must match the following prototypes:
 
@@ -47,23 +47,23 @@ These functions must match the following prototypes:
 <summary>Hash Functions Basis</summary>
 
 * <mark style="color:blue;">**Function: unsigned hash\_bytes (const void \*buf, size\_t \*size)**</mark>
-  * **Returns a hash of the size** _bytes starting at_ **buf.**
+  * **Returns a hash of the **_**size**_** bytes starting at **_**buf**_**.**&#x20;
   * The implementation is the general-purpose [Fowler-Noll-Vo hash](http://en.wikipedia.org/wiki/Fowler\_Noll\_Vo\_hash) for 32-bit words.
 * <mark style="color:blue;">**Function: unsigned hash\_string (const char \*s**</mark>**)**
-  * **Returns a hash of null-terminated string s.**
+  * **Returns a hash of null-terminated string **_**s**_**.**
 * <mark style="color:blue;">**Function: unsigned hash\_int (int i)**</mark>
-  * **Returns a hash of integer i.**
+  * **Returns a hash of integer **_**i**_**.**
 
-**Notes**
+#### **Notes**
 
-* If your key is **a single piece of data** of an appropriate type, it is sensible for your hash function to directly return the output of one of these functions.
-* For **multiple pieces of data**, you may wish to **combine the output** of more than one call to them using, e.g., the **^** (exclusive or) operator.
+* If your key is **a single piece of data** of an appropriate type, it is sensible for your hash function to directly return the output of one of these functions.&#x20;
+* For **multiple pieces of data**, you may wish to **combine the output** of more than one call to them using, e.g., the **^** (exclusive or) operator.&#x20;
 * Finally, you may entirely ignore these functions and **write your own hash function** from scratch, but remember that your goal is to build an operating system kernel, not to design a hash function.
 
 </details>
 
 * <mark style="color:blue;">**Type: bool hash\_less\_func (const struct hash\_elem \*a, const struct hash\_elem \*b, void \*aux)**</mark>
-  * **Compares the keys stored in elements a** __ and __ **b.**
+  * **Compares the keys stored in elements **_**a**_** and **_**b**_**.**&#x20;
   * Returns true if _a_ is less than _b_, false if _a_ is greater than or equal to _b_.
   * **If two elements compare equal, then they must hash to equal values.**
   * See section [Auxiliary Data](hash-table.md#auxiliary-data), for an explanation of aux.
@@ -82,18 +82,18 @@ A few functions in this hash table implementation accepts a pointer to a third k
 These functions _**create**_, _**destroy**_, and _**inspect**_ hash tables.
 
 * <mark style="color:blue;">**Function: bool hash\_init (struct hash \*hash, hash\_hash\_func \*hash\_func, hash\_less\_func \*less\_func, void \*aux)**</mark>
-  * Initializes _**hash**_ as a hash table with _**hash\_func**_ as hash function, _**less\_func**_ as comparison function, and _**aux**_ as auxiliary data.
+  * **Initializes **_**hash**_** as a hash table with **_**hash\_func**_** as hash function, **_**less\_func**_** as comparison function, and **_**aux**_** as auxiliary data.**&#x20;
   * Returns true if successful, false on failure. `hash_init()` calls `malloc()` and fails if memory cannot be allocated.
   * See section [Auxiliary Data](hash-table.md#auxiliary-data), for an explanation of _aux_, which is most often a null pointer.
 * <mark style="color:blue;">**Function: void hash\_clear (struct hash \*hash, hash\_action\_func \*action)**</mark>
-  * **Removes all the elements from \_hash**\_**, which must have been previously initialized with `hash_init()`.**
-  * If action is non-null, then it is called once for each element in the hash table, which gives the caller an opportunity to deallocate any memory or other resources used by the element. For example, if the hash table elements are dynamically allocated using `malloc()`, then action could `free()` the element. This is safe because `hash_clear()` will not access the memory in a given hash element after calling _action_ on it. However, **action must not call any function that may modify the hash table**, such as `hash_insert()` or `hash_delete()`.
+  * **Removes all the elements from **_**hash**_**, which must have been previously initialized with `hash_init()`.**
+  * **If **_**action**_** is non-null, then it is called once for each element in the hash table**, which gives the caller an opportunity to deallocate any memory or other resources used by the element. For example, if the hash table elements are dynamically allocated using `malloc()`, then action could `free()` the element. This is safe because `hash_clear()` will not access the memory in a given hash element after calling _action_ on it. However, **action must not call any function that may modify the hash table**, such as `hash_insert()` or `hash_delete()`.
 * <mark style="color:blue;">**Function: void hash\_destroy (struct hash \*hash, hash\_action\_func \*action)**</mark>
-  * **If action** __ **is non-null, calls it for each element in the** __ **hash**, with the same semantics as a call to `hash_clear()`.
-  * **Then, frees the memory held by **_**hash**_**.**
+  * **If **_**action**_** is non-null, calls it for each element in the **_**hash**_, with the same semantics as a call to `hash_clear()`.&#x20;
+  * **Then, frees the memory held by **_**hash**_**.**&#x20;
   * Afterward, _hash_ must not be passed to any hash table function, absent an intervening call to `hash_init()`.
 * <mark style="color:blue;">**Function: size\_t hash\_size (struct hash \*hash)**</mark>
-  * **Returns the number of elements currently stored in hash.**
+  * **Returns the number of elements currently stored in **_**hash**_**.**
 * <mark style="color:blue;">**Function: bool hash\_empty (struct hash \*hash)**</mark>
   * Returns true if _hash_ currently contains no elements, false if _hash_ contains at least one element.
 
@@ -102,7 +102,7 @@ These functions _**create**_, _**destroy**_, and _**inspect**_ hash tables.
 Each of these functions **searches a hash table for an element that compares equal to one provided**. Based on the success of the search, they perform some action, such as inserting a new element into the hash table, or simply return the result of the search.
 
 * <mark style="color:blue;">**Function: struct hash\_elem \*hash\_insert (struct hash \*hash, struct hash\_elem \*element)**</mark>
-  * Searches _hash_ for an element equal to _element_.
+  * Searches _hash_ for an element equal to _element_.&#x20;
   * If none is found, inserts _element_ into _hash_ and returns a null pointer. If the table already contains an element equal to _element_, it is returned without modifying _hash_.
 * <mark style="color:blue;">**Function: struct hash\_elem \*hash\_replace (struct hash \*hash, struct hash\_elem \*element)**</mark>
   * Inserts _element_ into _hash_. Any element equal to _element_ already in _hash_ is removed. Returns the element removed, or a null pointer if _hash_ did not contain an element equal to _element_.
@@ -111,10 +111,10 @@ Each of these functions **searches a hash table for an element that compares equ
 **The element passed to the following functions is only used for hashing and comparison purposes.** It is never actually inserted into the hash table. Thus, **only key data in the element needs to be initialized**, and other data in the element will not be used. It often makes sense to declare an instance of the element type as a local variable, initialize the key data, and then pass the address of its `struct hash_elem` to `hash_find()` or `hash_delete()`. See section [Hash Table Example](hash-table.md#hash-table-example), for an example. (Large structures should not be allocated as local variables. See section [Struct thread](threads.md#struct-thread), for more information.)
 
 * <mark style="color:blue;">**Function: struct hash\_elem \*hash\_find (struct hash \*hash, struct hash\_elem \*element)**</mark>
-  * **Searches hash** _for an element equal to_ **element.**
+  * **Searches **_**hash**_** for an element equal to **_**element**_**.**&#x20;
   * Returns the element found, if any, or a null pointer otherwise.
 * <mark style="color:blue;">**Function: struct hash\_elem \*hash\_delete (struct hash \*hash, struct hash\_elem \*element)**</mark>
-  * **Searches hash** _for an element equal to_ **element.**
+  * **Searches **_**hash**_** for an element equal to **_**element**_**.**
   * If one is found, it is removed from _hash_ and returned. Otherwise, a null pointer is returned and _hash_ is unchanged.
 
 {% hint style="info" %}
@@ -126,9 +126,9 @@ Each of these functions **searches a hash table for an element that compares equ
 **These functions allow iterating through the elements in a hash table.** Two interfaces are supplied. The first requires writing and supplying a _**hash\_action\_func**_ to act on each element (see section [Data Types](hash-table.md#data-types)).
 
 * <mark style="color:blue;">**Function: void hash\_apply (struct hash \*hash, hash\_action\_func \*action)**</mark>
-  * **Calls action** _once for each element in_ **hash, **<mark style="color:red;">**in arbitrary order**</mark>**.**
-  * _**action**_ must not call any function that may modify the hash table, such as `hash_insert()` or `hash_delete()`.
-  * _**action**_ must not modify key data in elements, although it may modify any other data.
+  * **Calls **_**action**_** once for each element in **_**hash**_**, **<mark style="color:red;">**in arbitrary order**</mark>**.**&#x20;
+  * _**action**_** must not call any function that may modify the hash table**, such as `hash_insert()` or `hash_delete()`.&#x20;
+  * _**action**_** must not modify key data in elements**, although it may modify any other data.
 
 The second interface is based on an "**iterator**" data type. Idiomatically, iterators are used as follows:
 
@@ -144,21 +144,21 @@ while (hash_next (&i))
 ```
 
 * <mark style="color:blue;">**Type: struct hash\_iterator**</mark>
-  * **Represents a position within a hash table.**
+  * **Represents a position within a hash table.**&#x20;
   * Calling any function that may modify a hash table, such as `hash_insert()` or `hash_delete()`, **invalidates** all iterators within that hash table.
   * Like `struct hash` and `struct hash_elem`, `struct hash_iterator` is **opaque**.
 * <mark style="color:blue;">**Function: void hash\_first (struct hash\_iterator \*iterator, struct hash \*hash)**</mark>
-  * **Initializes iterator** _to just before the first element in_ **hash.**
+  * **Initializes **_**iterator**_** to just before the first element in **_**hash**_**.**
 * <mark style="color:blue;">**Function: struct hash\_elem \*hash\_next (struct hash\_iterator \*iterator)**</mark>
-  * **Advances iterator** _to the next element in_ **hash, and returns that element.** Returns a null pointer if no elements remain.
+  * **Advances **_**iterator**_** to the next element in **_**hash**_**, and returns that element.** Returns a null pointer if no elements remain.&#x20;
   * After `hash_next()` returns null for _iterator_, calling it again yields undefined behavior.
 * <mark style="color:blue;">**Function: struct hash\_elem \*hash\_cur (struct hash\_iterator \*iterator)**</mark>
-  * **Returns the value most recently returned by `hash_next()` for iterator.**
+  * **Returns the value most recently returned by `hash_next()` for **_**iterator**_**.**
   * Yields undefined behavior after `hash_first()` has been called on _iterator_ but before `hash_next()` has been called for the first time.
 
 ## Hash Table Example
 
-Suppose you have a structure, called `struct page`, that you want to put into a hash table.
+Suppose you have a structure, called `struct page`, that you want to put into a hash table.&#x20;
 
 * First, define `struct page` to include a `struct hash_elem` member:
 
@@ -237,13 +237,13 @@ page_lookup (const void *address)
 
 In simple cases like the example above, there's no need for the _aux_ parameters. In these cases, just **pass a null pointer** to `hash_init()` for _aux_ and ignore the values passed to the hash function and comparison functions. (You'll get a compiler warning if you don't use the _aux_ parameter, but you can turn that off with the `UNUSED` macro, as shown in the example, or you can just ignore it.)
 
-_**aux**_ is useful when you have some property of the data in the hash table is both constant and needed for hashing or comparison, but not stored in the data items themselves.\*\* For example, if the items in a hash table are fixed-length strings, but the items themselves don't indicate what that fixed length is, you could pass the length as an _aux_ parameter.
+_**aux**_** is useful when you have some property of the data in the hash table is both constant and needed for hashing or comparison, but not stored in the data items themselves.** For example, if the items in a hash table are fixed-length strings, but the items themselves don't indicate what that fixed length is, you could pass the length as an _aux_ parameter.
 
 ## Synchronization
 
-**The hash table does not do any internal synchronization.** **It is the caller's responsibility to synchronize calls to hash table functions.**
+**The hash table does not do any internal synchronization.** **It is the caller's responsibility to synchronize calls to hash table functions.**&#x20;
 
-* In general, any number of functions that examine but do not modify the hash table, such as `hash_find()` or `hash_next()`, may execute simultaneously.
+* In general, any number of functions that examine but do not modify the hash table, such as `hash_find()` or `hash_next()`, may execute simultaneously.&#x20;
 * However, these functions cannot safely execute at the same time as any function that may modify a given hash table, such as `hash_insert()` or `hash_delete()`, nor may more than one function that can modify a given hash table execute safely at once.
 
 **It is also the caller's responsibility to synchronize access to data in hash table elements.** How to synchronize access to this data depends on how it is designed and organized, as with any other data structure.

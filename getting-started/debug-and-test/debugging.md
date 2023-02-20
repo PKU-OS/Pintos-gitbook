@@ -248,12 +248,12 @@ You can read the GDB manual by typing `info gdb` at a terminal command prompt. H
   * Evaluates the given expression and prints its value. If the expression contains a function call, that function will actually be executed.
 * <mark style="color:blue;">**GDB Command: finish**</mark>
   * Run until the selected function (stack frame) returns
-* <mark style="color:blue;">**GDB Command: b**</mark><mark style="color:blue;">\*\* \*\*</mark>_<mark style="color:blue;">**function**</mark>_
-* <mark style="color:blue;">**GDB Command: b**</mark><mark style="color:blue;">\*\* \*\*</mark>_<mark style="color:blue;">**file:line**</mark>_
+* <mark style="color:blue;">**GDB Command: b**</mark><mark style="color:blue;">** **</mark>_<mark style="color:blue;">**function**</mark>_
+* <mark style="color:blue;">**GDB Command: b**</mark><mark style="color:blue;">** **</mark>_<mark style="color:blue;">**file:line**</mark>_
 * <mark style="color:blue;">**GDB Command: b**</mark> <mark style="color:blue;">\*</mark>_<mark style="color:blue;">**address**</mark>_
   * Sets a breakpoint at _function_, at _line_ within _file_, or _address_. `b` is short for `break` or `breakpoint`. (Use a 0x prefix to specify an address in hex.)
   * Use `b pintos_init` to make GDB stop when Pintos starts running.
-* <mark style="color:blue;">**GDB Command: info**</mark><mark style="color:blue;">\*\* \*\*</mark>_<mark style="color:blue;">**registers**</mark>_
+* <mark style="color:blue;">**GDB Command: info**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark>_<mark style="color:blue;">**registers**</mark>_
   * Print the general purpose registers, eip, eflags, and the segment selectors. For a much more thorough dump of the machine register state, see QEMU's own info registers command.
 * <mark style="color:blue;">**GDB Command:**</mark> <mark style="color:blue;">**x/Nx**</mark> _<mark style="color:blue;">**addr**</mark>_
   * Display a hex dump of N words starting at virtual address _addr_. If N is omitted, it defaults to 1. _addr_ can be any expression.
@@ -267,11 +267,11 @@ You can read the GDB manual by typing `info gdb` at a terminal command prompt. H
   * Select frame number n or frame at address n
 * <mark style="color:blue;">**GDB Command:**</mark> <mark style="color:blue;">**p/a**</mark> _<mark style="color:blue;">**address**</mark>_
   * Prints the name of the function or variable that occupies _address_. (Use a 0x prefix to specify an address in hex.)
-* <mark style="color:blue;">**GDB Command:**</mark> <mark style="color:blue;">**diassemble**</mark><mark style="color:blue;">\*\* \*\*</mark>_<mark style="color:blue;">**function**</mark>_
+* <mark style="color:blue;">**GDB Command:**</mark> <mark style="color:blue;">**diassemble**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark>_<mark style="color:blue;">**function**</mark>_
   * Disassembles function.
-* <mark style="color:blue;">**GDB Command: thread**</mark><mark style="color:blue;">\*\* \*\*</mark>_<mark style="color:blue;">**n**</mark>_
+* <mark style="color:blue;">**GDB Command: thread**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark>_<mark style="color:blue;">**n**</mark>_
   * GDB focuses on one thread (i.e., CPU) at a time. This command switches that focus to thread n, numbered from zero.
-* <mark style="color:blue;">**GDB Command: info**</mark><mark style="color:blue;">\*\* \*\*</mark>_<mark style="color:blue;">**threads**</mark>_
+* <mark style="color:blue;">**GDB Command: info**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark>_<mark style="color:blue;">**threads**</mark>_
   * List all threads (i.e., CPUs), including their state (active or halted) and what function they're in.
 
 We also provide a set of macros specialized for debugging Pintos, written by Godmar Back [gback@cs.vt.edu](mailto:gback@cs.vt.edu). You can type `help user-defined` for basic help with the macros. Here is an overview of their functionality, based on Godmar's documentation:
@@ -281,7 +281,7 @@ We also provide a set of macros specialized for debugging Pintos, written by God
 * <mark style="color:blue;">**GDB Macro: dumplist &**</mark>_<mark style="color:blue;">**list type element**</mark>_
   * Prints the elements of _list_, which should be a `struct` _list_ that contains elements of the given _type_ (without the word `struct`) in which _element_ is the `struct list_elem` member that links the elements.
   * Example: `dumplist all_list thread allelem` prints all elements of `struct thread` that are linked in `struct list all_list` using the `struct list_elem allelem` which is part of `struct thread`.
-* <mark style="color:blue;">**GDB Macro:**</mark> <mark style="color:blue;">**btthread**</mark><mark style="color:blue;">\*\* \*\*</mark>_<mark style="color:blue;">**thread**</mark>_
+* <mark style="color:blue;">**GDB Macro:**</mark> <mark style="color:blue;">**btthread**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark>_<mark style="color:blue;">**thread**</mark>_
   * Shows the backtrace of _thread_, which is a pointer to the `struct thread` of the thread whose backtrace it should show. For the current thread, this is identical to the `bt` (backtrace) command. It also works for any thread suspended in `schedule()`, provided you know where its kernel stack page is located.
 * <mark style="color:blue;">**GDB Macro:**</mark> <mark style="color:blue;">**btthreadlist**</mark> _<mark style="color:blue;">**list element**</mark>_
   * Shows the backtraces of all threads in _list_, the `struct list` in which the threads are kept. Specify element as the `struct list_elem` field used inside `struct thread` to link the threads together.
