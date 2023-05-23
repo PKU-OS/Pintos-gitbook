@@ -30,7 +30,7 @@ First, like nachos, pinto beans are common Mexican food. Second, Pintos is small
 | **Lab1: Threads**             | **03/07** | **03/23 11:59 pm** | **03/26 11:59 pm** | Kernel threads scheduling              | 9     |
 | **Lab2: User Programs**       | **03/28** | **04/13 11:59 pm** | **04/16 11:59 pm** | Load & Run user programs, System calls | 9     |
 | **Lab3a: Virtual Memory**     | **04/25** | **05/18 11:59 pm** | **05/21 11:59 pm** | Demand Paging                          | 9     |
-| **Lab3a: Virtual Memory**     | **05/23** | **06/01 11:59 pm** | **06/04 11:59 pm** | Mmap Files                             | 9     |
+| **Lab3b: Mmap Files**         | **05/23** | **06/01 11:59 pm** | **06/04 11:59 pm** | Mmap Files                             | 9     |
 | (optional) Lab4: File Systems | **/**     | /                  | /                  | Implement File systems                 | 0     |
 
 **In each lab, we will release all the test cases to support your local development.** After the deadline, we will run the same test suite to grade your submissions, so don't worry that your evil teaching assistants (TAs) will intentionally design many corner cases only to deduct your scores.
