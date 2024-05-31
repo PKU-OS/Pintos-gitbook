@@ -181,7 +181,7 @@ sizeof (struct thread) +---------------------------------+
 
 When **`thread_create()`** creates a new thread, it goes through a fair amount of trouble to get it started properly. In particular, the new thread hasn't started running yet, so there's no way for it to be running inside `switch_threads()` as the scheduler expects. To solve the problem, **`thread_create()`** **creates some **_**fake stack frames**_ **in the new thread's stack**:
 
-1. **The topmost fake stack frame is for `switch_threads()`, represented by `struct switch_threads_frame`.** The important part of this frame is its `eip` member, the return address. We point `eip` to **`switch_entry()`**, indicating it to be the function that called `switch_entry()`.
+1. **The topmost fake stack frame is for `switch_threads()`, represented by `struct switch_threads_frame`.** The important part of this frame is its `eip` member, the return address. We point `eip` to **`switch_entry()`**, indicating it to be the function that called `switch_threads()`.
 2. **The next fake stack frame is for `switch_entry()`**, an assembly language routine in threads/switch.S that adjusts the stack pointer, **calls `thread_schedule_tail()`** (this special case is why `thread_schedule_tail()` is separate from `schedule()`), and returns. We fill in its stack frame so that it **returns into `kernel_thread()`**, a function in `threads/thread.c`.
 3. **The final stack frame is for `kernel_thread()`**, which **enables interrupts** and **calls the thread's function** (the function passed to `thread_create()`). If the thread's function returns, it calls **`thread_exit()`** to terminate the thread.
 
