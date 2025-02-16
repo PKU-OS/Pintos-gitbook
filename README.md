@@ -37,7 +37,7 @@ First, like nachos, pinto beans are common Mexican food. Second, Pintos is small
 
 However, your evil TAs firmly believe that there is a great difference between "elegant code" and "working code". **So a large part of your score will be determined by the quality of your design document and your code.** Don't worry, your kind TAs firmly resist "involution" and advocates "Ockham's Razor", so we will provide document templates for you to limit your document to hundreds of words long. Also, we will make the scoring criteria of coding style publicly available.
 
-**In a word, we hope this project will be a challenging but rewarding experience for all of you guys.** If you have any suggestions, feel free to contact PKUFlyingPig zhongyinmin@pku.edu.cn.
+**In a word, we hope this project will be a challenging but rewarding experience for all of you guys.** If you have any suggestions, feel free to contact PKUFlyingPig (zhongyinmin@pku.edu.cn) or EchoStone (echostone@stu.pku.edu.cn).
 
 ## Prerequisite
 
