@@ -13,7 +13,7 @@
 <summary>Members of <code>struct thread</code></summary>
 
 * <mark style="color:blue;">**tid\_t tid**</mark>
-  * **The thread's thread identifier or \_tid**\_**.** Every thread must have a tid that is unique over the entire lifetime of the kernel.
+  * **The thread's thread identifier or&#x20;**_**tid**_**.** Every thread must have a tid that is unique over the entire lifetime of the kernel.
   * By default, `tid_t` is a `typedef` for `int` and each new thread receives the numerically next higher tid, **starting from 1 for the initial process**. You can change the type and the numbering scheme if you like.
 * <mark style="color:blue;">**enum thread\_status status**</mark>
   * **The thread's state, one of the following:**
@@ -27,7 +27,7 @@
     * The thread is **waiting for something**, e.g. a lock to become available, an interrupt to be invoked.
     * The thread won't be scheduled again until it transitions to the `THREAD_READY` state with a call to **`thread_unblock()`**.
     * **This is most conveniently done indirectly**, using one of the Pintos synchronization primitives that block and unblock threads automatically (see section [Synchronization](synchronization.md)).
-    * **There is no \_a priori**\_\*\* way to tell what a blocked thread is waiting for\*\*, but a backtrace can help (see section [Backtraces](../../getting-started/debug-and-test/debugging.md#assert)).
+    * **There is no&#x20;**_**a priori**_ **way to tell what a blocked thread is waiting for**, but a backtrace can help (see section [Backtraces](../../getting-started/debug-and-test/debugging.md#assert)).
   * <mark style="color:orange;">**`THREAD_DYING`**</mark>**:**
     * The thread **will be destroyed** by the scheduler **after switching to the next thread**.
 * <mark style="color:blue;">**char name\[16]**</mark>
@@ -49,13 +49,13 @@
 * <mark style="color:blue;">**unsigned magic**</mark>
   * **Always set to `THREAD_MAGIC`**, which is just an arbitrary number defined in threads/thread.c, and **used to detect stack overflow**.
   * **`thread_current()`** checks that the `magic` member of the running thread's `struct thread` is set to `THREAD_MAGIC`.
-  * Stack overflow tends to change this value, triggering the assertion. <mark style="color:red;">**For greatest benefit, as you add members to**</mark><mark style="color:red;">\*\*</mark> `struct thread`, leave\*\*<mark style="color:red;">\*\*</mark> `magic` \*\*<mark style="color:red;">**at the end**</mark>.
+  * Stack overflow tends to change this value, triggering the assertion. <mark style="color:red;">**For greatest benefit, as you add members to**</mark>**&#x20;`struct thread`, leave** **`magic`** <mark style="color:red;">**at the end**</mark>**.**
 
 </details>
 
 ### Notes
 
-* <mark style="color:red;">**Every**</mark><mark style="color:red;">\*\*</mark> `struct thread` \*\*<mark style="color:red;">**occupies the beginning of its own page of memory.**</mark> **The rest of the page is used for the thread's stack**, which grows downward from the end of the page. It looks like this:
+* <mark style="color:red;">**Every**</mark>**&#x20;`struct thread`** <mark style="color:red;">**occupies the beginning of its own page of memory.**</mark> **The rest of the page is used for the thread's stack**, which grows downward from the end of the page. It looks like this:
 
 ```
                   4 kB +---------------------------------+
@@ -107,7 +107,7 @@ sizeof (struct thread) +---------------------------------+
 * <mark style="color:blue;">**Function: tid\_t thread\_create (const char \*name, int priority, thread\_func \*func, void \*aux)**</mark>
   * **Creates and starts a new thread named name with the given priority, returning the new thread's tid.** **The thread executes func, passing aux as the function's single argument.**
   * `thread_create()` **allocates a page** for the thread's `struct thread` and stack and **initializes** its members, then it **sets up a set of fake stack frames** for it (see section [Thread Switching](threads.md#thread-switching)).
-  * **The thread is initialized in the \_blocked**\_\*\* state\*\*, then unblocked just before returning, which allows the new thread to be scheduled (see **Thread States**).
+  * **The thread is initialized in the&#x20;**_**blocked**_ **state**, then unblocked just before returning, which allows the new thread to be scheduled (see **Thread States**).
 * <mark style="color:blue;">**Type: void thread\_func (void \*aux)**</mark>
   * This is **the type of the function** passed to `thread_create()`, whose aux argument is passed along as the function's argument.
 * <mark style="color:blue;">**Function: void thread\_block (void)**</mark>
@@ -124,14 +124,14 @@ sizeof (struct thread) +---------------------------------+
 * <mark style="color:blue;">**Function: const char \*thread\_name (void)**</mark>
   * **Returns the running thread's name.**
   * Equivalent to `thread_current ()->name`.
-* <mark style="color:blue;">**Function: void thread\_exit (void)**</mark><mark style="color:blue;">\*\*</mark> `NO_RETURN`\*\*
+* <mark style="color:blue;">**Function: void thread\_exit (void)**</mark>**&#x20;`NO_RETURN`**
   * **Causes the current thread to exit.**
   * **Never returns**, hence `NO_RETURN` (see section [Function and Parameter Attributes](../../getting-started/debug-and-test/debugging.md#function-and-parameter-attributes)).
 * <mark style="color:blue;">**Function: void thread\_yield (void)**</mark>
   * **Yields the CPU to the scheduler, which picks a new thread to run.**
   * **The new thread might be the current thread**, so you can't depend on this function to keep this thread from running for any particular length of time.
 * <mark style="color:blue;">**Function: void thread\_foreach (thread\_action\_func \*action, void \*aux)**</mark>
-  * **Iterates over all threads \_t**\_\*\* and invokes `action(t, aux)` on each.\*\*
+  * **Iterates over all threads&#x20;**_**t**_ **and invokes `action(t, aux)` on each.**
   * _action_ must refer to a function that matches the signature given by **`thread_action_func()`**:
 * <mark style="color:blue;">**Type: void thread\_action\_func (struct thread \*thread, void \*aux)**</mark>
   * **Performs some action on a thread, given aux.**
@@ -162,12 +162,12 @@ sizeof (struct thread) +---------------------------------+
 1. It **records the current thread** in local variable `cur`,
 2. **determines the next thread to run** as local variable next (by calling `next_thread_to_run()`),
 3. and then **calls `switch_threads()` to do the actual thread switch**.
-   * <mark style="color:red;background-color:red;">**The thread we switched to was also running inside**</mark><mark style="color:red;background-color:red;">\*\*</mark> `switch_threads()`, as are all the threads not currently running, so the new thread now returns out of\*\*<mark style="color:red;background-color:red;">\*\*</mark> `switch_threads()`, returning the previously running thread.\*\*
+   * <mark style="color:red;background-color:red;">**The thread we switched to was also running inside**</mark> **`switch_threads()`, as are all the threads not currently running, so the new thread now returns out of** **`switch_threads()`, returning the previously running thread.**
    * **`switch_threads()` is an assembly language routine in `threads/switch.S`.**
      * It **saves** registers on the stack, **saves** the CPU's current stack pointer in the current `struct thread`'s `stack` member.
      * It **restores** the new thread's `stack` into the CPU's stack pointer, **restores** registers from the stack, and returns.
 4. **The rest of the scheduler is implemented in `thread_schedule_tail()`.**
-   * It **marks the new thread as \_running**\_.
+   * It **marks the new thread as&#x20;**_**running**_.
    * If the thread we just switched from is **in the dying state**, then it also **frees the page** that contained the dying thread's `struct thread` and stack.
    * These couldn't be freed prior to the thread switch because the switch needed to use it.
 
@@ -181,7 +181,7 @@ When **`thread_create()`** creates a new thread, it goes through a fair amount o
 2. **The next fake stack frame is for `switch_entry()`**, an assembly language routine in threads/switch.S that adjusts the stack pointer, **calls `thread_schedule_tail()`** (this special case is why `thread_schedule_tail()` is separate from `schedule()`), and returns. We fill in its stack frame so that it **returns into `kernel_thread()`**, a function in `threads/thread.c`.
 3. **The final stack frame is for `kernel_thread()`**, which **enables interrupts** and **calls the thread's function** (the function passed to `thread_create()`). If the thread's function returns, it calls **`thread_exit()`** to terminate the thread.
 
-<mark style="color:red;">**The following is the stack page layout of a thread created by**</mark><mark style="color:red;">\*\*</mark> `thread_create()` \*\*<mark style="color:red;">**and scheduled for the first time.**</mark> If you find some problems, feel free to contact us.
+<mark style="color:red;">**The following is the stack page layout of a thread created by**</mark> **`thread_create()`** <mark style="color:red;">**and scheduled for the first time.**</mark> If you find some problems, feel free to contact us.
 
 ```
                   4 kB +---------------------------------+

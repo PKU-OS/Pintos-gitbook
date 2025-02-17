@@ -1,17 +1,17 @@
 # Synchronization
 
 {% hint style="info" %}
-**If sharing of resources between threads is not handled in a careful, controlled fashion, the result is usually a big mess.**&#x20;
+**If sharing of resources between threads is not handled in a careful, controlled fashion, the result is usually a big mess.**
 
-* This is especially the case in operating system kernels, where faulty sharing can crash the entire machine.&#x20;
+* This is especially the case in operating system kernels, where faulty sharing can crash the entire machine.
 * Pintos provides several **synchronization primitives** to help out.
 {% endhint %}
 
 ## Disabling Interrupts
 
-**The crudest way to do synchronization is to disable interrupts, that is, to temporarily prevent the CPU from responding to interrupts.**&#x20;
+**The crudest way to do synchronization is to disable interrupts, that is, to temporarily prevent the CPU from responding to interrupts.**
 
-* If interrupts are **off**, no other thread will preempt the running thread, because thread preemption is driven by the timer interrupt.&#x20;
+* If interrupts are **off**, no other thread will preempt the running thread, because thread preemption is driven by the timer interrupt.
 * If interrupts are **on**, as they normally are, then the running thread may be **preempted** by another at any time, whether between two C statements or even within the execution of one.
 
 Incidentally, this means that <mark style="color:red;">**Pintos is a "preemptible kernel,"**</mark> that is, kernel threads can be preempted at any time. **Traditional Unix systems are "nonpreemptible,"** that is, kernel threads can only be preempted at points where they explicitly call into the scheduler. (User programs can be preempted at any time in both models.) As you might imagine, preemptible kernels require more explicit synchronization.
@@ -26,30 +26,30 @@ Types and functions for disabling and enabling interrupts are in **`threads/inte
 
 * <mark style="color:blue;">**Type: enum intr\_level**</mark>
   * One of **`INTR_OFF`** or **`INTR_ON`**, denoting that interrupts are disabled or enabled, respectively.
-* <mark style="color:blue;">**Function: enum intr\_level**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**intr\_get\_level (void)**</mark>
+* <mark style="color:blue;">**Function: enum intr\_level**</mark> <mark style="color:blue;">**intr\_get\_level (void)**</mark>
   * **Returns the current interrupt state.**
-* <mark style="color:blue;">**Function: enum intr\_level**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**intr\_set\_level**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**(enum intr\_level level)**</mark>
-  * **Turns interrupts on or off according to level.**&#x20;
+* <mark style="color:blue;">**Function: enum intr\_level**</mark> <mark style="color:blue;">**intr\_set\_level**</mark> <mark style="color:blue;">**(enum intr\_level level)**</mark>
+  * **Turns interrupts on or off according to level.**
   * **Returns the previous interrupt state.**
-* <mark style="color:blue;">**Function: enum intr\_level**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**intr\_enable**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**(void)**</mark>
-  * **Turns interrupts on.**&#x20;
+* <mark style="color:blue;">**Function: enum intr\_level**</mark> <mark style="color:blue;">**intr\_enable**</mark> <mark style="color:blue;">**(void)**</mark>
+  * **Turns interrupts on.**
   * **Returns the previous interrupt state.**
 * <mark style="color:blue;">**Function: enum intr\_level intr\_disable (void)**</mark>
-  * **Turns interrupts off.**&#x20;
+  * **Turns interrupts off.**
   * **Returns the previous interrupt state.**
 
 </details>
 
 ### Notes
 
-**You should have **_**little**_** need to set the interrupt state directly.** Most of the time you should **use the other synchronization primitives** described in the following sections.&#x20;
+**You should have&#x20;**_**little**_ **need to set the interrupt state directly.** Most of the time you should **use the other synchronization primitives** described in the following sections.
 
-* **The main reason to disable interrupts is to synchronize kernel threads with **_**external**_** interrupt handlers**, which cannot sleep and thus cannot use most other forms of synchronization (see section [External Interrupt Handling](interrupt-handling.md#external-interrupt-handling)).
+* **The main reason to disable interrupts is to synchronize kernel threads with&#x20;**_**external**_ **interrupt handlers**, which cannot sleep and thus cannot use most other forms of synchronization (see section [External Interrupt Handling](interrupt-handling.md#external-interrupt-handling)).
 * **Some external interrupts cannot be postponed, even by disabling interrupts.** These interrupts, called _non-maskable interrupts_ (NMIs), are supposed to be used only in emergencies, e.g. when the computer is on fire. **Pintos does not handle non-maskable interrupts.**
 
 ## Semaphores
 
-Semaphores were invented by Edsger Dijkstra and first used in the `THE operating system`. **A **_**semaphore**_** is a nonnegative integer together with two operators that manipulate it atomically**, which are:
+Semaphores were invented by Edsger Dijkstra and first used in the `THE operating system`. **A&#x20;**_**semaphore**_**&#x20;is a nonnegative integer together with two operators that manipulate it atomically**, which are:
 
 1. <mark style="color:blue;">**"Down" or "P"**</mark>
    * wait for the value to become positive, then decrement it.
@@ -58,12 +58,12 @@ Semaphores were invented by Edsger Dijkstra and first used in the `THE operating
 
 **A semaphore initialized to 0 may be used to wait for an event that will happen exactly once.**
 
-* For example, suppose thread A starts another thread B and wants to wait for B to signal that some activity is complete.&#x20;
+* For example, suppose thread A starts another thread B and wants to wait for B to signal that some activity is complete.
 * A can create a semaphore initialized to 0, pass it to B as it starts it, and then "down" the semaphore. When B finishes its activity, it "ups" the semaphore. This works regardless of whether A "downs" the semaphore or B "ups" it first.
 
-**A semaphore initialized to 1 is typically used for controlling access to a resource.**&#x20;
+**A semaphore initialized to 1 is typically used for controlling access to a resource.**
 
-* Before a block of code starts using the resource, it "downs" the semaphore, then after it is done with the resource it "ups" the resource.&#x20;
+* Before a block of code starts using the resource, it "downs" the semaphore, then after it is done with the resource it "ups" the resource.
 * In such a case **a lock**, described below, may be more appropriate.
 
 **Semaphores can also be initialized to values larger than 1.** These are rarely used.
@@ -78,28 +78,28 @@ Pintos' semaphore type and operations are declared in **`threads/synch.h`**.
 
 * <mark style="color:blue;">**Type: struct semaphore**</mark>
   * **Represents a semaphore.**
-* <mark style="color:blue;">**Function: void sema\_init**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**(struct semaphore \*sema, unsigned value)**</mark>
+* <mark style="color:blue;">**Function: void sema\_init**</mark> <mark style="color:blue;">**(struct semaphore \*sema, unsigned value)**</mark>
   * **Initializes sema as a new semaphore with the given initial value.**
-* <mark style="color:blue;">**Function: void**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**sema\_down**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**(struct semaphore \*sema)**</mark>
+* <mark style="color:blue;">**Function: void**</mark> <mark style="color:blue;">**sema\_down**</mark> <mark style="color:blue;">**(struct semaphore \*sema)**</mark>
   * **Executes the "down" or "P" operation on sema**, waiting for its value to become positive and then decrementing it by one.
-* <mark style="color:blue;">**Function: bool**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**sema\_try\_down**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**(struct semaphore \*sema)**</mark>
-  * **Tries to execute the "down" or "P" operation on sema, without waiting.**&#x20;
-  * Returns true if sema was successfully decremented, or false if it was already zero and thus could not be decremented without waiting.&#x20;
+* <mark style="color:blue;">**Function: bool**</mark> <mark style="color:blue;">**sema\_try\_down**</mark> <mark style="color:blue;">**(struct semaphore \*sema)**</mark>
+  * **Tries to execute the "down" or "P" operation on sema, without waiting.**
+  * Returns true if sema was successfully decremented, or false if it was already zero and thus could not be decremented without waiting.
   * Calling this function in a tight loop wastes CPU time, so use `sema_down()` or find a different approach instead.
-* <mark style="color:blue;">**Function: void sema\_up**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**(struct semaphore \*sema)**</mark>
+* <mark style="color:blue;">**Function: void sema\_up**</mark> <mark style="color:blue;">**(struct semaphore \*sema)**</mark>
   * **Executes the "up" or "V" operation on sema**, incrementing its value. If any threads are waiting on sema, wakes one of them up.
-  * <mark style="color:red;">**Unlike most synchronization primitives,**</mark><mark style="color:red;">** **</mark><mark style="color:red;">**`sema_up()`**</mark><mark style="color:red;">** **</mark><mark style="color:red;">**may be called inside an external interrupt handler**</mark> (see section [External Interrupt Handling](interrupt-handling.md#external-interrupt-handling)).
+  * <mark style="color:red;">**Unlike most synchronization primitives,**</mark>**&#x20;`sema_up()`** <mark style="color:red;">**may be called inside an external interrupt handler**</mark> (see section [External Interrupt Handling](interrupt-handling.md#external-interrupt-handling)).
 
 </details>
 
 ### Notes
 
-* **Semaphores are internally built out of disabling interrupt** (see section [Disabling Interrupts](synchronization.md#disabling-interrupts)) **and thread blocking and unblocking** (`thread_block()` and `thread_unblock()`).&#x20;
+* **Semaphores are internally built out of disabling interrupt** (see section [Disabling Interrupts](synchronization.md#disabling-interrupts)) **and thread blocking and unblocking** (`thread_block()` and `thread_unblock()`).
 * Each semaphore maintains **a list of waiting threads**, using the linked list implementation in **`lib/kernel/list.c`**.
 
 ## Locks
 
-**A **_**lock**_** is like a semaphore with an initial value of 1** (see section [Semaphores](synchronization.md#semaphores)). A lock's equivalent of "up" is called **"release"**, and the "down" operation is called **"acquire"**.
+**A&#x20;**_**lock**_**&#x20;is like a semaphore with an initial value of 1** (see section [Semaphores](synchronization.md#semaphores)). A lock's equivalent of "up" is called **"release"**, and the "down" operation is called **"acquire"**.
 
 ### Types and Functions
 
@@ -109,20 +109,20 @@ Lock types and functions are declared in **`threads/synch.h`**.
 
 <summary>Types and Functions for locks</summary>
 
-* <mark style="color:blue;">**Type:**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**struct lock**</mark>
+* <mark style="color:blue;">**Type:**</mark> <mark style="color:blue;">**struct lock**</mark>
   * **Represents a lock.**
-* <mark style="color:blue;">**Function: void lock\_init**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**(struct lock \*lock)**</mark>
+* <mark style="color:blue;">**Function: void lock\_init**</mark> <mark style="color:blue;">**(struct lock \*lock)**</mark>
   * **Initializes lock as a new lock.** The lock is not initially owned by any thread.
 * <mark style="color:blue;">**Function: void lock\_acquire (struct lock \*lock)**</mark>
   * **Acquires lock for the current thread**, first waiting for any current owner to release it if necessary.
 * <mark style="color:blue;">**Function: bool lock\_try\_acquire (struct lock \*lock)**</mark>
   * **Tries to acquire lock for use by the current thread, without waiting.**
-  * Returns true if successful, false if the lock is already owned.&#x20;
+  * Returns true if successful, false if the lock is already owned.
   * Calling this function in a tight loop is a bad idea because it wastes CPU time, so use `lock_acquire()` instead.
-* <mark style="color:blue;">**Function: void**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**lock\_release**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**(struct lock \*lock)**</mark>
+* <mark style="color:blue;">**Function: void**</mark> <mark style="color:blue;">**lock\_release**</mark> <mark style="color:blue;">**(struct lock \*lock)**</mark>
   * **Releases lock, which the current thread must own.**
-* <mark style="color:blue;">**Function: bool lock\_held\_by\_current\_thread**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**(const struct lock \*lock)**</mark>
-  * **Returns true if the running thread owns lock, false otherwise.**&#x20;
+* <mark style="color:blue;">**Function: bool lock\_held\_by\_current\_thread**</mark> <mark style="color:blue;">**(const struct lock \*lock)**</mark>
+  * **Returns true if the running thread owns lock, false otherwise.**
   * There is no function to test whether an arbitrary thread owns a lock, because the answer could change before the caller could act on it.
 
 </details>
@@ -134,13 +134,13 @@ Lock types and functions are declared in **`threads/synch.h`**.
 
 ## Monitors
 
-**A **_**monitor**_** is a higher-level form of synchronization than a semaphore or a lock.**&#x20;
+**A&#x20;**_**monitor**_ **is a higher-level form of synchronization than a semaphore or a lock.**
 
-* A monitor consists of **data** **being synchronized**, plus **a lock, called the **_**monitor lock**_, and **one or more **_**condition variables**_.&#x20;
-* **Before it accesses the protected data, a thread first acquires the monitor lock.** It is then said to be "in the monitor".&#x20;
+* A monitor consists of **data** **being synchronized**, plus **a lock, called the&#x20;**_**monitor lock**_**,** **and one or more&#x20;**_**condition variables**_**.**
+* **Before it accesses the protected data, a thread first acquires the monitor lock.** It is then said to be "in the monitor".
 * While in the monitor, the thread has control over all the protected data, which it may freely examine or modify. **When access to the protected data is complete, it releases the monitor lock.**
-* **Condition variables allow code in the monitor to wait for a condition to become true.** Each condition variable is associated with an abstract condition, e.g. "some data has arrived for processing" or "over 10 seconds has passed since the user's last keystroke".&#x20;
-  * When code in the monitor needs to wait for a condition to become true, it **"waits"** on the associated condition variable, which releases the lock and waits for the condition to be signaled.&#x20;
+* **Condition variables allow code in the monitor to wait for a condition to become true.** Each condition variable is associated with an abstract condition, e.g. "some data has arrived for processing" or "over 10 seconds has passed since the user's last keystroke".
+  * When code in the monitor needs to wait for a condition to become true, it **"waits"** on the associated condition variable, which releases the lock and waits for the condition to be signaled.
   * If, on the other hand, it has caused one of these conditions to become true, it **"signals"** the condition to wake up one waiter, or **"broadcasts"** the condition to wake all of them.
 
 ### Types and Functions
@@ -153,30 +153,30 @@ Condition variable types and functions are declared in **`threads/synch.h`**.
 
 * <mark style="color:blue;">**Type: struct condition**</mark>
   * **Represents a condition variable.**
-* <mark style="color:blue;">**Function: void**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**cond\_init**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**(struct condition \*cond)**</mark>
+* <mark style="color:blue;">**Function: void**</mark> <mark style="color:blue;">**cond\_init**</mark> <mark style="color:blue;">**(struct condition \*cond)**</mark>
   * **Initializes cond as a new condition variable.**
-* <mark style="color:blue;">**Function: void**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**cond\_wait**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**(struct condition \*cond, struct lock \*lock)**</mark>
-  * **Atomically releases lock (the monitor lock) and waits for cond to be signaled by some other piece of code.**&#x20;
+* <mark style="color:blue;">**Function: void**</mark> <mark style="color:blue;">**cond\_wait**</mark> <mark style="color:blue;">**(struct condition \*cond, struct lock \*lock)**</mark>
+  * **Atomically releases lock (the monitor lock) and waits for cond to be signaled by some other piece of code.**
   * **After cond is signaled, reacquires lock** **before returning**.
   * lock must be held before calling this function.
   * **Sending a signal and waking up from a wait are not an atomic operation.** Thus, typically `cond_wait()`'s caller must **recheck the condition** after the wait completes and, if necessary, wait again. See the next section for an example.
-* <mark style="color:blue;">**Function: void cond\_signal**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**(struct condition \*cond, struct lock \*lock)**</mark>
-  * **If any threads are waiting on cond (protected by monitor lock lock), then this function wakes up one of them.** If no threads are waiting, returns without performing any action.&#x20;
+* <mark style="color:blue;">**Function: void cond\_signal**</mark> <mark style="color:blue;">**(struct condition \*cond, struct lock \*lock)**</mark>
+  * **If any threads are waiting on cond (protected by monitor lock lock), then this function wakes up one of them.** If no threads are waiting, returns without performing any action.
   * lock must be held before calling this function.
-* <mark style="color:blue;">**Function: void**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**cond\_broadcast**</mark> <mark style="color:blue;"></mark><mark style="color:blue;"></mark> <mark style="color:blue;"></mark><mark style="color:blue;">**(struct condition \*cond, struct lock \*lock)**</mark>
-  * **Wakes up all threads, if any, waiting on cond (protected by monitor lock lock).**&#x20;
+* <mark style="color:blue;">**Function: void**</mark> <mark style="color:blue;">**cond\_broadcast**</mark> <mark style="color:blue;">**(struct condition \*cond, struct lock \*lock)**</mark>
+  * **Wakes up all threads, if any, waiting on cond (protected by monitor lock lock).**
   * lock must be held before calling this function.
 
 </details>
 
 ### Notes
 
-* The theoretical framework for monitors was laid out by **`C. A. R. Hoare`**.&#x20;
+* The theoretical framework for monitors was laid out by **`C. A. R. Hoare`**.
 * Their practical usage was later elaborated in a paper on the **`Mesa`** operating system.
 
 ### Monitor example
 
-**The classical example of a monitor is handling a buffer into which one or more "producer" threads write characters and out of which one or more "consumer" threads read characters.**&#x20;
+**The classical example of a monitor is handling a buffer into which one or more "producer" threads write characters and out of which one or more "consumer" threads read characters.**
 
 To implement this we need, besides the monitor lock, two condition variables which we will call not\_full and not\_empty:
 
@@ -218,12 +218,12 @@ char get (void) {
 
 ## Optimization Barrier
 
-**An **_**optimization barrier**_** is a special statement that prevents the compiler from making assumptions about the state of memory across the barrier.**&#x20;
+**An&#x20;**_**optimization barrier**_ **is a special statement that prevents the compiler from making assumptions about the state of memory across the barrier.**
 
-* The compiler will not reorder reads or writes of variables across the barrier or assume that a variable's value is unmodified across the barrier, except for local variables whose address is never taken.&#x20;
+* The compiler will not reorder reads or writes of variables across the barrier or assume that a variable's value is unmodified across the barrier, except for local variables whose address is never taken.
 * In Pintos, `threads/synch.h` defines **the `barrier()` macro** as an optimization barrier.
 
-**One reason to use an optimization barrier is when data can change asynchronously, without the compiler's knowledge**, e.g. by another thread or an interrupt handler.&#x20;
+**One reason to use an optimization barrier is when data can change asynchronously, without the compiler's knowledge**, e.g. by another thread or an interrupt handler.
 
 * The **`too_many_loops()`** function in `devices/timer.c` is an example. This function starts out by busy-waiting in a loop until a timer tick occurs:
 

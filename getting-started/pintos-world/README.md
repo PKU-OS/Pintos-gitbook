@@ -25,7 +25,7 @@ Now you've had a taste of the booting process of Pintos. Let's take a closer loo
 * <mark style="color:blue;">**"lib/user/"**</mark>
   * **Parts of the C library that are included only in Pintos user programs.** In user programs, headers in this directory can be included using the `#include <...>` notation.
 * <mark style="color:blue;">**"tests/"**</mark>
-  * **Tests for each project.** You can modify their codes if it helps you test your submissions. <mark style="color:red;">**When grading, we will replace your**</mark><mark style="color:red;">** **</mark><mark style="color:red;">**`tests/`**</mark><mark style="color:red;">** **</mark><mark style="color:red;">**directory with the original before we run the tests.**</mark>
+  * **Tests for each project.** You can modify their codes if it helps you test your submissions. <mark style="color:red;">**When grading, we will replace your**</mark>**&#x20;`tests/`** <mark style="color:red;">**directory with the original before we run the tests.**</mark>
 * <mark style="color:blue;">**"examples/"**</mark>
   * **Example user programs for use starting from project 2.**
 * <mark style="color:blue;">**"misc/" and "utils/"**</mark>

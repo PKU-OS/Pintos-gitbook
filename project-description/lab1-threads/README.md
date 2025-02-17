@@ -1,9 +1,9 @@
 # Lab1: Threads
 
 {% hint style="warning" %}
-<mark style="color:red;">**Code Due: Thursday 03/21 11:59 pm**</mark>
+<mark style="color:red;">**Code Due: Thursday 03/20 11:59 pm**</mark>
 
-<mark style="color:red;">**Design Doc Due: Sunday 03/24 11:59 pm**</mark>
+<mark style="color:red;">**Design Doc Due: Sunday 03/23 11:59 pm**</mark>
 {% endhint %}
 
 **In this assignment, we give you a minimally functional thread system.** Your job is to **extend the functionality of this system to gain a better understanding of synchronization problems.**

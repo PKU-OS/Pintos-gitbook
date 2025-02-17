@@ -1,9 +1,9 @@
 # Lab2: User Programs
 
 {% hint style="warning" %}
-<mark style="color:red;">**Code Due: Thursday 04/11 11:59 pm**</mark>
+<mark style="color:red;">**Code Due: Thursday 04/10 11:59 pm**</mark>
 
-<mark style="color:red;">**Design Doc Due: Sunday 04/14 11:59 pm**</mark>
+<mark style="color:red;">**Design Doc Due: Sunday 04/13 11:59 pm**</mark>
 {% endhint %}
 
 Now that you've worked with Pintos and are becoming familiar with its infrastructure and thread package, **it's time to start working on the parts of the system that allow running user programs.**
