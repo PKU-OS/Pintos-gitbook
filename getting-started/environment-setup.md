@@ -22,6 +22,20 @@ The easiest way to set up the development environment is Docker. **Your kind TAs
 docker run -it pkuflyingpig/pintos bash
 ```
 
+{% hint style="success" %}
+**New this semester (Spring 2025):**
+
+We are rolling out an **experimental** docker image for ARM users as well, which you can run with:&#x20;
+
+```
+docker run -it sevenchips/pintos-aarch64 bash
+```
+
+&#x20;If you plan to setup Pintos via Docker Desktop on ARM machines (e.g. **Mac with Apple Mx chip**), this image should give you much better performance, as the default image comes in x86-64 and must be emulated on an ARM machine.
+
+Your TAs have tested the standard solution from previous semesters and confirmed the basic functionalities of the new image. **We recommend ARM users try out this new option**, and you can always fall back to the default image simply by recompiling!
+{% endhint %}
+
 This image is about 3GB (it contains a full Ubuntu18.04), so it may take some time at its first run.
 
 If everything goes well, you will enter a bash shell.
@@ -40,9 +54,9 @@ git clone git@github.com:PKU-OS/pintos.git
 ```
 
 {% hint style="warning" %}
-_<mark style="color:red;">**Note:**</mark>_&#x20;
+_<mark style="color:red;">**Note:**</mark>_
 
-<mark style="color:red;">we have made some c</mark>_<mark style="color:red;">ustomization to the official Pintos distribution. So</mark> <mark style="color:red;"></mark><mark style="color:red;">**you should be only getting the source code from the above channels**</mark><mark style="color:red;">. In other words, do not download from other websites.</mark>_
+<mark style="color:red;">we have made some c</mark>_<mark style="color:red;">ustomization to the official Pintos distribution. So</mark>_ _<mark style="color:red;">**you should be only getting the source code from the above channels**</mark><mark style="color:red;">. In other words, do not download from other websites.</mark>_
 {% endhint %}
 
 **Then run the docker image again but this time mount your `path/to/pintos` into the container.**
@@ -52,9 +66,9 @@ docker run -it --rm --name pintos --mount type=bind,source=absolute/path/to/pint
 ```
 
 {% hint style="warning" %}
-_<mark style="color:red;">**Note:**</mark>_&#x20;
+_<mark style="color:red;">**Note:**</mark>_
 
-_<mark style="color:red;">**Do not just copy and paste the command above!**</mark> <mark style="color:red;"></mark><mark style="color:red;">At least you need to replace the absolute path to your pintos directory in the command!</mark>_
+_<mark style="color:red;">**Do not just copy and paste the command above!**</mark>_ _<mark style="color:red;">At least you need to replace the absolute path to your pintos directory in the command!</mark>_
 {% endhint %}
 
 {% hint style="info" %}
@@ -106,11 +120,11 @@ If you want to understand the internal details of the docker image, you can look
 
 ### What's the magic?
 
-Now Let's conclude what you have done.&#x20;
+Now Let's conclude what you have done.
 
-* First, You used docker to run a Ubuntu container that functions as a full-edged Linux OS inside your host OS.&#x20;
-* Then you used Qemu to simulate a 32-bit x86 computer inside your container.&#x20;
-* Finally, you boot a tiny toy OS -- Pintos on the computer which Qemu simulates.&#x20;
+* First, You used docker to run a Ubuntu container that functions as a full-edged Linux OS inside your host OS.
+* Then you used Qemu to simulate a 32-bit x86 computer inside your container.
+* Finally, you boot a tiny toy OS -- Pintos on the computer which Qemu simulates.
 
 Wow, _**virtualization is amazing**_, right?
 
