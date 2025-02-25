@@ -39,7 +39,7 @@ SIMULATOR = --bochs
 
 In windows, if you issue `make grade` to check your score locally, you may encounter the error: `/bin/sh: 1: ../../tests/make-grade: not found, due to the CRLF problem.`
 
-In order to solve this problem, you can download the tool `dos2unix` [here](https://waterlan.home.xs4all.nl/dos2unix.html#UNIX2DOS), and follow the instructions in [this blog](http://t.csdn.cn/d3Ll2) to get you out of the trouble.
+In order to solve this problem, you can download the tool `dos2unix` [here](https://waterlan.home.xs4all.nl/dos2unix.html#UNIX2DOS), and follow the instructions in [this blog](https://www.cnblogs.com/kerrycode/p/5077969.html) to get you out of the trouble.
 {% endhint %}
 
 ## Design Doc & Coding style results (40%)
