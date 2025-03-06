@@ -28,7 +28,7 @@ It's not important to understand exactly how the loader works, but if you're int
 
 1. The startup code's first task is actually to **obtain the machine's memory size**, by asking the BIOS for the PC's memory size. The simplest BIOS function to do this can only detect **up to 64 MB of RAM**, so that's the practical limit that Pintos can support. The function stores the memory size, in pages, in global variable **`init_ram_pages`**.
 2. The first part of CPU initialization is to **enable the A20 line**, that is, the CPU's address line numbered 20. For historical reasons, PCs boot with this address line fixed at 0, which means that attempts to access memory beyond the first 1 MB (2 raised to the 20th power) will fail. Pintos wants to access more memory than this, so we have to enable it.
-3. Next, the loader **creates a basic page table**.
+3. Next, the startup code **creates a basic page table**.
    * This page table maps the 64 MB at the base of virtual memory (starting at virtual address 0) directly to the identical physical addresses.
    * It also maps the same physical memory starting at virtual address `LOADER_PHYS_BASE`, which defaults to `0xc0000000` (3 GB).
    * The Pintos kernel only wants the latter mapping, but there's a chicken-and-egg problem if we don't include the former: our current virtual address is roughly 0x20000, the location where the loader put us, and we can't jump to 0xc0020000 until we turn on the page table, but if we turn on the page table without jumping there, then we've just pulled the rug out from under ourselves.
