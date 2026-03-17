@@ -1,9 +1,9 @@
 # Lab3a: Demand Paging
 
 {% hint style="warning" %}
-<mark style="color:red;">**Code Due: Thursday 05/15 11:59 pm**</mark>
+<mark style="color:red;">**Code Due: Thursday 05/28 11:59 pm**</mark>
 
-<mark style="color:red;">**Design Doc Due: Sunday 05/18 11:59 pm**</mark>
+<mark style="color:red;">**Design Doc Due: Sunday 05/31 11:59 pm**</mark>
 {% endhint %}
 
 **By now you should have some familiarity with the inner workings of Pintos.**
