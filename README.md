@@ -26,11 +26,11 @@ First, like nachos, pinto beans are common Mexican food. Second, Pintos is small
 
 | Project                       | Release   | Code Due           | Design Doc Due     | Content                                | Point |
 | ----------------------------- | --------- | ------------------ | ------------------ | -------------------------------------- | ----- |
-| **Lab0: Getting Real**        | **02/18** | **02/27 11:59 pm** | **03/02 11:59 pm** | Bootstrap Pintos                       | 4     |
-| **Lab1: Threads**             | **03/04** | **03/20 11:59 pm** | **03/23 11:59 pm** | Kernel threads scheduling              | 9     |
-| **Lab2: User Programs**       | **03/25** | **04/10 11:59 pm** | **04/13 11:59 pm** | Load & Run user programs, System calls | 9     |
-| **Lab3a: Virtual Memory**     | **04/22** | **05/15 11:59 pm** | **05/18 11:59 pm** | Demand Paging                          | 9     |
-| **Lab3b: Mmap Files**         | **05/20** | **05/29 11:59 pm** | **06/01 11:59 pm** | Mmap Files                             | 9     |
+| **Lab0: Getting Real**        | **03/05** | **03/12 11:59 pm** | **03/15 11:59 pm** | Bootstrap Pintos                       | 4     |
+| **Lab1: Threads**             | **03/17** | **04/02 11:59 pm** | **04/05 11:59 pm** | Kernel threads scheduling              | 9     |
+| **Lab2: User Programs**       | **04/07** | **04/23 11:59 pm** | **04/26 11:59 pm** | Load & Run user programs, System calls | 9     |
+| **Lab3a: Virtual Memory**     | **05/05** | **05/28 11:59 pm** | **05/31 11:59 pm** | Demand Paging                          | 9     |
+| **Lab3b: Mmap Files**         | **06/02** | **06/11 11:59 pm** | **06/14 11:59 pm** | Mmap Files                             | 9     |
 | (optional) Lab4: File Systems | **/**     | /                  | /                  | Implement File systems                 | 0     |
 
 **In each lab, we will release all the test cases to support your local development.** After the deadline, we will run the same test suite to grade your submissions, so don't worry that your evil teaching assistants (TAs) will intentionally design many corner cases only to deduct your scores.
